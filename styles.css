@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Cinzel', serif;
+  background:
+    radial-gradient(circle at top, #2b2b2b, #121212);
+  color: white;
+  overflow: hidden;
+}
+
+/* =========================================
+   GAME LAYOUT
+========================================= */
+.game {
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-rows:
+    1fr
+    auto
+    1fr;
+
+  padding: 20px;
+  gap: 20px;
+}
+
+.game__side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* =========================================
+   PLAYER PANEL
+========================================= */
+
+.player-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 10px;
+}
+
+.player-panel__name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.player-panel__stats {
+  display: flex;
+  gap: 10px;
+}
+
+.player-panel__stat {
+  padding: 10px 18px;
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+
+  backdrop-filter: blur(4px);
+
+  font-weight: 700;
+}
+
+.player-panel__stat--hp {
+  color: #ff8b8b;
+}
+
+.player-panel__stat--mana {
+  color: #7cb7ff;
+}
+
+/* =========================================
+   BOARD
+========================================= */
+
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.board__slot {
+  width: 120px;
+  height: 170px;
+
+  border-radius: 16px;
+  border: 2px dashed rgba(255,255,255,0.15);
+  
+  background: rgba(255,255,255,0.03);
+
+  transition: 0.2s ease;
+}
+
+.board__slot:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.05);
+}
+
+/* =========================================
+   TURN CONTROLS
+========================================= */
+
+.game__center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  font: inherit;
+  padding: 16px 36px;
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.button--turn-end {
+  background: linear-gradient(
+    135deg,
+    #3f7cff,
+    #5f9bff
+  );
+}
+
+.button--turn-end:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 20px rgba(63,124,255,0.35);
+}

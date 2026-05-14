@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Card Duel Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <main class="game">
+
+<!-- #region ENEMY SIDE -->
+    <section class="game__side game__side--enemy">
+      <div class="player-panel">
+        <div class="player-panel__name">Enemy</div>
+
+        <div class="player-panel__stats">
+          <div class="player-panel__stat player-panel__stat--hp">HP 20</div>
+          <div class="player-panel__stat player-panel__stat--mana">Mana 10</div>
+        </div>
+      </div>
+
+      <div class="board board--enemy">
+        <div class="board__slot"></div>
+        <div class="board__slot"></div>
+        <div class="board__slot"></div>
+        <div class="board__slot"></div>
+        <div class="board__slot"></div>
+      </div>
+    </section>
+<!-- #endregion -->
+
+<!-- #region CENTER AREA -->
+    <section class="game__center">
+      <button class="button button--turn-end">End Turn</button>
+    </section>
+<!-- #endregion -->
+
+<!-- #region PLAYER SIDE -->
+    <section class="game__side game__side--player">
+
+<!-- #region Board -->
+      <div class="board board--player">
+        <div class="board__slot"></div>
+        <div class="board__slot"></div>
+        <div class="board__slot"></div>
+        <div class="board__slot"></div>
+        <div class="board__slot"></div>
+      </div>
+<!-- #endregion -->
+
+<!-- #region Panel -->
+      <div class="player-panel">
+        <div class="player-panel__name">Player</div>
+
+        <div class="player-panel__stats">
+          <div class="player-panel__stat player-panel__stat--hp">HP 20</div>
+          <div class="player-panel__stat player-panel__stat--mana">Mana 10</div>
+        </div>
+      </div>
+    </section>
+<!-- #endregion -->
+
+  </main>
+</body>
+</html>
