@@ -1,146 +1,262 @@
-* {
+/* =========================================
+   VARIABLES
+========================================= */
+:root {
+  --color-hp: #ff8b8b;
+  --color-mana: #7cb7ff;
+  --color-button: linear-gradient(135deg, #3f7cff, #5f9bff);
+  --color-button-text: #fff;
+  --color-bg-glass: rgba(255, 255, 255, 0.04);
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.3);
+
+  --shadow-panel: 0 4px 18px rgba(0, 0, 0, 0.3);
+
+  --slot-w: clamp(80px, 9vw, 160px);
+
+  --radius-panel: 16px;
+  --radius-slot: 16px;
+
+  --padding-layout: clamp(10px, 1.6vw, 20px);
+  --gap-board: clamp(8px, 1.2vw, 20px);
+  --gap-layout: clamp(6px, 1vh, 14px);
+}
+
+/* =========================================
+   RESET
+========================================= */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* =========================================
+   BASE
+========================================= */
 body {
-  min-height: 100vh;
   font-family: 'Cinzel', serif;
-  background:
-    radial-gradient(circle at top, #2b2b2b, #121212);
-  color: white;
-  overflow: hidden;
+  background: 
+    radial-gradient(ellipse at top, #1e2a3a 0%, #0d1117 60%);
+  color: #e8dcc8;
 }
 
 /* =========================================
    GAME LAYOUT
 ========================================= */
 .game {
-  min-height: 100vh;
+  /* DOM Structure
+      * [1]ENEMY PANEL   / auto
+      * [2]ENEMY BOARD   / 1fr
+      * [3]CENTER AREA   / auto
+      * [4]PLAYER BOARD  / 1fr
+      * [5]PLAYER HAND   / auto
+      * [6]PLAYER PANEL  / auto */
 
   display: grid;
   grid-template-rows:
+    auto
     1fr
     auto
-    1fr;
+    1fr
+    auto
+    auto;
+  grid-template-areas:
+    "enemy-panel"
+    "enemy-board"
+    "center"
+    "player-board"
+    "player-hand"
+    "player-panel";
 
-  padding: 20px;
-  gap: 20px;
-}
-
-.game__side {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  min-height: 100dvh;
+  padding: var(--padding-layout);
+  gap: var(--gap-layout);
 }
 
 /* =========================================
    PLAYER PANEL
 ========================================= */
-
 .player-panel {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 0 10px;
+  padding: 
+    clamp(10px, 1.2vh, 16px) 
+    clamp(12px, 1.5vw, 20px);
+
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-panel);
+  background-color: var(--color-bg-glass);
+  backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    var(--shadow-panel);
+}
+
+.player-panel--enemy {
+  grid-area: enemy-panel;
+}
+
+.player-panel--player {
+  grid-area: player-panel;
 }
 
 .player-panel__name {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 1.6vw, 1.6rem);
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .player-panel__stats {
   display: flex;
-  gap: 10px;
+  gap: clamp(6px, 0.8vw, 12px);
 }
 
 .player-panel__stat {
-  padding: 10px 18px;
+  padding: 
+    clamp(6px, 0.8vh, 10px) 
+    clamp(10px, 1.2vw, 18px);
+  
   border-radius: 10px;
-
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.1);
-
-  backdrop-filter: blur(4px);
-
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: clamp(0.75rem, 1vw, 0.95rem);
   font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .player-panel__stat--hp {
-  color: #ff8b8b;
+  color: var(--color-hp);
 }
 
 .player-panel__stat--mana {
-  color: #7cb7ff;
+  color: var(--color-mana);
 }
 
 /* =========================================
    BOARD
 ========================================= */
-
 .board {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+
+  min-height: 0;
+  gap: var(--gap-board);
+}
+
+.board--enemy {
+  grid-area: enemy-board;
+  align-items: flex-end;
+  padding-bottom: clamp(4px, 0.6vh, 10px);
+}
+
+.board--player {
+  grid-area: player-board;
+  align-items: flex-start;
+  padding-top: clamp(4px, 0.6vh, 10px);
 }
 
 .board__slot {
-  width: 120px;
-  height: 170px;
-
-  border-radius: 16px;
-  border: 2px dashed rgba(255,255,255,0.15);
-  
-  background: rgba(255,255,255,0.03);
-
-  transition: 0.2s ease;
+  width: var(--slot-w);
+  aspect-ratio: 3 / 4;
+  flex-shrink: 0;
+  border: 2px dashed rgba(255, 255, 255, 0.13);
+  border-radius: var(--radius-slot);
+  background-color: rgba(255, 255, 255, 0.025);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .board__slot:hover {
   transform: translateY(-4px);
+  border-color: var(--color-border-hover);
+  background-color: rgba(255, 255, 255, 0.05);
+}
 
-  border-color: rgba(255,255,255,0.35);
-  background: rgba(255,255,255,0.05);
+.board__slot:focus-visible {
+  outline: 2px solid rgba(124, 183, 255, 0.9);
+  outline-offset: 4px;
 }
 
 /* =========================================
-   TURN CONTROLS
+   CENTER AREA / TURN CONTROL
 ========================================= */
+.game-center {
+  grid-area: center;
+  position: relative;
 
-.game__center {
   display: flex;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
 }
 
+/* board divider */
+.game-center::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 30%,
+    rgba(255, 255, 255, 0.06) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* turn-end button */
 .button {
-  font: inherit;
-  padding: 16px 36px;
+  position: relative;
+  z-index: 1;
+
+  padding: 
+    clamp(8px, 1vh, 16px)
+    clamp(20px, 2.5vw, 36px);
+
   border: none;
-  border-radius: 14px;
-  color: white;
-  font-size: 1rem;
+  border-radius: 12px;
+
+  font-family: inherit;
+  font-size: clamp(0.7rem, 1vw, 0.9rem);
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-button-text);
+
   cursor: pointer;
-  transition: 0.2s ease;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  touch-action: manipulation;
+}
+
+.button:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.6);
+  outline-offset: 3px;
 }
 
 .button--turn-end {
-  background: linear-gradient(
-    135deg,
-    #3f7cff,
-    #5f9bff
-  );
+  background: var(--color-button);
+  box-shadow: 0 4px 16px rgba(63, 124, 255, 0.25);
 }
 
 .button--turn-end:hover {
-  transform: translateY(-3px);
-  box-shadow:
-    0 8px 20px rgba(63,124,255,0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(63, 124, 255, 0.45);
+}
+
+.button--turn-end:active {
+  transform: translateY(0);
 }

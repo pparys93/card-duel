@@ -13,54 +13,53 @@
 <body>
   <main class="game">
 
-<!-- #region ENEMY SIDE -->
-    <section class="game__side game__side--enemy">
-      <div class="player-panel">
-        <div class="player-panel__name">Enemy</div>
-
-        <div class="player-panel__stats">
-          <div class="player-panel__stat player-panel__stat--hp">HP 20</div>
-          <div class="player-panel__stat player-panel__stat--mana">Mana 10</div>
+<!-- #region [1]ENEMY PANEL -->
+<!-- cards-counter modifier styles non implemented yet -->
+    <section class="player-panel player-panel--enemy" aria-label="Enemy status">
+      <div class="player-panel__name">Enemy</div>
+      <div class="player-panel__stats">
+        <div class="player-panel__stat player-panel__stat--cards-counter">
+          Cards 5
         </div>
-      </div>
-
-      <div class="board board--enemy">
-        <div class="board__slot"></div>
-        <div class="board__slot"></div>
-        <div class="board__slot"></div>
-        <div class="board__slot"></div>
-        <div class="board__slot"></div>
+        <div class="player-panel__stat player-panel__stat--hp">HP 20</div>
+        <div class="player-panel__stat player-panel__stat--mana">Mana 10</div>
       </div>
     </section>
 <!-- #endregion -->
 
-<!-- #region CENTER AREA -->
-    <section class="game__center">
-      <button class="button button--turn-end">End Turn</button>
+<!-- #region [2]ENEMY BOARD -->
+<!-- inactive modifier styles non implemented yet -->
+    <section class="board board--enemy" aria-label="Enemy board">
+      <div class="board__slot board__slot--inactive" aria-label="Enemy slot 1"></div>
+      <div class="board__slot board__slot--inactive" aria-label="Enemy slot 2"></div>
+      <div class="board__slot board__slot--inactive" aria-label="Enemy slot 3"></div>
+      <div class="board__slot board__slot--inactive" aria-label="Enemy slot 4"></div>
     </section>
 <!-- #endregion -->
 
-<!-- #region PLAYER SIDE -->
-    <section class="game__side game__side--player">
-
-<!-- #region Board -->
-      <div class="board board--player">
-        <div class="board__slot"></div>
-        <div class="board__slot"></div>
-        <div class="board__slot"></div>
-        <div class="board__slot"></div>
-        <div class="board__slot"></div>
-      </div>
+<!-- #region [3]CENTER AREA -->
+    <div class="game-center">
+      <button class="button button--turn-end" type="button">
+        End Turn
+      </button>
+    </div>
 <!-- #endregion -->
 
-<!-- #region Panel -->
-      <div class="player-panel">
-        <div class="player-panel__name">Player</div>
+<!-- #region [4]PLAYER BOARD -->
+    <section class="board board--player" aria-label="Player board">
+      <div class="board__slot" aria-label="Player slot 1" tabindex="0"></div>
+      <div class="board__slot" aria-label="Player slot 2" tabindex="0"></div>
+      <div class="board__slot" aria-label="Player slot 3" tabindex="0"></div>
+      <div class="board__slot" aria-label="Player slot 4" tabindex="0"></div>
+    </section>
+<!-- #endregion -->
 
-        <div class="player-panel__stats">
-          <div class="player-panel__stat player-panel__stat--hp">HP 20</div>
-          <div class="player-panel__stat player-panel__stat--mana">Mana 10</div>
-        </div>
+<!-- #region [6]PLAYER PANEL -->
+    <section class="player-panel player-panel--player" aria-label="Player status">
+      <div class="player-panel__name">Player</div>
+      <div class="player-panel__stats">
+        <div class="player-panel__stat player-panel__stat--hp">HP 20</div>
+        <div class="player-panel__stat player-panel__stat--mana">Mana 10</div>
       </div>
     </section>
 <!-- #endregion -->
