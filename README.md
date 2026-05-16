@@ -1,4 +1,4 @@
-# Card Duel Project
+# Card Duel Game
 
 A browser-based fantasy card game interface created as a long-term frontend portfolio project.
 
@@ -138,13 +138,6 @@ This project is also used to practice professional frontend workflow:
 
 ---
 
-## Live Demo
-
-GitHub Pages:  
-:contentReference[oaicite:0]{index=0}
-
----
-
 ## Project Status
 
 Currently in active development.
@@ -160,7 +153,9 @@ The current version focuses on:
 ## Screenshots
 
 ```text
-assets/images/screenshot-2
+screenshot-1_14-5-2026_201937_pparys93.github.io
+screenshot-2_15-5-2026_233358_pparys93.github.io
+screenshot-3_17-5-2026_001215_pparys93.github.io
 ```
 
 ---

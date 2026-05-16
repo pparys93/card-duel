@@ -1,25 +1,48 @@
 /* =========================================
    VARIABLES
+   name scheme: type-property-component-state
 ========================================= */
 :root {
-  --color-hp: #ff8b8b;
-  --color-mana: #7cb7ff;
-  --color-button: linear-gradient(135deg, #3f7cff, #5f9bff);
-  --color-button-text: #fff;
-  --color-bg-glass: rgba(255, 255, 255, 0.04);
-  --color-border-subtle: rgba(255, 255, 255, 0.08);
-  --color-border-hover: rgba(255, 255, 255, 0.3);
+  /* COLORS */
+  --color-text-primary: #e8dcc8;
+  --color-text-inverse: #fff;
+  --color-text-panel-hp: #ff8b8b;
+  --color-text-panel-mana: #7cb7ff;
 
+  --color-bg-arena: 
+    radial-gradient(ellipse at top, #1e2a3a 0%, #0d1117 60%);
+  --color-bg-panel: rgba(255, 255, 255, 0.04);
+  --color-bg-panel-stat: rgba(255, 255, 255, 0.07);
+  --color-bg-slot: rgba(255, 255, 255, 0.025);
+  --color-bg-slot-hover: rgba(255, 255, 255, 0.05);
+  --color-bg-btn: linear-gradient(135deg, #3f7cff, #5f9bff);
+
+  --color-divider: rgba(255, 255, 255, 0.06);
+
+  --color-border-panel: rgba(255, 255, 255, 0.08);
+  --color-border-panel-stat: rgba(255, 255, 255, 0.1);
+  --color-border-slot: rgba(255, 255, 255, 0.13);
+  --color-border-slot-hover: rgba(255, 255, 255, 0.3);
+
+  --color-outline-btn-focus: rgba(255,255,255,0.6);
+  --color-outline-slot-focus: rgba(124, 183, 255, 0.9);
+
+  /* SHADOWS */
   --shadow-panel: 0 4px 18px rgba(0, 0, 0, 0.3);
+  --shadow-btn: 0 4px 16px rgba(63, 124, 255, 0.25);
+  --shadow-btn-hover: 0 8px 24px rgba(63, 124, 255, 0.45);
 
-  --slot-w: clamp(80px, 9vw, 160px);
+  /* SIZES */
+  --slot-w: clamp(80px, 10vw, 160px);
 
+  /* RADIUS */
   --radius-panel: 16px;
   --radius-slot: 16px;
 
+   /* SPACING */
   --padding-layout: clamp(10px, 1.6vw, 20px);
-  --gap-board: clamp(8px, 1.2vw, 20px);
   --gap-layout: clamp(6px, 1vh, 14px);
+  --gap-board: clamp(8px, 1.2vw, 20px);
 }
 
 /* =========================================
@@ -38,9 +61,8 @@
 ========================================= */
 body {
   font-family: 'Cinzel', serif;
-  background: 
-    radial-gradient(ellipse at top, #1e2a3a 0%, #0d1117 60%);
-  color: #e8dcc8;
+  background: var(--color-bg-arena);
+  color: var(--color-text-primary);
 }
 
 /* =========================================
@@ -88,9 +110,9 @@ body {
     clamp(10px, 1.2vh, 16px) 
     clamp(12px, 1.5vw, 20px);
 
-  border: 1px solid var(--color-border-subtle);
+  border: 1px solid var(--color-border-panel);
   border-radius: var(--radius-panel);
-  background-color: var(--color-bg-glass);
+  background-color: var(--color-bg-panel);
   backdrop-filter: blur(8px);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
@@ -123,19 +145,19 @@ body {
     clamp(10px, 1.2vw, 18px);
   
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--color-bg-panel-stat);
+  border: 1px solid var(--color-border-panel-stat);
   font-size: clamp(0.75rem, 1vw, 0.95rem);
   font-weight: 700;
   letter-spacing: 1px;
 }
 
 .player-panel__stat--hp {
-  color: var(--color-hp);
+  color: var(--color-text-panel-hp);
 }
 
 .player-panel__stat--mana {
-  color: var(--color-mana);
+  color: var(--color-text-panel-mana);
 }
 
 /* =========================================
@@ -166,9 +188,9 @@ body {
   width: var(--slot-w);
   aspect-ratio: 3 / 4;
   flex-shrink: 0;
-  border: 2px dashed rgba(255, 255, 255, 0.13);
+  border: 2px dashed var(--color-border-slot);
   border-radius: var(--radius-slot);
-  background-color: rgba(255, 255, 255, 0.025);
+  background-color: var(--color-bg-slot);
   transition:
     border-color 0.2s ease,
     background-color 0.2s ease,
@@ -177,13 +199,20 @@ body {
 
 .board__slot:hover {
   transform: translateY(-4px);
-  border-color: var(--color-border-hover);
-  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-border-slot-hover);
+  background-color: var(--color-bg-slot-hover);
 }
 
 .board__slot:focus-visible {
-  outline: 2px solid rgba(124, 183, 255, 0.9);
+  outline: 2px solid var(--color-outline-slot-focus);
   outline-offset: 4px;
+}
+
+.board__slot--inactive {
+  cursor: not-allowed;
+  background-color: rgba(180, 60, 60, 0.07);
+  border-color: rgba(180, 60, 60, 0.25);
+  border-style: solid;
 }
 
 /* =========================================
@@ -207,8 +236,8 @@ body {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.06) 30%,
-    rgba(255, 255, 255, 0.06) 70%,
+    var(--color-divider) 30%,
+    var(--color-divider) 70%,
     transparent 100%
   );
   pointer-events: none;
@@ -231,7 +260,7 @@ body {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--color-button-text);
+  color: var(--color-text-inverse);
 
   cursor: pointer;
 
@@ -243,18 +272,18 @@ body {
 }
 
 .button:focus-visible {
-  outline: 2px solid rgba(255,255,255,0.6);
+  outline: 2px solid var(--color-outline-btn-focus);
   outline-offset: 3px;
 }
 
 .button--turn-end {
-  background: var(--color-button);
-  box-shadow: 0 4px 16px rgba(63, 124, 255, 0.25);
+  background: var(--color-bg-btn);
+  box-shadow: var(--shadow-btn);
 }
 
 .button--turn-end:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(63, 124, 255, 0.45);
+  box-shadow: var(--shadow-btn-hover);
 }
 
 .button--turn-end:active {
