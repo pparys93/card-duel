@@ -1,8 +1,28 @@
+:root {
 /* =========================================
-   VARIABLES
+   GLOBAL TOKENS
+   name scheme: type-property-scope-scale
+========================================= */
+  /* TYPOGRAPHY */
+  --size-font-global-small: clamp(0.7rem, 1vw, 0.95rem);
+  --size-font-global-medium: clamp(0.95rem, 1.2vw, 1.25rem);  /* reserved */
+  --size-font-global-large: clamp(1rem, 1.3vw, 1.35rem);
+
+  --size-letter-spacing-global-tight: 0.0375rem;  /* reserved */
+  --size-letter-spacing-global-normal: 0.0625rem;
+  --size-letter-spacing-global-wide: 0.125rem;
+
+  /* SPACING */
+  --size-space-global-2xs: 0.25rem;
+  --size-space-global-xs: 0.5rem;   /* reserved */
+  --size-space-global-sm: 0.625rem; /* reserved */
+  --size-space-global-md: 0.75rem;  /* reserved */
+  --size-space-global-lg: 1rem;     /* reserved */
+
+/* =========================================
+   SEMANTIC VARIABLES
    name scheme: type-property-component-state
 ========================================= */
-:root {
   /* COLORS */
   --color-text-primary: #e8dcc8;
   --color-text-inverse: #fff;
@@ -15,34 +35,38 @@
   --color-bg-panel-stat: rgba(255, 255, 255, 0.07);
   --color-bg-slot: rgba(255, 255, 255, 0.025);
   --color-bg-slot-hover: rgba(255, 255, 255, 0.05);
+  --color-bg-divider: rgba(255, 255, 255, 0.06);
   --color-bg-btn: linear-gradient(135deg, #3f7cff, #5f9bff);
-
-  --color-divider: rgba(255, 255, 255, 0.06);
+  --color-bg-card: linear-gradient(160deg, #2b3140, #1a1f2c);
+  --color-bg-card-mana: linear-gradient(135deg, #3f7cff, #6cb2ff);
+  --color-bg-card-attack: linear-gradient(135deg, #c96a6a, #9b3d3d);
+  --color-bg-card-health: linear-gradient(135deg, #4ea96b, #2f7d4a);
 
   --color-border-panel: rgba(255, 255, 255, 0.08);
   --color-border-panel-stat: rgba(255, 255, 255, 0.1);
   --color-border-slot: rgba(255, 255, 255, 0.13);
   --color-border-slot-hover: rgba(255, 255, 255, 0.3);
+  --color-border-card: rgba(255, 255, 255, 0.1);
+  --color-border-card-selected: #FFD700;
 
   --color-outline-btn-focus: rgba(255,255,255,0.6);
   --color-outline-slot-focus: rgba(124, 183, 255, 0.9);
 
   /* SHADOWS */
-  --shadow-panel: 0 4px 18px rgba(0, 0, 0, 0.3);
-  --shadow-btn: 0 4px 16px rgba(63, 124, 255, 0.25);
-  --shadow-btn-hover: 0 8px 24px rgba(63, 124, 255, 0.45);
+  --shadow-box-panel: 0 4px 18px rgba(0, 0, 0, 0.3);
+  --shadow-box-btn: 0 4px 16px rgba(63, 124, 255, 0.25);
+  --shadow-box-btn-hover: 0 8px 24px rgba(63, 124, 255, 0.45);
+  --shadow-box-card: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-box-card-mana: 0 0 10px rgba(63, 124, 255, 0.5);
 
   /* SIZES */
-  --slot-w: clamp(80px, 10vw, 160px);
+  --size-width-slot: clamp(80px, 10vw, 160px);
+  --size-width-card: clamp(130px, 10vw, 180px);
 
-  /* RADIUS */
-  --radius-panel: 16px;
-  --radius-slot: 16px;
-
-   /* SPACING */
-  --padding-layout: clamp(10px, 1.6vw, 20px);
-  --gap-layout: clamp(6px, 1vh, 14px);
-  --gap-board: clamp(8px, 1.2vw, 20px);
+  /* SPACING */
+  --size-padding-layout: clamp(10px, 1.6vw, 20px);
+  --size-gap-layout: clamp(6px, 1vh, 14px);
+  --size-gap-board: clamp(8px, 1.2vw, 20px);
 }
 
 /* =========================================
@@ -94,8 +118,8 @@ body {
     "player-panel";
 
   min-height: 100dvh;
-  padding: var(--padding-layout);
-  gap: var(--gap-layout);
+  padding: var(--size-padding-layout);
+  gap: var(--size-gap-layout);
 }
 
 /* =========================================
@@ -111,12 +135,12 @@ body {
     clamp(12px, 1.5vw, 20px);
 
   border: 1px solid var(--color-border-panel);
-  border-radius: var(--radius-panel);
+  border-radius: 16px;
   background-color: var(--color-bg-panel);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px); /* glassmorphism blur effect */
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    var(--shadow-panel);
+    var(--shadow-box-panel);
 }
 
 .player-panel--enemy {
@@ -128,9 +152,9 @@ body {
 }
 
 .player-panel__name {
-  font-size: clamp(1rem, 1.6vw, 1.6rem);
+  font-size: var(--size-font-global-large);
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: var(--size-letter-spacing-global-wide);
   text-transform: uppercase;
 }
 
@@ -147,9 +171,9 @@ body {
   border-radius: 10px;
   background-color: var(--color-bg-panel-stat);
   border: 1px solid var(--color-border-panel-stat);
-  font-size: clamp(0.75rem, 1vw, 0.95rem);
+  font-size: var(--size-font-global-small);
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: var(--size-letter-spacing-global-normal);
 }
 
 .player-panel__stat--hp {
@@ -169,7 +193,7 @@ body {
   align-items: center;
 
   min-height: 0;
-  gap: var(--gap-board);
+  gap: var(--size-gap-board);
 }
 
 .board--enemy {
@@ -185,11 +209,11 @@ body {
 }
 
 .board__slot {
-  width: var(--slot-w);
-  aspect-ratio: 3 / 4;
+  width: var(--size-width-slot);
+  aspect-ratio: 3 / 4; /* keeps consistent portrait slot shape */
   flex-shrink: 0;
   border: 2px dashed var(--color-border-slot);
-  border-radius: var(--radius-slot);
+  border-radius: 16px;
   background-color: var(--color-bg-slot);
   transition:
     border-color 0.2s ease,
@@ -197,22 +221,28 @@ body {
     transform 0.2s ease;
 }
 
-.board__slot:hover {
+.board__slot:not(.board__slot--inactive):hover {
   transform: translateY(-4px);
   border-color: var(--color-border-slot-hover);
   background-color: var(--color-bg-slot-hover);
 }
 
-.board__slot:focus-visible {
-  outline: 2px solid var(--color-outline-slot-focus);
-  outline-offset: 4px;
-}
-
 .board__slot--inactive {
-  cursor: not-allowed;
   background-color: rgba(180, 60, 60, 0.07);
   border-color: rgba(180, 60, 60, 0.25);
   border-style: solid;
+  cursor: not-allowed;
+}
+
+.board__slot--inactive:hover {
+  transform: translateY(-4px);
+  background-color: rgba(220, 70, 70, 0.18);
+  border-color: rgba(255, 90, 90, 0.55);
+}
+
+.board__slot:focus-visible {
+  outline: 2px solid var(--color-outline-slot-focus);
+  outline-offset: var(--size-space-global-2xs);
 }
 
 /* =========================================
@@ -232,12 +262,12 @@ body {
 .game-center::before {
   position: absolute;
   content: "";
-  inset: 0;
+  inset: 0; /* full-width divider */
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--color-divider) 30%,
-    var(--color-divider) 70%,
+    var(--color-bg-divider) 30%,
+    var(--color-bg-divider) 70%,
     transparent 100%
   );
   pointer-events: none;
@@ -256,9 +286,9 @@ body {
   border-radius: 12px;
 
   font-family: inherit;
-  font-size: clamp(0.7rem, 1vw, 0.9rem);
+  font-size: var(--size-font-global-small);
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: var(--size-letter-spacing-global-wide);
   text-transform: uppercase;
   color: var(--color-text-inverse);
 
@@ -278,12 +308,12 @@ body {
 
 .button--turn-end {
   background: var(--color-bg-btn);
-  box-shadow: var(--shadow-btn);
+  box-shadow: var(--shadow-box-btn);
 }
 
 .button--turn-end:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-btn-hover);
+  box-shadow: var(--shadow-box-btn-hover);
 }
 
 .button--turn-end:active {
