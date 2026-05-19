@@ -5,17 +5,21 @@
 ========================================= */
   /* TYPOGRAPHY */
   --size-font-global-small: clamp(0.7rem, 1vw, 0.95rem);
-  --size-font-global-medium: clamp(0.95rem, 1.2vw, 1.25rem);  /* reserved */
+  --size-font-global-medium: clamp(0.95rem, 1.2vw, 1.25rem);
   --size-font-global-large: clamp(1rem, 1.3vw, 1.35rem);
 
-  --size-letter-spacing-global-tight: 0.0375rem;  /* reserved */
+  --size-line-height-global-tight: 1.2;
+  --size-line-height-global-normal: 1.4;   /* reserved */
+  --size-line-height-global-relaxed: 1.6;  /* reserved */
+
+  --size-letter-spacing-global-tight: 0.0375rem;
   --size-letter-spacing-global-normal: 0.0625rem;
   --size-letter-spacing-global-wide: 0.125rem;
 
   /* SPACING */
   --size-space-global-2xs: 0.25rem;
   --size-space-global-xs: 0.5rem;   /* reserved */
-  --size-space-global-sm: 0.625rem; /* reserved */
+  --size-space-global-sm: 0.625rem;
   --size-space-global-md: 0.75rem;  /* reserved */
   --size-space-global-lg: 1rem;     /* reserved */
 
@@ -29,14 +33,14 @@
   --color-text-panel-hp: #ff8b8b;
   --color-text-panel-mana: #7cb7ff;
 
-  --color-bg-arena: 
-    radial-gradient(ellipse at top, #1e2a3a 0%, #0d1117 60%);
+  --color-bg-arena: radial-gradient(ellipse at top, #1e2a3a 0%, #0d1117 60%);
   --color-bg-panel: rgba(255, 255, 255, 0.04);
   --color-bg-panel-stat: rgba(255, 255, 255, 0.07);
   --color-bg-slot: rgba(255, 255, 255, 0.025);
   --color-bg-slot-hover: rgba(255, 255, 255, 0.05);
   --color-bg-divider: rgba(255, 255, 255, 0.06);
-  --color-bg-btn: linear-gradient(135deg, #3f7cff, #5f9bff);
+  --color-bg-btn-end-turn: linear-gradient(135deg, #3f7cff, #5f9bff);
+  --color-bg-btn-draw: linear-gradient(135deg, #4e6f8d, #385670);
   --color-bg-card: linear-gradient(160deg, #2b3140, #1a1f2c);
   --color-bg-card-mana: linear-gradient(135deg, #3f7cff, #6cb2ff);
   --color-bg-card-attack: linear-gradient(135deg, #c96a6a, #9b3d3d);
@@ -54,19 +58,36 @@
 
   /* SHADOWS */
   --shadow-box-panel: 0 4px 18px rgba(0, 0, 0, 0.3);
-  --shadow-box-btn: 0 4px 16px rgba(63, 124, 255, 0.25);
-  --shadow-box-btn-hover: 0 8px 24px rgba(63, 124, 255, 0.45);
+  --shadow-box-btn-end-turn: 0 6px 18px rgba(63, 124, 255, 0.34);
+  --shadow-box-btn-end-turn-hover: 0 10px 26px rgba(63, 124, 255, 0.5);
+  --shadow-box-btn-draw: 0 5px 15px rgba(56, 86, 112, 0.32);
+  --shadow-box-btn-draw-hover: 0 9px 22px rgba(56, 86, 112, 0.44);
   --shadow-box-card: 0 8px 24px rgba(0, 0, 0, 0.5);
   --shadow-box-card-mana: 0 0 10px rgba(63, 124, 255, 0.5);
+  --shadow-filter-icon: drop-shadow(0 0 6px rgba(190, 220, 255, 0.3));
 
   /* SIZES */
   --size-width-slot: clamp(80px, 10vw, 160px);
   --size-width-card: clamp(130px, 10vw, 180px);
 
   /* SPACING */
-  --size-padding-layout: clamp(10px, 1.6vw, 20px);
-  --size-gap-layout: clamp(6px, 1vh, 14px);
-  --size-gap-board: clamp(8px, 1.2vw, 20px);
+  --size-padding-layout: clamp(0.625rem, 1.6vw, 1.25rem);
+  --size-gap-layout: clamp(0.375rem, 1vh, 0.875rem);
+  --size-gap-board: clamp(0.5rem, 1.2vw, 1.25rem);
+  --size-gap-turn-controls: clamp(0.5rem, 1vw, 0.875rem);
+  --size-width-btn: clamp(7.5rem, 14vw, 10.625rem);
+  --size-padding-btn-block: clamp(0.5rem, 1vh, 1rem);
+  --size-padding-btn-inline: clamp(1.25rem, 2.5vw, 2.25rem);
+  --size-radius-panel: 1rem;
+  --size-radius-panel-stat: 0.625rem;
+  --size-padding-panel-block: clamp(0.625rem, 1.2vh, 1rem);
+  --size-padding-panel-inline: clamp(0.75rem, 1.5vw, 1.25rem);
+  --size-gap-panel-stats: clamp(0.375rem, 0.8vw, 0.75rem);
+  --size-padding-panel-stat-block: clamp(0.375rem, 0.8vh, 0.625rem);
+  --size-padding-panel-stat-inline: clamp(0.625rem, 1.2vw, 1.125rem);
+  --size-padding-board: clamp(0.25rem, 0.6vh, 0.625rem);
+  --size-padding-card-hand-top: clamp(2.25rem, 5vh, 3.125rem);
+  --size-padding-card-hand-bottom: clamp(0.25rem, 0.6vh, 0.5rem);
 }
 
 /* =========================================
@@ -87,6 +108,16 @@ body {
   font-family: 'Cinzel', serif;
   background: var(--color-bg-arena);
   color: var(--color-text-primary);
+  animation: fadeInBg 0.8s ease-out;
+}
+
+@keyframes fadeInBg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* =========================================
@@ -94,12 +125,12 @@ body {
 ========================================= */
 .game {
   /* DOM Structure
-      * [1]ENEMY PANEL   / auto
-      * [2]ENEMY BOARD   / 1fr
-      * [3]CENTER AREA   / auto
-      * [4]PLAYER BOARD  / 1fr
-      * [5]PLAYER HAND   / auto
-      * [6]PLAYER PANEL  / auto */
+      * [1]ENEMY PANEL    / auto
+      * [2]ENEMY BOARD    / 1fr
+      * [3]TURN CONTROLS  / auto
+      * [4]PLAYER BOARD   / 1fr
+      * [5]PLAYER HAND    / auto
+      * [6]PLAYER PANEL   / auto */
 
   display: grid;
   grid-template-rows:
@@ -112,7 +143,7 @@ body {
   grid-template-areas:
     "enemy-panel"
     "enemy-board"
-    "center"
+    "turn-controls"
     "player-board"
     "player-hand"
     "player-panel";
@@ -130,12 +161,10 @@ body {
   justify-content: space-between;
   align-items: center;
 
-  padding: 
-    clamp(10px, 1.2vh, 16px) 
-    clamp(12px, 1.5vw, 20px);
+  padding: var(--size-padding-panel-block) var(--size-padding-panel-inline);
 
   border: 1px solid var(--color-border-panel);
-  border-radius: 16px;
+  border-radius: var(--size-radius-panel);
   background-color: var(--color-bg-panel);
   backdrop-filter: blur(8px); /* glassmorphism blur effect */
   box-shadow:
@@ -160,15 +189,13 @@ body {
 
 .player-panel__stats {
   display: flex;
-  gap: clamp(6px, 0.8vw, 12px);
+  gap: var(--size-gap-panel-stats);
 }
 
 .player-panel__stat {
-  padding: 
-    clamp(6px, 0.8vh, 10px) 
-    clamp(10px, 1.2vw, 18px);
+  padding: var(--size-padding-panel-stat-block) var(--size-padding-panel-stat-inline);
   
-  border-radius: 10px;
+  border-radius: var(--size-radius-panel-stat);
   background-color: var(--color-bg-panel-stat);
   border: 1px solid var(--color-border-panel-stat);
   font-size: var(--size-font-global-small);
@@ -192,20 +219,20 @@ body {
   justify-content: center;
   align-items: center;
 
-  min-height: 0;
+  min-height: 0; /* lets the board shrink inside the grid track */
   gap: var(--size-gap-board);
 }
 
 .board--enemy {
   grid-area: enemy-board;
   align-items: flex-end;
-  padding-bottom: clamp(4px, 0.6vh, 10px);
+  padding-bottom: var(--size-padding-board);
 }
 
 .board--player {
   grid-area: player-board;
   align-items: flex-start;
-  padding-top: clamp(4px, 0.6vh, 10px);
+  padding-top: var(--size-padding-board);
 }
 
 .board__slot {
@@ -235,7 +262,6 @@ body {
 }
 
 .board__slot--inactive:hover {
-  transform: translateY(-4px);
   background-color: rgba(220, 70, 70, 0.18);
   border-color: rgba(255, 90, 90, 0.55);
 }
@@ -246,20 +272,21 @@ body {
 }
 
 /* =========================================
-   CENTER AREA / TURN CONTROL
+   TURN CONTROLS
 ========================================= */
-.game-center {
-  grid-area: center;
+.turn-controls {
+  grid-area: turn-controls;
   position: relative;
 
   display: flex;
-  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: var(--size-gap-turn-controls);
   justify-content: center;
   align-items: center;
 }
 
 /* board divider */
-.game-center::before {
+.turn-controls::before {
   position: absolute;
   content: "";
   inset: 0; /* full-width divider */
@@ -273,14 +300,10 @@ body {
   pointer-events: none;
 }
 
-/* turn-end button */
+/* button base */
 .button {
-  position: relative;
-  z-index: 1;
-
-  padding: 
-    clamp(8px, 1vh, 16px)
-    clamp(20px, 2.5vw, 36px);
+  min-width: var(--size-width-btn);
+  padding: var(--size-padding-btn-block) var(--size-padding-btn-inline);
 
   border: none;
   border-radius: 12px;
@@ -301,21 +324,44 @@ body {
   touch-action: manipulation;
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
 .button:focus-visible {
   outline: 2px solid var(--color-outline-btn-focus);
   outline-offset: 3px;
 }
 
-.button--turn-end {
-  background: var(--color-bg-btn);
-  box-shadow: var(--shadow-box-btn);
+/* end-turn button */
+.button--end-turn {
+  background: var(--color-bg-btn-end-turn);
+  box-shadow: var(--shadow-box-btn-end-turn);
 }
 
-.button--turn-end:hover {
+.button--end-turn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-box-btn-hover);
+  box-shadow: var(--shadow-box-btn-end-turn-hover);
 }
 
-.button--turn-end:active {
+.button--end-turn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* draw-card button */
+.button--draw-card {
+  background: var(--color-bg-btn-draw);
+  box-shadow: var(--shadow-box-btn-draw);
+}
+
+.button--draw-card:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-box-btn-draw-hover);
+}
+
+.button--draw-card:active:not(:disabled) {
   transform: translateY(0);
 }
