@@ -1,26 +1,41 @@
-# Card Duel Game
+<div align="center">
 
-A browser-based fantasy card game interface created as a long-term frontend portfolio project.
+```
+  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
+ ╔═══════════════════════════════╗
+ ║   . : C A R D   D U E L : .   ║
+ ╚═══════════════════════════════╝
+  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
+```
 
-## About The Project
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
+![Status](https://img.shields.io/badge/Status-In%20Progress-yellow)
 
-Card Duel Project is a personal frontend development project focused on building a clean, responsive and scalable fantasy card game UI from scratch.
+</div>
 
-The project currently focuses on building a strong frontend architecture and polished user interface before implementing full game logic and React integration.
+# ⚔️ Card Duel ⚔️
+
+A browser-based fantasy card game interface — a long-term frontend portfolio project focused on clean architecture, responsive design, and accessibility-first thinking.
+
+## 📖 About The Project 📖
+
+Card Duel is a turn-based fantasy card game built in the browser. Two players face each other across a battlefield, placing cards, managing mana, and fighting to reduce the opponent's HP to zero.
+
+The project currently focuses on building a strong frontend architecture and a polished user interface before implementing full game logic and React integration.
 
 The main purpose of this project is to:
-
 - improve frontend development skills,
 - practice modern HTML & CSS architecture,
 - learn scalable project organization,
 - build reusable UI structures,
 - prepare the application for JavaScript and React implementation,
-- document continuous learning progress through real development workflow.
+- document continuous learning progress through a real development workflow.
 
 ---
 
-## Current Tech Stack
-
+## 🛠️ Current Tech Stack 🛠️
 - HTML5
 - CSS3
 - Git & GitHub
@@ -28,44 +43,42 @@ The main purpose of this project is to:
 
 ---
 
-## Current Features
+## ✨ Current Features ✨
 
-### Responsive Game Layout
+### 🗺️ Responsive Game Layout 🗺️
 - CSS Grid-based battlefield structure,
-- separated enemy and player sections,
+- separate enemy and player sections,
 - center action area for game controls,
-- scalable layout prepared for future hand/deck sections,
 - responsive spacing using `clamp()`.
 
-### Player Interface
+### 🧙 Player Interface 🧙
 - Dedicated enemy and player status panels,
 - HP and Mana indicators,
-- prepared cards counter structure,
+- card counter structure,
 - glassmorphism-inspired UI containers,
 - fully responsive stat elements.
 
-### Game Board
+### 🃏 Game Board 🃏
 - Interactive board slots,
 - hover animations,
 - keyboard focus support,
-- accessible slot labels using `aria-label`,
-- prepared structure for future dynamic card rendering.
+- accessible slot labels using `aria-label`.
 
-### UI & Visual Design
+### 🎨 UI & Visual Design 🎨
 - fantasy-inspired visual style,
 - dark gradient background,
 - smooth transitions and hover effects,
 - custom typography using Google Fonts,
 - subtle depth effects using shadows and backdrop blur.
 
-### Accessibility & UX
+### ♿ Accessibility & UX ♿
 - semantic HTML structure,
 - keyboard-accessible interactive elements,
 - `focus-visible` states,
 - improved button accessibility,
 - touch-friendly controls.
 
-### CSS Architecture
+### 🧱 CSS Architecture 🧱
 - BEM naming convention,
 - CSS custom properties (`:root` variables),
 - modular section-based stylesheet organization,
@@ -74,9 +87,9 @@ The main purpose of this project is to:
 
 ---
 
-## Planned Features
+## ✍🏻 Planned Features ✍🏻
 
-### JavaScript Features
+### 1️⃣ Phase — JavaScript Features
 - Full turn-based game logic,
 - card placement system,
 - mana system,
@@ -85,7 +98,7 @@ The main purpose of this project is to:
 - win/lose conditions,
 - dynamic card rendering.
 
-### UI Improvements
+### 2️⃣ Phase — UI Improvements
 - Card animations,
 - drag & drop mechanics,
 - responsive mobile layout improvements,
@@ -93,10 +106,7 @@ The main purpose of this project is to:
 - sound effects,
 - hand/deck interface.
 
-### React Migration
-The project is intentionally structured to allow smooth migration into React in the future.
-
-Planned React features:
+### 3️⃣ Phase — React Migration
 - reusable components,
 - state management,
 - dynamic rendering,
@@ -105,10 +115,10 @@ Planned React features:
 
 ---
 
-## Project Structure
+## 📁 Project Structure 📁
 
-```text
-project/
+```
+card-duel-project/
 │
 ├── index.html
 ├── styles.css
@@ -116,20 +126,54 @@ project/
 ├── assets/
 │   └── images/
 │
-├── scripts/        (planned)
+├── scripts/ (planned)
 │
 └── README.md
 ```
 
----
+## 🌱 DOM Structure 🌱
 
-## Development Goals
+```
+ENEMY REGION
+├── .player__panel .player-panel--enemy
+│    ├─ .player-panel__name
+│    └─ .player-panel__stats
+│        ├─ .player-panel__stat--cards-counter
+│        ├─ .player-panel__stat--hp
+│        └─ .player-panel__stat--mana
+│
+├── .board .board--enemy
+│    └─ .board__slot * 4
+│
+MUTUAL REGION
+├── .turn-controls
+│    ├─ .button .button--draw-card
+│    └─ .button .button--end-turn
+│
+PLAYER REGION
+├── .board .board--player
+│    └─ .board__slot * 4
+│
+├── .card-hand
+│    └─ .card * N
+│        ├─ .card__art
+│        ├─ .card__content
+│        │    ├─ .card__title
+│        │    └─ .card__description
+│        └─ .card__stat (--attack or --health)
+│
+└── .player__panel .player-panel--player
+     ├─ .player-panel__name
+     └─ .player-panel__stats
+         ├─ .player-panel__stat--hp
+         └─ .player-panel__stat--mana
+```
 
-This project is also used to practice professional frontend workflow:
+## 🎯 Development Goals 🎯
 
+This project is also used to practice a professional frontend workflow:
 - version control with Git,
 - regular commits,
-- iterative development,
 - responsive UI architecture,
 - writing maintainable code,
 - accessibility-first thinking,
@@ -138,9 +182,7 @@ This project is also used to practice professional frontend workflow:
 
 ---
 
-## Project Status
-
-Currently in active development.
+## 🚧 Project Status 🚧
 
 The current version focuses on:
 - responsive UI foundations,
@@ -148,34 +190,37 @@ The current version focuses on:
 - accessibility improvements,
 - preparing the project for JavaScript game systems.
 
----
-
-## Screenshots
-
-```text
-screenshot-1_14-5-2026_201937_pparys93.github.io
-screenshot-2_15-5-2026_233358_pparys93.github.io
-screenshot-3_17-5-2026_001215_pparys93.github.io
-```
+> 🚀 **[Live Demo](https://pparys93.github.io/card-duel)**
 
 ---
 
-## What I Learn Through This Project
+## 📸 Screenshots 📸
 
-- semantic HTML,
-- modern CSS architecture,
-- responsive layouts,
-- CSS Grid & Flexbox,
-- accessibility fundamentals,
-- UI/UX principles,
-- Git & GitHub workflow,
-- scalable frontend structure,
-- component thinking,
-- clean code practices,
-- preparing projects for React.
+| Desktop | Mobile |
+|---|---|
+| <img src="assets/images/screenshot_desktop-ui.jpeg" width="400" alt="Desktop UI"> | <img src="assets/images/screenshot_mobile-ui.jpg" width="200" alt="Mobile UI"> |
 
 ---
 
-## Author
+## 🎓 What I Learn Through This Project 🎓
 
-GitHub: https://github.com/pparys93
+This isn't just a game — it's a structured self-education path through the joy of coding 😄
+
+| ✅ Completed | 🔄 In Progress |
+|---|---|
+| Semantic HTML | JavaScript — DOM manipulation, game logic, events |
+| Modern CSS architecture | React — components, state, dynamic rendering |
+| Responsive layouts | |
+| CSS Grid & Flexbox | |
+| Accessibility fundamentals | |
+| UI/UX principles | |
+| Git & GitHub workflow | |
+| Scalable frontend structure | |
+| Component thinking | |
+
+---
+
+## 👤 Author
+
+[![GitHub](https://img.shields.io/badge/GitHub-pparys93-181717?style=flat&logo=github)](https://github.com/pparys93)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Przemysław%20Parys-0077B5?style=flat&logo=linkedin)](https://linkedin.com/in/przemys%C5%82aw-parys-85a47621a)
