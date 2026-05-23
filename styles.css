@@ -60,7 +60,7 @@
   --shadow-filter-icon: drop-shadow(0 0 6px rgba(190, 220, 255, 0.3));
 
   /* SIZES */
-  --size-width-slot: clamp(130px, 10vw, 180px);
+  --size-width-slot: clamp(80px, 10vw, 160px);
   --size-width-btn: clamp(7.5rem, 14vw, 10.625rem);
 
   /* RADIUS */
