@@ -1,12 +1,6 @@
 <div align="center">
 
-<pre align="center">
-  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
- ╔═══════════════════╗
-   C A R D   D U E L 
- ╚═══════════════════╝
-  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
-</pre>
+# ✦ Card ⚔️ Duel ✦
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
@@ -15,9 +9,9 @@
 
 </div>
 
-# ⚔️ Card Duel ⚔️
-
 A browser-based fantasy card game interface — a long-term frontend portfolio project focused on clean architecture, responsive design, and accessibility-first thinking.
+
+---
 
 ## 📖 About The Project
 
@@ -132,6 +126,8 @@ card-duel-project/
 └── README.md
 ```
 
+---
+
 ## 🌱 DOM Structure
 
 ```
@@ -170,6 +166,8 @@ PLAYER REGION
          ├─ .player-panel__stat--hp
          └─ .player-panel__stat--mana
 ```
+
+---
 
 ## 🎯 Development Goals
 
