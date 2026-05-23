@@ -351,3 +351,41 @@ body {
   transform: translateY(0);
 }
 /* #endregion */
+
+/* #region [ACCESSIBILITY] -------------------------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .board__slot {
+    transition-property: border-color, background-color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+  }
+
+  .board__slot:hover {
+    transform: none;
+  }
+
+  .button {
+    transition-property: box-shadow, opacity, filter;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+  }
+
+  .button:is(:hover, :active) {
+    transform: none;
+  }
+}
+/* #endregion */
