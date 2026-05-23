@@ -43,6 +43,7 @@
   --color-bg-btn-draw: linear-gradient(135deg, #3e5b74, #2f4b62);
   --color-bg-btn-draw-hover: linear-gradient(135deg, #4e6f8d, #385670);
   --color-bg-card: linear-gradient(160deg, #2b3140, #1a1f2c);
+  --color-bg-card-mana: linear-gradient(135deg, #3f7cff, #6cb2ff);
   --color-bg-card-attack: linear-gradient(135deg, #c96a6a, #9b3d3d);
   --color-bg-card-health: linear-gradient(135deg, #4ea96b, #2f7d4a);
 
@@ -63,6 +64,7 @@
   --shadow-box-btn-draw: 0 5px 15px rgba(56, 86, 112, 0.32);
   --shadow-box-btn-draw-hover: 0 7px 18px rgba(56, 86, 112, 0.36);
   --shadow-box-card: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-box-card-mana: 0 0 10px rgba(63, 124, 255, 0.5);
   
   --shadow-filter-icon: drop-shadow(0 0 6px rgba(190, 220, 255, 0.3));
 
@@ -188,7 +190,7 @@ body {
 
 .player-panel__stat {
   padding: var(--size-padding-block-panel-stat) var(--size-padding-inline-panel-stat);
-  
+   
   background-color: var(--color-bg-panel-stat);
   border-radius: var(--size-radius-panel-stat);
   border: 1px solid var(--color-border-panel-stat);
@@ -196,10 +198,6 @@ body {
   font-size: var(--size-font-global-small);
   font-weight: 700;
   letter-spacing: var(--size-letter-spacing-global-normal);
-}
-
-.player-panel__stat--cards-counter {
-  /*  TODO */
 }
 
 .player-panel__stat--hp {
@@ -429,6 +427,28 @@ body {
   transform: translateY(clamp(-24px, -28cqi, -40px));
   border-color: var(--color-border-card-selected);
   z-index: 10;
+}
+
+.card__mana {
+  position: absolute;
+  top: var(--size-space-global-sm);
+  left: var(--size-space-global-sm);
+  z-index: 1;
+
+  width: clamp(28px, 22cqi, 48px);
+  height: clamp(28px, 22cqi, 48px);
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--color-text-base-inverse);
+  font-size: var(--size-font-global-medium);
+  font-weight: 900;
+
+  background: var(--color-bg-card-mana);
+  box-shadow: var(--shadow-box-card-mana);
 }
 
 .card__art {

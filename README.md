@@ -3,7 +3,7 @@
 <pre align="center">
   ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
  ╔═══════════════════╗
- ║ C A R D   D U E L ║
+   C A R D   D U E L 
  ╚═══════════════════╝
   ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
 </pre>
@@ -157,6 +157,7 @@ PLAYER REGION
 │
 ├── .card-hand
 │    └─ .card * N
+│        ├─ .card__mana
 │        ├─ .card__art
 │        ├─ .card__content
 │        │    ├─ .card__title
