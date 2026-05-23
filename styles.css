@@ -103,6 +103,15 @@ body {
   color: var(--color-text-base-default);
   animation: fadeInBg 0.8s ease-out;
 }
+
+@keyframes fadeInBg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 /* #endregion */
 
 /* #region [GAME LAYOUT] ---------------------------- */
@@ -367,6 +376,9 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
+  }
 
   .board__slot {
     transition-property: border-color, background-color;
