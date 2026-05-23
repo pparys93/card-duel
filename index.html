@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Card Duel Project</title>
+  <title>Card Duel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
@@ -13,8 +13,7 @@
 <body>
   <main class="game">
 
-<!-- #region [1]ENEMY PANEL -->
-<!-- TODO: --cards-counter styles -->
+    <!-- #region [ENEMY PANEL] --------------------------->
     <section class="player-panel player-panel--enemy" aria-label="Enemy status">
       <h2 class="player-panel__name">Enemy</h2>
       <div class="player-panel__stats">
@@ -25,19 +24,19 @@
         <div class="player-panel__stat player-panel__stat--mana">Mana 10</div>
       </div>
     </section>
-<!-- #endregion -->
+    <!-- #endregion -->
 
-<!-- #region [2]ENEMY BOARD -->
-    <section class="board board--enemy" aria-label="Enemy board">
+    <!-- #region [ENEMY BOARD] --------------------------->
+    <div class="board board--enemy" role="group" aria-label="Enemy board">
       <div class="board__slot board__slot--inactive" aria-label="Enemy slot 1"></div>
       <div class="board__slot board__slot--inactive" aria-label="Enemy slot 2"></div>
       <div class="board__slot board__slot--inactive" aria-label="Enemy slot 3"></div>
       <div class="board__slot board__slot--inactive" aria-label="Enemy slot 4"></div>
-    </section>
-<!-- #endregion -->
+    </div>
+    <!-- #endregion -->
 
-<!-- #region [3]TURN CONTROLS -->
-    <div class="turn-controls" aria-label="Turn actions">
+    <!-- #region [TURN CONTROLS] ------------------------->
+    <div class="turn-controls" role="toolbar" aria-label="Turn actions">
       <button class="button button--draw-card" type="button">
         Draw Card
       </button>
@@ -45,18 +44,18 @@
         End Turn
       </button>
     </div>
-<!-- #endregion -->
+    <!-- #endregion -->
 
-<!-- #region [4]PLAYER BOARD -->
-    <section class="board board--player" aria-label="Player board">
+    <!-- #region [PLAYER BOARD] -------------------------->
+    <div class="board board--player" role="group" aria-label="Player board">
       <div class="board__slot" aria-label="Player slot 1" tabindex="0"></div>
       <div class="board__slot" aria-label="Player slot 2" tabindex="0"></div>
       <div class="board__slot" aria-label="Player slot 3" tabindex="0"></div>
       <div class="board__slot" aria-label="Player slot 4" tabindex="0"></div>
-    </section>
-<!-- #endregion -->
+    </div>
+    <!-- #endregion -->
 
-<!-- #region [6]PLAYER PANEL -->
+    <!-- #region [PLAYER PANEL] -------------------------->
     <section class="player-panel player-panel--player" aria-label="Player status">
       <h2 class="player-panel__name">Player</h2>
       <div class="player-panel__stats">
@@ -64,7 +63,7 @@
         <div class="player-panel__stat player-panel__stat--mana">Mana 10</div>
       </div>
     </section>
-<!-- #endregion -->
+    <!-- #endregion -->
 
   </main>
 </body>

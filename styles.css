@@ -1,8 +1,8 @@
+/* #region [TOKENS] --------------------------------- */
 :root {
-/* =========================================
-   GLOBAL TOKENS
-   name scheme: type-property-scope-scale
-========================================= */
+/* GLOBAL TOKENS
+   scheme: type-property-scope-scale */
+
   /* TYPOGRAPHY */
   --size-font-global-small: clamp(0.7rem, 1vw, 0.95rem);
   --size-font-global-medium: clamp(0.95rem, 1.2vw, 1.25rem);
@@ -23,13 +23,12 @@
   --size-space-global-md: 0.75rem;  /* reserved */
   --size-space-global-lg: 1rem;     /* reserved */
 
-/* =========================================
-   SEMANTIC VARIABLES
-   name scheme: type-property-component-state
-========================================= */
+/* SEMANTIC VARIABLES
+   scheme: type-property-component-(state) */
+
   /* COLORS */
-  --color-text-primary: #e8dcc8;
-  --color-text-inverse: #fff;
+  --color-text-base-default: #e8dcc8;
+  --color-text-base-inverse: #fff;
   --color-text-panel-hp: #ff8b8b;
   --color-text-panel-mana: #7cb7ff;
 
@@ -40,59 +39,54 @@
   --color-bg-slot-hover: rgba(255, 255, 255, 0.05);
   --color-bg-divider: rgba(255, 255, 255, 0.06);
   --color-bg-btn-end-turn: linear-gradient(135deg, #3f7cff, #5f9bff);
-  --color-bg-btn-draw: linear-gradient(135deg, #4e6f8d, #385670);
-  --color-bg-card: linear-gradient(160deg, #2b3140, #1a1f2c);
-  --color-bg-card-mana: linear-gradient(135deg, #3f7cff, #6cb2ff);
-  --color-bg-card-attack: linear-gradient(135deg, #c96a6a, #9b3d3d);
-  --color-bg-card-health: linear-gradient(135deg, #4ea96b, #2f7d4a);
+  --color-bg-btn-draw: linear-gradient(135deg, #3e5b74, #2f4b62);
+  --color-bg-btn-draw-hover: linear-gradient(135deg, #4e6f8d, #385670);
 
   --color-border-panel: rgba(255, 255, 255, 0.08);
   --color-border-panel-stat: rgba(255, 255, 255, 0.1);
   --color-border-slot: rgba(255, 255, 255, 0.13);
   --color-border-slot-hover: rgba(255, 255, 255, 0.3);
-  --color-border-card: rgba(255, 255, 255, 0.1);
-  --color-border-card-selected: #FFD700;
 
-  --color-outline-btn-focus: rgba(255,255,255,0.6);
+  --color-outline-btn-focus: rgba(255, 255, 255, 0.9);
   --color-outline-slot-focus: rgba(124, 183, 255, 0.9);
 
   /* SHADOWS */
   --shadow-box-panel: 0 4px 18px rgba(0, 0, 0, 0.3);
   --shadow-box-btn-end-turn: 0 6px 18px rgba(63, 124, 255, 0.34);
-  --shadow-box-btn-end-turn-hover: 0 10px 26px rgba(63, 124, 255, 0.5);
+  --shadow-box-btn-end-turn-hover: 0 7px 20px rgba(63, 124, 255, 0.37);
   --shadow-box-btn-draw: 0 5px 15px rgba(56, 86, 112, 0.32);
-  --shadow-box-btn-draw-hover: 0 9px 22px rgba(56, 86, 112, 0.44);
-  --shadow-box-card: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --shadow-box-card-mana: 0 0 10px rgba(63, 124, 255, 0.5);
+  --shadow-box-btn-draw-hover: 0 7px 18px rgba(56, 86, 112, 0.36);
+  
   --shadow-filter-icon: drop-shadow(0 0 6px rgba(190, 220, 255, 0.3));
 
   /* SIZES */
-  --size-width-slot: clamp(80px, 10vw, 160px);
-  --size-width-card: clamp(130px, 10vw, 180px);
+  --size-width-slot: clamp(130px, 10vw, 180px);
+  --size-width-btn: clamp(7.5rem, 14vw, 10.625rem);
+
+  /* RADIUS */
+  --size-radius-panel: 1rem;
+  --size-radius-panel-stat: 0.625rem;
 
   /* SPACING */
   --size-padding-layout: clamp(0.625rem, 1.6vw, 1.25rem);
+  --size-padding-block-panel: clamp(0.625rem, 1.2vh, 1rem);
+  --size-padding-inline-panel: clamp(0.75rem, 1.5vw, 1.25rem);
+  --size-padding-block-panel-stat: clamp(0.375rem, 0.8vh, 0.625rem);
+  --size-padding-inline-panel-stat: clamp(0.625rem, 1.2vw, 1.125rem);
+  --size-padding-board: clamp(0.25rem, 0.6vh, 0.625rem);
+  --size-padding-block-btn: clamp(0.5rem, 1vh, 1rem);
+  --size-padding-inline-btn: clamp(1.25rem, 2.5vw, 2.25rem);
+
   --size-gap-layout: clamp(0.375rem, 1vh, 0.875rem);
+  --size-gap-panel-stats: clamp(0.375rem, 0.8vw, 0.75rem);
   --size-gap-board: clamp(0.5rem, 1.2vw, 1.25rem);
   --size-gap-turn-controls: clamp(0.5rem, 1vw, 0.875rem);
-  --size-width-btn: clamp(7.5rem, 14vw, 10.625rem);
-  --size-padding-btn-block: clamp(0.5rem, 1vh, 1rem);
-  --size-padding-btn-inline: clamp(1.25rem, 2.5vw, 2.25rem);
-  --size-radius-panel: 1rem;
-  --size-radius-panel-stat: 0.625rem;
-  --size-padding-panel-block: clamp(0.625rem, 1.2vh, 1rem);
-  --size-padding-panel-inline: clamp(0.75rem, 1.5vw, 1.25rem);
-  --size-gap-panel-stats: clamp(0.375rem, 0.8vw, 0.75rem);
-  --size-padding-panel-stat-block: clamp(0.375rem, 0.8vh, 0.625rem);
-  --size-padding-panel-stat-inline: clamp(0.625rem, 1.2vw, 1.125rem);
-  --size-padding-board: clamp(0.25rem, 0.6vh, 0.625rem);
-  --size-padding-card-hand-top: clamp(2.25rem, 5vh, 3.125rem);
-  --size-padding-card-hand-bottom: clamp(0.25rem, 0.6vh, 0.5rem);
 }
 
-/* =========================================
-   RESET
-========================================= */
+/* #endregion */
+
+/* #region [RESET] ---------------------------------- */
+
 *,
 *::before,
 *::after {
@@ -100,38 +94,19 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* #endregion */
 
-/* =========================================
-   BASE
-========================================= */
+/* #region [BASE] ----------------------------------- */
 body {
-  font-family: 'Cinzel', serif;
+  font-family: 'Cinzel', 'Palatino Linotype', Georgia, serif;
   background: var(--color-bg-arena);
-  color: var(--color-text-primary);
+  color: var(--color-text-base-default);
   animation: fadeInBg 0.8s ease-out;
 }
+/* #endregion */
 
-@keyframes fadeInBg {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* =========================================
-   GAME LAYOUT
-========================================= */
+/* #region [GAME LAYOUT] ---------------------------- */
 .game {
-  /* DOM Structure
-      * [1]ENEMY PANEL    / auto
-      * [2]ENEMY BOARD    / 1fr
-      * [3]TURN CONTROLS  / auto
-      * [4]PLAYER BOARD   / 1fr
-      * [5]PLAYER HAND    / auto
-      * [6]PLAYER PANEL   / auto */
-
   display: grid;
   grid-template-rows:
     auto
@@ -152,20 +127,20 @@ body {
   padding: var(--size-padding-layout);
   gap: var(--size-gap-layout);
 }
+/* #endregion */
 
-/* =========================================
-   PLAYER PANEL
-========================================= */
+/* #region [PLAYER PANEL] --------------------------- */
 .player-panel {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: var(--size-padding-panel-block) var(--size-padding-panel-inline);
+  padding: var(--size-padding-block-panel) var(--size-padding-inline-panel);
 
   border: 1px solid var(--color-border-panel);
   border-radius: var(--size-radius-panel);
   background-color: var(--color-bg-panel);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px); /* glassmorphism blur effect */
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
@@ -193,14 +168,19 @@ body {
 }
 
 .player-panel__stat {
-  padding: var(--size-padding-panel-stat-block) var(--size-padding-panel-stat-inline);
+  padding: var(--size-padding-block-panel-stat) var(--size-padding-inline-panel-stat);
   
-  border-radius: var(--size-radius-panel-stat);
   background-color: var(--color-bg-panel-stat);
+  border-radius: var(--size-radius-panel-stat);
   border: 1px solid var(--color-border-panel-stat);
+
   font-size: var(--size-font-global-small);
   font-weight: 700;
   letter-spacing: var(--size-letter-spacing-global-normal);
+}
+
+.player-panel__stat--cards-counter {
+  /*  TODO */
 }
 
 .player-panel__stat--hp {
@@ -210,10 +190,9 @@ body {
 .player-panel__stat--mana {
   color: var(--color-text-panel-mana);
 }
+/* #endregion */
 
-/* =========================================
-   BOARD
-========================================= */
+/* #region [BOARD] ---------------------------------- */
 .board {
   display: flex;
   justify-content: center;
@@ -237,7 +216,7 @@ body {
 
 .board__slot {
   width: var(--size-width-slot);
-  aspect-ratio: 3 / 4; /* keeps consistent portrait slot shape */
+  aspect-ratio: 2 / 3; /* keeps consistent portrait slot shape */
   flex-shrink: 0;
   border: 2px dashed var(--color-border-slot);
   border-radius: 16px;
@@ -270,10 +249,9 @@ body {
   outline: 2px solid var(--color-outline-slot-focus);
   outline-offset: var(--size-space-global-2xs);
 }
+/* #endregion */
 
-/* =========================================
-   TURN CONTROLS
-========================================= */
+/* #region [TURN CONTROLS] -------------------------- */
 .turn-controls {
   grid-area: turn-controls;
   position: relative;
@@ -285,11 +263,10 @@ body {
   align-items: center;
 }
 
-/* board divider */
 .turn-controls::before {
   position: absolute;
   content: "";
-  inset: 0; /* full-width divider */
+  inset: 0; /* full-width divider between boards */
   background: linear-gradient(
     90deg,
     transparent 0%,
@@ -303,7 +280,7 @@ body {
 /* button base */
 .button {
   min-width: var(--size-width-btn);
-  padding: var(--size-padding-btn-block) var(--size-padding-btn-inline);
+  padding: var(--size-padding-block-btn) var(--size-padding-inline-btn);
 
   border: none;
   border-radius: 12px;
@@ -313,13 +290,15 @@ body {
   font-weight: 700;
   letter-spacing: var(--size-letter-spacing-global-wide);
   text-transform: uppercase;
-  color: var(--color-text-inverse);
+  color: var(--color-text-base-inverse);
 
   cursor: pointer;
+  filter: brightness(1);
 
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
 
   touch-action: manipulation;
 }
@@ -329,6 +308,7 @@ body {
   opacity: 0.6;
   transform: none;
   box-shadow: none;
+  filter: none;
 }
 
 .button:focus-visible {
@@ -343,11 +323,13 @@ body {
 }
 
 .button--end-turn:hover:not(:disabled) {
+  filter: brightness(1);
   transform: translateY(-2px);
   box-shadow: var(--shadow-box-btn-end-turn-hover);
 }
 
 .button--end-turn:active:not(:disabled) {
+  filter: brightness(0.96);
   transform: translateY(0);
 }
 
@@ -358,10 +340,14 @@ body {
 }
 
 .button--draw-card:hover:not(:disabled) {
+  background: var(--color-bg-btn-draw-hover);
+  filter: brightness(1);
   transform: translateY(-2px);
   box-shadow: var(--shadow-box-btn-draw-hover);
 }
 
 .button--draw-card:active:not(:disabled) {
+  filter: brightness(0.96);
   transform: translateY(0);
 }
+/* #endregion */
