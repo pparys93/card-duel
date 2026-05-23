@@ -447,6 +447,40 @@ body {
   );
 }
 
+.card__art-icon {
+  display: block;
+
+  width: clamp(52px, 35cqi, 68px);
+  height: clamp(52px, 35cqi, 68px);
+  
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: var(--shadow-filter-icon);
+}
+
+.card__art-icon--fire { 
+  color: #ff8b8b; 
+}
+
+.card__art-icon--shield { 
+  color: #7cb7ff; 
+}
+
+.card__art-icon--bow { 
+  color: #e8a87c; 
+}
+
+.card__art-icon--lightning { 
+  color: #f5cc45; 
+}
+
+.card__art-icon--healing { 
+  color: #f2f6f2; 
+}
+
 .card__content {
   flex: 1;
   min-height: 0;
