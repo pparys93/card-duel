@@ -1,11 +1,11 @@
 <div align="center">
 
 <pre align="center">
-  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
- ╔═══════════════════════════════╗
- ║   . : C A R D   D U E L : .   ║
- ╚═══════════════════════════════╝
-  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
+  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
+ ╔═══════════════════════════╗
+ ║ . : C A R D   D U E L : . ║
+ ╚═══════════════════════════╝
+  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
 </pre>
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
@@ -55,6 +55,7 @@ The main purpose of this project is to:
 - Dedicated enemy and player status panels,
 - HP and Mana indicators,
 - card counter structure,
+- hand/deck interface,
 - glassmorphism-inspired UI containers,
 - fully responsive stat elements.
 
@@ -103,8 +104,7 @@ The main purpose of this project is to:
 - drag & drop mechanics,
 - responsive mobile layout improvements,
 - visual spell/effect animations,
-- sound effects,
-- hand/deck interface.
+- sound effects.
 
 ### 3️⃣ Phase — React Migration
 - reusable components,
@@ -220,11 +220,7 @@ This isn't just a game — it's a structured self-education path through the joy
 
 ---
 
-<h2 align="center">👤 Author</h2>
-
-<div align="center">
+## 👤 Author
 
 [![GitHub](https://img.shields.io/badge/GitHub-pparys93-181717?style=flat&logo=github)](https://github.com/pparys93)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Przemysław%20Parys-0077B5?style=flat&logo=linkedin)](https://linkedin.com/in/przemys%C5%82aw-parys-85a47621a)
-
-</div>
