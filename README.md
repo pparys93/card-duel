@@ -2,9 +2,9 @@
 
 <pre align="center">
   ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
- ╔═══════════════════════════╗
- ║ . : C A R D   D U E L : . ║
- ╚═══════════════════════════╝
+ ╔═══════════════════╗
+ ║ C A R D   D U E L ║
+ ╚═══════════════════╝
   ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
 </pre>
 
@@ -69,6 +69,7 @@ The main purpose of this project is to:
 - dark gradient background,
 - smooth transitions and hover effects,
 - custom typography using Google Fonts,
+- minimalist spell icons on cards crafted from vector shape paths,
 - subtle depth effects using shadows and backdrop blur.
 
 ### ♿ Accessibility & UX

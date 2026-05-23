@@ -58,10 +58,14 @@
 
     <!-- #region [PLAYER HAND] --------------------------->
     <div class="card-hand" role="group" aria-label="Player hand">
-
       <!-- #region card: FIREBALL -->
       <article class="card" tabindex="0">
-        <div class="card__art"></div>
+        <div class="card__art">
+            <svg class="card__art-icon card__art-icon--fire" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2C12 2 6 8 6 13a6 6 0 0012 0c0-2-1-4-2-5.5C15.5 9 16 10.5 16 12a4 4 0 01-8 0c0-2.5 2-5 4-6z"/>
+              <path d="M12 14c0 1.1-.9 2-2 2s-2-.9-2-2 2-4 2-4 2 2.9 2 4z"/>
+            </svg>
+        </div>
 
         <div class="card__content">
           <h3 class="card__title">Fireball</h3>
@@ -74,7 +78,11 @@
 
       <!-- #region card: SHIELD -->
       <article class="card" tabindex="0">
-        <div class="card__art"></div>
+        <div class="card__art">
+          <svg class="card__art-icon card__art-icon--shield" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
 
         <div class="card__content">
           <h3 class="card__title">Shield</h3>
@@ -87,7 +95,13 @@
 
       <!-- #region card: PRECISION -->
       <article class="card" tabindex="0">
-        <div class="card__art"></div>
+        <div class="card__art">
+          <svg class="card__art-icon card__art-icon--bow" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 3c8 4 8 14 0 18"/>
+            <path d="M5 12h14"/>
+            <path d="M15 9l4 3-4 3"/>
+          </svg>
+        </div>
 
         <div class="card__content">
           <h3 class="card__title">Precision</h3>
@@ -97,7 +111,6 @@
         <div class="card__stat card__stat--attack" aria-label="Attack 3">3</div>
       </article>
       <!-- #endregion -->
-    
     </div>
     <!-- #endregion -->
 
