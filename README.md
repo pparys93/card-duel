@@ -1,12 +1,12 @@
 <div align="center">
 
-```
+<pre align="center">
   ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
  ╔═══════════════════════════════╗
  ║   . : C A R D   D U E L : .   ║
  ╚═══════════════════════════════╝
   ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️  ✦  ⚔️
-```
+</pre>
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
@@ -19,7 +19,7 @@
 
 A browser-based fantasy card game interface — a long-term frontend portfolio project focused on clean architecture, responsive design, and accessibility-first thinking.
 
-## 📖 About The Project 📖
+## 📖 About The Project
 
 Card Duel is a turn-based fantasy card game built in the browser. Two players face each other across a battlefield, placing cards, managing mana, and fighting to reduce the opponent's HP to zero.
 
@@ -35,7 +35,7 @@ The main purpose of this project is to:
 
 ---
 
-## 🛠️ Current Tech Stack 🛠️
+## 🛠️ Current Tech Stack
 - HTML5
 - CSS3
 - Git & GitHub
@@ -43,42 +43,42 @@ The main purpose of this project is to:
 
 ---
 
-## ✨ Current Features ✨
+## ✨ Current Features
 
-### 🗺️ Responsive Game Layout 🗺️
+### 🗺️ Responsive Game Layout
 - CSS Grid-based battlefield structure,
 - separate enemy and player sections,
 - center action area for game controls,
 - responsive spacing using `clamp()`.
 
-### 🧙 Player Interface 🧙
+### 🧙 Player Interface
 - Dedicated enemy and player status panels,
 - HP and Mana indicators,
 - card counter structure,
 - glassmorphism-inspired UI containers,
 - fully responsive stat elements.
 
-### 🃏 Game Board 🃏
+### 🃏 Game Board
 - Interactive board slots,
 - hover animations,
 - keyboard focus support,
 - accessible slot labels using `aria-label`.
 
-### 🎨 UI & Visual Design 🎨
+### 🎨 UI & Visual Design
 - fantasy-inspired visual style,
 - dark gradient background,
 - smooth transitions and hover effects,
 - custom typography using Google Fonts,
 - subtle depth effects using shadows and backdrop blur.
 
-### ♿ Accessibility & UX ♿
+### ♿ Accessibility & UX
 - semantic HTML structure,
 - keyboard-accessible interactive elements,
 - `focus-visible` states,
 - improved button accessibility,
 - touch-friendly controls.
 
-### 🧱 CSS Architecture 🧱
+### 🧱 CSS Architecture
 - BEM naming convention,
 - CSS custom properties (`:root` variables),
 - modular section-based stylesheet organization,
@@ -87,7 +87,7 @@ The main purpose of this project is to:
 
 ---
 
-## ✍🏻 Planned Features ✍🏻
+## ✍🏻 Planned Features
 
 ### 1️⃣ Phase — JavaScript Features
 - Full turn-based game logic,
@@ -115,7 +115,7 @@ The main purpose of this project is to:
 
 ---
 
-## 📁 Project Structure 📁
+## 📁 Project Structure
 
 ```
 card-duel-project/
@@ -131,7 +131,7 @@ card-duel-project/
 └── README.md
 ```
 
-## 🌱 DOM Structure 🌱
+## 🌱 DOM Structure
 
 ```
 ENEMY REGION
@@ -169,7 +169,7 @@ PLAYER REGION
          └─ .player-panel__stat--mana
 ```
 
-## 🎯 Development Goals 🎯
+## 🎯 Development Goals
 
 This project is also used to practice a professional frontend workflow:
 - version control with Git,
@@ -182,7 +182,7 @@ This project is also used to practice a professional frontend workflow:
 
 ---
 
-## 🚧 Project Status 🚧
+## 🚧 Project Status
 
 The current version focuses on:
 - responsive UI foundations,
@@ -194,7 +194,7 @@ The current version focuses on:
 
 ---
 
-## 📸 Screenshots 📸
+## 📸 Screenshots
 
 | Desktop | Mobile |
 |---|---|
@@ -202,7 +202,7 @@ The current version focuses on:
 
 ---
 
-## 🎓 What I Learn Through This Project 🎓
+## 🎓 What I Learn Through This Project
 
 This isn't just a game — it's a structured self-education path through the joy of coding 😄
 
@@ -220,7 +220,11 @@ This isn't just a game — it's a structured self-education path through the joy
 
 ---
 
-## 👤 Author
+<h2 align="center">👤 Author</h2>
+
+<div align="center">
 
 [![GitHub](https://img.shields.io/badge/GitHub-pparys93-181717?style=flat&logo=github)](https://github.com/pparys93)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Przemysław%20Parys-0077B5?style=flat&logo=linkedin)](https://linkedin.com/in/przemys%C5%82aw-parys-85a47621a)
+
+</div>
