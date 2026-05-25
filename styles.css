@@ -340,7 +340,6 @@ body {
 }
 
 .button--end-turn:hover:not(:disabled) {
-  filter: brightness(1);
   transform: translateY(-2px);
   box-shadow: var(--shadow-box-btn-end-turn-hover);
 }
@@ -358,7 +357,6 @@ body {
 
 .button--draw-card:hover:not(:disabled) {
   background: var(--color-bg-btn-draw-hover);
-  filter: brightness(1);
   transform: translateY(-2px);
   box-shadow: var(--shadow-box-btn-draw-hover);
 }
@@ -415,7 +413,7 @@ body {
   margin-left: 0;
 }
 
-.card:hover {
+.card:not(.card--selected):hover {
   transform: translateY(clamp(-20px, -20cqi, -32px)) scale(1.04);
   z-index: 10; /* lift hovered card above others */
   box-shadow:
@@ -423,8 +421,12 @@ body {
     0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
+.card:focus-visible {
+  outline: 2px solid var(--color-outline-slot-focus);
+  outline-offset: 3px;
+}
+
 .card--selected {
-  transform: translateY(clamp(-24px, -28cqi, -40px));
   border-color: var(--color-border-card-selected);
   z-index: 10;
 }

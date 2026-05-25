@@ -9,7 +9,7 @@
 
 </div>
 
-A browser-based fantasy card game interface — a long-term frontend portfolio project focused on clean architecture, responsive design, and accessibility-first thinking.
+A browser-based fantasy card game interface built as a frontend portfolio project focused on clean architecture, responsive design, and accessibility-first thinking.
 
 ---
 
@@ -57,6 +57,7 @@ The main purpose of this project is to:
 - hover animations,
 - keyboard focus support,
 - accessible slot labels using `aria-label`.
+- hand/deck interface.
 
 ### 🎨 UI & Visual Design
 - fantasy-inspired visual style,
@@ -84,7 +85,7 @@ The main purpose of this project is to:
 
 ## ✍🏻 Planned Features
 
-### 1️⃣ Phase — JavaScript Features
+### ➡️ JavaScript Features
 - Full turn-based game logic,
 - card placement system,
 - mana system,
@@ -93,15 +94,14 @@ The main purpose of this project is to:
 - win/lose conditions,
 - dynamic card rendering.
 
-### 2️⃣ Phase — UI Improvements
+### ➡️ UI Improvements
 - Card animations,
 - drag & drop mechanics,
 - responsive mobile layout improvements,
 - visual spell/effect animations,
 - sound effects,
-- hand/deck interface.
 
-### 3️⃣ Phase — React Migration
+### ➡️ React Migration
 - reusable components,
 - state management,
 - dynamic rendering,
@@ -132,7 +132,7 @@ card-duel-project/
 
 ```
 ENEMY REGION
-├── .player__panel .player-panel--enemy
+├── .player-panel .player-panel--enemy
 │    ├─ .player-panel__name
 │    └─ .player-panel__stats
 │        ├─ .player-panel__stat--cards-counter
@@ -160,7 +160,7 @@ PLAYER REGION
 │        │    └─ .card__description
 │        └─ .card__stat (--attack or --health)
 │
-└── .player__panel .player-panel--player
+└── .player-panel .player-panel--player
      ├─ .player-panel__name
      └─ .player-panel__stats
          ├─ .player-panel__stat--hp
@@ -204,12 +204,12 @@ The current version focuses on:
 
 ## 🎓 What I Learn Through This Project
 
-This isn't just a game — it's a structured self-education path through the joy of coding 😄
+This isn't just a game. It's a structured self-education path through the joy of coding 😄
 
 | ✅ Completed | 🔄 In Progress |
 |---|---|
-| Semantic HTML | JavaScript — DOM manipulation, game logic, events |
-| Modern CSS architecture | React — components, state, dynamic rendering |
+| Semantic HTML | JavaScript: DOM manipulation, game logic, events |
+| Modern CSS architecture | React: components, state, dynamic rendering |
 | Responsive layouts | |
 | CSS Grid & Flexbox | |
 | Accessibility fundamentals | |
