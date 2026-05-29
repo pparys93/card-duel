@@ -17,13 +17,20 @@
     <!-- #region [ENEMY PANEL] --------------------------->
     <section class="player-panel player-panel--enemy" aria-label="Enemy status">
       <h2 class="player-panel__name">Enemy</h2>
-      <div class="player-panel__stats">
+      <dl class="player-panel__stats" aria-label="Enemy stats">
         <div class="player-panel__stat">
-          Cards 5
+          <dt class="player-panel__term">Cards</dt>
+          <dd class="player-panel__value">5</dd>
         </div>
-        <div class="player-panel__stat player-panel__stat--hp">HP 20</div>
-        <div class="player-panel__stat player-panel__stat--mana">Mana 10</div>
-      </div>
+        <div class="player-panel__stat player-panel__stat--hp">
+          <dt class="player-panel__term">HP</dt>
+          <dd class="player-panel__value">20</dd>
+        </div>
+        <div class="player-panel__stat player-panel__stat--mana">
+          <dt class="player-panel__term">Mana</dt>
+          <dd class="player-panel__value">10</dd>
+        </div>
+      </dl>
     </section>
     <!-- #endregion -->
 
@@ -123,10 +130,16 @@
     <!-- #region [PLAYER PANEL] -------------------------->
     <section class="player-panel player-panel--player" aria-label="Player status">
       <h2 class="player-panel__name">Player</h2>
-      <div class="player-panel__stats">
-        <div class="player-panel__stat player-panel__stat--hp">HP 20</div>
-        <div class="player-panel__stat player-panel__stat--mana">Mana 10</div>
-      </div>
+      <dl class="player-panel__stats" aria-label="Player stats">
+        <div class="player-panel__stat player-panel__stat--hp">
+          <dt class="player-panel__term">HP</dt>
+          <dd class="player-panel__value">20</dd>
+        </div>
+        <div class="player-panel__stat player-panel__stat--mana">
+          <dt class="player-panel__term">Mana</dt>
+          <dd class="player-panel__value">10</dd>
+        </div>
+      </dl>
     </section>
     <!-- #endregion -->
 
