@@ -568,6 +568,21 @@ body {
       0 0 0 1px rgba(255, 255, 255, 0.18);
   }
 }
+
+/* Touch-first behavior: tapped card should stay above overlaps without lift transform. */
+@media (hover: none) {
+  .card:focus-visible {
+    outline: none;
+  }
+
+  .card {
+    z-index: 0;
+  }
+
+  .card:is(:focus, :active, .card--selected) {
+    z-index: 10;
+  }
+}
 /* #endregion */
 
 /* #region [ACCESSIBILITY] -------------------------- */
