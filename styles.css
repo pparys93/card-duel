@@ -120,6 +120,10 @@ body {
   background: var(--color-bg-arena);
   color: var(--color-text-base-default);
   animation: fadeInBg 0.8s ease-out;
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
 }
 
 @keyframes fadeInBg {
@@ -137,9 +141,9 @@ body {
   display: grid;
   grid-template-rows:
     auto
-    1fr
+    minmax(0, 1fr)
     auto
-    1fr
+    minmax(0, 1fr)
     auto
     auto;
   grid-template-areas:
@@ -149,11 +153,14 @@ body {
     "player-board"
     "player-hand"
     "player-panel";
-
+  height: 100dvh;
   min-height: 100dvh;
+  max-height: 100dvh;
   padding: var(--size-padding-layout);
   gap: var(--size-gap-layout);
+  overflow: hidden;
 }
+
 /* #endregion */
 
 /* #region [PLAYER PANEL] --------------------------- */
@@ -363,6 +370,7 @@ body {
 /* #endregion */
 
 /* #region [CARD HAND] ------------------------------ */
+
 .card-hand {
   grid-area: player-hand;
 
@@ -373,44 +381,6 @@ body {
 
   padding-top: var(--size-padding-block-start-card-hand);
   padding-bottom: var(--size-padding-block-end-card-hand);
-}
-
-@media (max-width: 550px) {
-  .card-hand {
-    justify-content: flex-start;
-    overflow-x: auto;
-    overflow-y: hidden;
-    overscroll-behavior-x: contain;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-gutter: stable both-edges;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-bg-scrollbar-thumb) var(--color-bg-scrollbar-track);
-
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--size-padding-block-start-card-hand);
-  }
-
-  .card-hand::-webkit-scrollbar {
-    height: var(--size-height-scrollbar);
-  }
-
-  .card-hand::-webkit-scrollbar-track {
-    background: var(--color-bg-scrollbar-track);
-    border-radius: var(--size-radius-scrollbar);
-  }
-
-  .card-hand::-webkit-scrollbar-thumb {
-    background: var(--color-bg-scrollbar-thumb);
-    border-radius: var(--size-radius-scrollbar);
-  }
-
-  .card-hand::-webkit-scrollbar-thumb:hover {
-    background: var(--color-bg-scrollbar-thumb-hover);
-  }
-
-  .card {
-    scroll-snap-align: start;
-  }
 }
 
 /* cards */
@@ -681,6 +651,46 @@ body {
 
   .card--selected {
     transform: none;
+  }
+}
+/* #endregion */
+
+/* #region [RESPONSIVE] ----------------------------- */
+@media (pointer: coarse) {
+  .card-hand {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-bg-scrollbar-thumb) var(--color-bg-scrollbar-track);
+
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--size-padding-block-start-card-hand);
+  }
+
+  .card-hand::-webkit-scrollbar {
+    height: var(--size-height-scrollbar);
+  }
+
+  .card-hand::-webkit-scrollbar-track {
+    background: var(--color-bg-scrollbar-track);
+    border-radius: var(--size-radius-scrollbar);
+  }
+
+  .card-hand::-webkit-scrollbar-thumb {
+    background: var(--color-bg-scrollbar-thumb);
+    border-radius: var(--size-radius-scrollbar);
+  }
+
+  .card-hand::-webkit-scrollbar-thumb:hover {
+    background: var(--color-bg-scrollbar-thumb-hover);
+  }
+
+  .card {
+    scroll-snap-align: start;
   }
 }
 /* #endregion */
