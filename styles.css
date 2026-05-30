@@ -76,6 +76,7 @@
   /* RADIUS */
   --size-radius-panel: 1rem;
   --size-radius-panel-stat: 0.625rem;
+  --size-radius-scrollbar: 50%;
 
   /* SPACING */
   --size-padding-layout: clamp(0.625rem, 1.6vw, 1.25rem);
@@ -93,6 +94,11 @@
   --size-gap-panel-stats: clamp(0.375rem, 0.8vw, 0.75rem);
   --size-gap-board: clamp(0.5rem, 1.2vw, 1.25rem);
   --size-gap-turn-controls: clamp(0.5rem, 1vw, 0.875rem);
+
+  --size-height-scrollbar: 0.625rem;
+  --color-bg-scrollbar-track: rgba(255, 255, 255, 0.05);
+  --color-bg-scrollbar-thumb: rgba(124, 183, 255, 0.55);
+  --color-bg-scrollbar-thumb-hover: rgba(124, 183, 255, 0.75);
 }
 
 /* #endregion */
@@ -363,9 +369,48 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  flex-wrap: nowrap;
 
   padding-top: var(--size-padding-block-start-card-hand);
   padding-bottom: var(--size-padding-block-end-card-hand);
+}
+
+@media (max-width: 550px) {
+  .card-hand {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-bg-scrollbar-thumb) var(--color-bg-scrollbar-track);
+
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--size-padding-block-start-card-hand);
+  }
+
+  .card-hand::-webkit-scrollbar {
+    height: var(--size-height-scrollbar);
+  }
+
+  .card-hand::-webkit-scrollbar-track {
+    background: var(--color-bg-scrollbar-track);
+    border-radius: var(--size-radius-scrollbar);
+  }
+
+  .card-hand::-webkit-scrollbar-thumb {
+    background: var(--color-bg-scrollbar-thumb);
+    border-radius: var(--size-radius-scrollbar);
+  }
+
+  .card-hand::-webkit-scrollbar-thumb:hover {
+    background: var(--color-bg-scrollbar-thumb-hover);
+  }
+
+  .card {
+    scroll-snap-align: start;
+  }
 }
 
 /* cards */
