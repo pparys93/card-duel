@@ -65,6 +65,10 @@
   --color-outline-btn-focus: rgba(255, 255, 255, 0.9);
   --color-outline-slot-focus: rgba(124, 183, 255, 0.9);
 
+  --color-bg-scrollbar-track: rgba(255, 255, 255, 0.05);
+  --color-bg-scrollbar-thumb: rgba(124, 183, 255, 0.55);
+  --color-bg-scrollbar-thumb-hover: rgba(124, 183, 255, 0.75);
+
   /* SHADOWS */
   --shadow-box-panel: 0 4px 18px rgba(0, 0, 0, 0.3);
   --shadow-box-btn-end-turn: 0 6px 18px rgba(63, 124, 255, 0.34);
@@ -141,6 +145,89 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+/* #endregion */
+
+/* #region [SCREEN GUARD] --------------------------- */
+.screen-guard {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(14px);
+
+  /* Default state: HIDDEN */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease;
+}
+
+.screen-guard__icon {
+  width: 56px;
+  height: 56px;
+  fill: none;
+  stroke: var(--color-text-base-default);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: var(--shadow-filter-icon);
+  animation: rotatePhone 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.screen-guard__title {
+  font-size: var(--size-font-global-large);
+  font-weight: 700;
+  letter-spacing: var(--size-letter-spacing-global-wide);
+  text-transform: uppercase;
+  color: var(--color-text-base-default);
+}
+
+.screen-guard__message {
+  max-width: 280px;
+  font-size: var(--size-font-global-small);
+  line-height: var(--size-line-height-global-relaxed);
+  opacity: 0.7;
+}
+
+@keyframes rotatePhone {
+  0%,  
+  35% { 
+    transform: rotate(90deg); 
+  }
+  55%, 
+  100% { 
+    transform: rotate(0deg); 
+  }
+}
+
+/* mobile landscape/low height */
+@media (pointer: coarse) and (max-height: 500px) {
+  .screen-guard {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+/* desktop low height */
+@media (pointer: fine) and (max-height: 600px) {
+  .screen-guard {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 }
 /* #endregion */
@@ -630,6 +717,14 @@ body {
 @media (prefers-reduced-motion: reduce) {
   body {
     animation: none;
+  }
+
+  .screen-guard {
+    transition: none;
+  }
+  .screen-guard__icon {
+    animation: none;
+    transform: rotate(45deg);
   }
 
   .board__slot {

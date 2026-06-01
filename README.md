@@ -43,21 +43,22 @@ The main purpose of this project is to:
 - CSS Grid-based battlefield structure,
 - separate enemy and player sections,
 - center action area for game controls,
-- responsive spacing using `clamp()`.
+- responsive spacing using `clamp()`,
+- horizontal scrolling for the hand/deck interface on mobile screens.
 
 ### 🧙 Player Interface
-- Dedicated enemy and player status panels,
-- HP and Mana indicators,
+- dedicated enemy and player status panels,
+- HP and mana indicators,
 - card counter structure,
 - glassmorphism-inspired UI containers,
 - fully responsive stat elements.
 
 ### 🃏 Game Board
-- Interactive board slots,
+- interactive board slots,
 - hover animations,
 - keyboard focus support,
 - accessible slot labels using `aria-label`.
-- hand/deck interface.
+- player hand/deck interface.
 
 ### 🎨 UI & Visual Design
 - fantasy-inspired visual style,
@@ -72,7 +73,9 @@ The main purpose of this project is to:
 - keyboard-accessible interactive elements,
 - `focus-visible` states,
 - improved button accessibility,
-- touch-friendly controls.
+- touch-friendly controls,
+- visually hidden headings for screen readers using the `visually-hidden` class,
+- screen-guard overlay when the browser window is too short or the device is in a non-optimal orientation.
 
 ### 🧱 CSS Architecture
 - BEM naming convention,
@@ -86,7 +89,7 @@ The main purpose of this project is to:
 ## ✍🏻 Planned Features
 
 ### ➡️ JavaScript Features
-- Full turn-based game logic,
+- full turn-based game logic,
 - card placement system,
 - mana system,
 - health system,
@@ -95,9 +98,8 @@ The main purpose of this project is to:
 - dynamic card rendering.
 
 ### ➡️ UI Improvements
-- Card animations,
+- card animations,
 - drag & drop mechanics,
-- responsive mobile layout improvements,
 - visual spell/effect animations,
 - sound effects,
 
@@ -128,7 +130,7 @@ card-duel-project/
 
 ---
 
-## 🌱 DOM Structure
+## 🌱 Game Arena Layout Structure
 
 ```
 ENEMY REGION
@@ -194,15 +196,22 @@ The current version focuses on:
 
 ---
 
-## 📸 Screenshots
+## 📸 Preview
+
+### ⌗ Layout
 
 | Desktop | Mobile |
 |---|---|
-| <img src="assets/images/screenshot_desktop-ui.jpeg" width="400" alt="Desktop UI"> | <img src="assets/images/screenshot_mobile-ui.jpeg" width="200" alt="Mobile UI"> |
+| <img src="assets/images/desktop-ui.jpeg" width="400" alt="Desktop UI"> | <img src="assets/images/mobile-ui.jpeg" width="200" alt="Mobile UI"> |
+
+
+### 🔒︎ Screen Guard Overlay
+
+<img src="assets/images/screen-guard.gif" width="400" alt="Screen guard overlay appearing automatically on narrow or portrait-oriented viewport">
 
 ---
 
-## 🎓 What I Learn Through This Project
+## 🎓 What I'm Learning Through This Project
 
 This isn't just a game. It's a structured self-education path through the joy of coding 😄
 
