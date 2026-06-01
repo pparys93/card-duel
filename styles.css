@@ -23,6 +23,14 @@
   --size-space-global-md: 0.75rem;  /* reserved */
   --size-space-global-lg: 1rem;     /* reserved */
 
+  /* RADIUS */
+  --size-radius-global-sm: 0.5rem;
+  --size-radius-global-base: 0.625rem;
+  --size-radius-global-md: 0.75rem;
+  --size-radius-global-lg: 1rem;
+  --size-radius-global-xl: 1.25rem; /* reserved */
+  --size-radius-global-round: 50%;
+
 /* SEMANTIC VARIABLES
    scheme: type-property-component-(state) */
 
@@ -74,9 +82,13 @@
   --size-width-card: clamp(130px, 11.25vw, 180px);
 
   /* RADIUS */
-  --size-radius-panel: 1rem;
-  --size-radius-panel-stat: 0.625rem;
-  --size-radius-scrollbar: 50%;
+  --size-radius-panel: var(--size-radius-global-lg);
+  --size-radius-panel-stat: var(--size-radius-global-base);
+  --size-radius-slot: var(--size-radius-global-lg);
+  --size-radius-button: var(--size-radius-global-md);
+  --size-radius-card: var(--size-radius-global-lg);
+  --size-radius-card-stat: var(--size-radius-global-sm);
+  --size-radius-scrollbar: var(--size-radius-global-round);
 
   /* SPACING */
   --size-padding-layout: clamp(0.625rem, 1.6vw, 1.25rem);
@@ -89,18 +101,15 @@
   --size-padding-inline-btn: clamp(1.25rem, 2.5vw, 2.25rem);
   --size-padding-block-start-card-hand: clamp(2.25rem, 5vh, 3.125rem);
   --size-padding-block-end-card-hand: clamp(0.25rem, 0.6vh, 0.5rem);
+  --size-padding-inline-card-hand-mobile: clamp(0.625rem, 1.6vw, 1.25rem);
 
   --size-gap-layout: clamp(0.375rem, 1vh, 0.875rem);
   --size-gap-panel-stats: clamp(0.375rem, 0.8vw, 0.75rem);
   --size-gap-board: clamp(0.5rem, 1.2vw, 1.25rem);
   --size-gap-turn-controls: clamp(0.5rem, 1vw, 0.875rem);
 
-  --size-height-scrollbar: 0.625rem;
-  --color-bg-scrollbar-track: rgba(255, 255, 255, 0.05);
-  --color-bg-scrollbar-thumb: rgba(124, 183, 255, 0.55);
-  --color-bg-scrollbar-thumb-hover: rgba(124, 183, 255, 0.75);
+  --size-height-scrollbar: var(--size-space-global-sm);
 }
-
 /* #endregion */
 
 /* #region [RESET] ---------------------------------- */
@@ -123,7 +132,7 @@ body {
   height: 100dvh;
   min-height: 100dvh;
   max-height: 100dvh;
-  overflow: hidden;
+  overflow: hidden; /* prevents vertical scrolling */
 }
 
 @keyframes fadeInBg {
@@ -158,7 +167,7 @@ body {
   max-height: 100dvh;
   padding: var(--size-padding-layout);
   gap: var(--size-gap-layout);
-  overflow: hidden;
+  overflow: hidden; /* ensures layout always fills viewport height */
 }
 
 /* #endregion */
@@ -260,7 +269,7 @@ body {
   aspect-ratio: 2 / 3; /* keeps consistent portrait slot shape */
   flex-shrink: 0;
   border: 2px dashed var(--color-border-slot);
-  border-radius: 16px;
+  border-radius: var(--size-radius-slot);
   background-color: var(--color-bg-slot);
   transition:
     border-color 0.2s ease,
@@ -313,7 +322,7 @@ body {
   padding: var(--size-padding-block-btn) var(--size-padding-inline-btn);
 
   border: none;
-  border-radius: 12px;
+  border-radius: var(--size-radius-button);
 
   font-family: inherit;
   font-size: var(--size-font-global-small);
@@ -397,7 +406,7 @@ body {
   margin-left: clamp(-48px, -3.5vw, -30px); /* overlap effect */
 
   border: 1px solid var(--color-border-card);
-  border-radius: 16px;
+  border-radius: var(--size-radius-card);
   background: var(--color-bg-card);
 
   overflow: hidden;
@@ -513,7 +522,9 @@ body {
   font-size: var(--size-font-global-large);
   font-weight: 700;
   letter-spacing: var(--size-letter-spacing-global-tight);
+
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
@@ -532,7 +543,7 @@ body {
   width: clamp(28px, 22cqi, 52px);
   height: clamp(28px, 22cqi, 52px);
 
-  border-radius: 8px;
+  border-radius: var(--size-radius-card-stat);
 
   display: flex;
   justify-content: center;
@@ -605,8 +616,10 @@ body {
   position: absolute;
   width: 1px;
   height: 1px;
+
   padding: 0;
   margin: -1px;
+
   overflow: hidden;
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -659,6 +672,7 @@ body {
 @media (pointer: coarse) {
   .card-hand {
     justify-content: flex-start;
+    padding-inline: var(--size-padding-inline-card-hand-mobile);
     overflow-x: auto;
     overflow-y: hidden;
     overscroll-behavior-x: contain;
@@ -668,7 +682,7 @@ body {
     scrollbar-color: var(--color-bg-scrollbar-thumb) var(--color-bg-scrollbar-track);
 
     scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--size-padding-block-start-card-hand);
+    scroll-padding-inline: var(--size-padding-inline-card-hand-mobile);
   }
 
   .card-hand::-webkit-scrollbar {
