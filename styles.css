@@ -54,12 +54,15 @@
   --color-bg-card-mana: linear-gradient(135deg, #3f7cff, #6cb2ff);
   --color-bg-card-attack: linear-gradient(135deg, #c96a6a, #9b3d3d);
   --color-bg-card-health: linear-gradient(135deg, #4ea96b, #2f7d4a);
+  --color-bg-card-art-overlay-start: rgba(255, 255, 255, 0.06);
+  --color-bg-card-art-overlay-end: rgba(255, 255, 255, 0.01);
 
   --color-border-panel: rgba(255, 255, 255, 0.08);
   --color-border-panel-stat: rgba(255, 255, 255, 0.1);
   --color-border-slot: rgba(255, 255, 255, 0.13);
   --color-border-slot-hover: rgba(255, 255, 255, 0.3);
   --color-border-card: rgba(255, 255, 255, 0.1);
+  --color-border-card-art-divider: rgba(255, 255, 255, 0.07);
   --color-border-card-selected: #FFD700;
 
   --color-outline-btn-focus: rgba(255, 255, 255, 0.9);
@@ -71,6 +74,7 @@
 
   /* SHADOWS */
   --shadow-box-panel: 0 4px 18px rgba(0, 0, 0, 0.3);
+  --shadow-box-panel-highlight: 0 1px 0 rgba(255, 255, 255, 0.05);
   --shadow-box-btn-end-turn: 0 6px 18px rgba(63, 124, 255, 0.34);
   --shadow-box-btn-end-turn-hover: 0 7px 20px rgba(63, 124, 255, 0.37);
   --shadow-box-btn-draw: 0 5px 15px rgba(56, 86, 112, 0.32);
@@ -273,7 +277,7 @@ body {
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px); /* glassmorphism blur effect */
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset var(--shadow-box-panel-highlight),
     var(--shadow-box-panel);
 }
 
@@ -531,7 +535,7 @@ body {
 
   width: clamp(28px, 22cqi, 48px);
   height: clamp(28px, 22cqi, 48px);
-  border-radius: 50%;
+  border-radius: var(--size-radius-global-round);
 
   display: flex;
   justify-content: center;
@@ -552,12 +556,12 @@ body {
 
   height: clamp(64px, 45cqi, 110px);
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid var(--color-border-card-art-divider);
 
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.06),
-    rgba(255, 255, 255, 0.01)
+    var(--color-bg-card-art-overlay-start),
+    var(--color-bg-card-art-overlay-end)
   );
 }
 
