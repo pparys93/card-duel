@@ -502,7 +502,7 @@ body {
   display: flex;
   flex-direction: column;
 
-  margin-left: clamp(-48px, -3.5vw, -30px); /* overlap effect */
+  margin-inline: clamp(-42px, -3.5vw, -32px); /* overlap effect */
 
   border: 1px solid var(--color-border-card);
   border-radius: var(--size-radius-card);
@@ -519,10 +519,45 @@ body {
   box-shadow: var(--shadow-box-card);
 
   touch-action: manipulation;
+
+    --card-rotation: 0deg;
+    --card-lift: 0px;
+    transform-origin: bottom center;
+    transform: rotate(var(--card-rotation)) translateY(var(--card-lift));
+
 }
 
 .card:first-child {
   margin-left: 0;
+}
+
+.card:last-child  { 
+  margin-right: 0; 
+}
+
+.card:nth-child(1) {
+  --card-rotation: -10deg;
+  --card-lift: 16px;
+}
+
+.card:nth-child(2) {
+  --card-rotation: -5deg;
+  --card-lift: 4px;
+}
+
+.card:nth-child(3) {
+  --card-rotation: 0deg;
+  --card-lift: 0px;
+}
+
+.card:nth-child(4) {
+  --card-rotation: 5deg;
+  --card-lift: 4px;
+}
+
+.card:nth-child(5) {
+  --card-rotation: 10deg;
+  --card-lift: 16px;
 }
 
 .card:focus-visible {
@@ -686,7 +721,7 @@ body {
   }
 
   .card:not(.card--selected):hover {
-    transform: translateY(clamp(-20px, -20cqi, -32px)) scale(1.04);
+    transform: rotate(var(--card-rotation)) translateY(calc(-24px + var(--card-lift))) scale(1.05);
     z-index: 10; /* lift hovered card above others */
     box-shadow:
       0 20px 48px rgba(0, 0, 0, 0.6),
@@ -819,6 +854,15 @@ body {
 
   .card {
     scroll-snap-align: start;
+
+    transform-origin: initial;
+    margin-inline: 0;
+    margin-left: clamp(-48px, -3.5vw, -30px);
+  }
+
+  .card:nth-child(n) {
+  --card-rotation: 0deg;
+  --card-lift: 0px;
   }
 }
 /* #endregion */

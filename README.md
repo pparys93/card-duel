@@ -44,7 +44,7 @@ The main purpose of this project is to:
 - separate enemy and player sections,
 - center action area for game controls,
 - responsive spacing using `clamp()`,
-- horizontal scrolling for the hand/deck interface on mobile screens.
+- horizontal scrolling for the hand on mobile screens.
 
 ### 🧙 Player Interface
 - dedicated enemy and player status panels,
@@ -57,8 +57,9 @@ The main purpose of this project is to:
 - interactive board slots,
 - hover animations,
 - keyboard focus support,
-- accessible slot labels using `aria-label`.
-- player hand/deck interface.
+- accessible slot labels using `aria-label`,
+- player hand/deck interface,
+- fan-style hand layout by default, classic overlap on touch devices.
 
 ### 🎨 UI & Visual Design
 - fantasy-inspired visual style,
@@ -101,7 +102,7 @@ The main purpose of this project is to:
 - card animations,
 - drag & drop mechanics,
 - visual spell/effect animations,
-- sound effects,
+- sound effects.
 
 ### ➡️ React Migration
 - reusable components,
@@ -202,7 +203,7 @@ The current version focuses on:
 
 | Desktop | Mobile |
 |---|---|
-| <img src="assets/images/desktop-ui.jpeg" width="400" alt="Desktop UI"> | <img src="assets/images/mobile-ui.jpeg" width="200" alt="Mobile UI"> |
+| <img src="assets/images/desktop-ui.png" width="400" alt="Desktop UI"> | <img src="assets/images/mobile-ui.png" width="200" alt="Mobile UI"> |
 
 
 ### 🔒︎ Screen Guard Overlay
