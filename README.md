@@ -116,12 +116,14 @@ The main purpose of this project is to:
 ## 📁 Project Structure
 
 ```
-card-duel-project/
+card-duel/
 │
 ├── index.html
 ├── styles.css
+├── favicon.ico
 │
 ├── assets/
+│   ├── favicons/
 │   └── images/
 │
 ├── scripts/ (planned)
