@@ -75,6 +75,9 @@
   /* SHADOWS */
   --shadow-box-panel: 0 4px 18px rgba(0, 0, 0, 0.3);
   --shadow-box-panel-highlight: 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-box-slot-hover:
+    0 0 0 3px rgba(255, 255, 255, 0.06),
+    0 6px 20px rgba(255, 255, 255, 0.08);
   --shadow-box-btn-end-turn: 0 6px 18px rgba(63, 124, 255, 0.34);
   --shadow-box-btn-end-turn-hover: 0 7px 20px rgba(63, 124, 255, 0.37);
   --shadow-box-btn-draw: 0 5px 15px rgba(56, 86, 112, 0.32);
@@ -140,6 +143,20 @@ body {
   background: var(--color-bg-arena);
 
   animation: fadeInBg 0.8s ease-out;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 50%,
+    rgba(63, 124, 255, 0.10) 0%,
+    transparent 70%
+  );
 }
 
 @keyframes fadeInBg {
@@ -700,13 +717,17 @@ body {
 @media (hover: hover) { 
   .board__slot:not(.board__slot--inactive):hover {
     transform: translateY(-4px);
-    border-color: var(--color-border-slot-hover);
     background-color: var(--color-bg-slot-hover);
+    border-color: var(--color-border-slot-hover);
+    box-shadow: var(--shadow-box-slot-hover);
   }
 
   .board__slot--inactive:hover {
     background-color: rgba(220, 70, 70, 0.18);
     border-color: rgba(255, 90, 90, 0.55);
+    box-shadow: 
+      0 0 0 3px rgba(220, 70, 70, 0.1),
+      0 6px 20px rgba(220, 70, 70, 0.14);
   }
 
   .button--end-turn:hover:not(:disabled) {
