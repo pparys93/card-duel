@@ -135,6 +135,7 @@
 
 /* #region [BASE] ----------------------------------- */
 body {
+  height: 100vh; /* fallback */
   height: 100dvh;
   overflow: hidden; /* prevents vertical scrolling */
 
@@ -277,6 +278,7 @@ body::before {
     "player-hand"
     "player-panel";
 
+  height: 100vh; /* fallback */
   height: 100dvh;
   overflow: hidden; /* ensures layout always fills viewport height */
 
@@ -341,11 +343,6 @@ body::before {
   font-size: var(--size-font-global-small);
   font-weight: 700;
   letter-spacing: var(--size-letter-spacing-global-normal);
-}
-
-.player-panel__term,
-.player-panel__value {
-  margin: 0;
 }
 
 .player-panel__stat--hp {
@@ -527,21 +524,18 @@ body::before {
 
   overflow: hidden;
   cursor: pointer;
+  touch-action: manipulation;
 
   transition:
     transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.25s ease,
-    z-index 0s; /* switches stacking immediately before the lift animation */
+    box-shadow 0.25s ease;
 
   box-shadow: var(--shadow-box-card);
 
-  touch-action: manipulation;
-
-    --card-rotation: 0deg;
-    --card-lift: 0px;
-    transform-origin: bottom center;
-    transform: rotate(var(--card-rotation)) translateY(var(--card-lift));
-
+  --card-rotation: 0deg;  /* fallback; overwritten by nth-child */
+  --card-lift: 0px;
+  transform-origin: bottom center;
+  transform: rotate(var(--card-rotation)) translateY(var(--card-lift));
 }
 
 .card:first-child {
@@ -584,6 +578,9 @@ body::before {
 
 .card--selected {
   border-color: var(--color-border-card-selected);
+  box-shadow:
+    0 0 0 2px var(--color-border-card-selected),
+    var(--shadow-box-card);
   z-index: 10;
 }
 
@@ -712,8 +709,10 @@ body::before {
 .card__stat--health {
   background: var(--color-bg-card-health);
 }
+/* #endregion */
 
-/* Limit hover interactions to hover-capable devices. */
+/* #region [HOVER INTERACTIONS] --------------------- */
+/* limit hover interactions to hover-capable devices */
 @media (hover: hover) { 
   .board__slot:not(.board__slot--inactive):hover {
     transform: translateY(-4px);
@@ -743,14 +742,14 @@ body::before {
 
   .card:not(.card--selected):hover {
     transform: rotate(var(--card-rotation)) translateY(calc(-24px + var(--card-lift))) scale(1.05);
-    z-index: 10; /* lift hovered card above others */
+    z-index: 10; /* stacks above siblings; switches immediately, not animated */
     box-shadow:
       0 20px 48px rgba(0, 0, 0, 0.6),
       0 0 0 1px rgba(255, 255, 255, 0.18);
   }
 }
 
-/* Touch-first behavior: tapped card should stay above overlaps without lift transform. */
+/* touch-first behavior: tapped card should stay above overlaps without lift transform */
 @media (hover: none) {
   .card:focus-visible {
     outline: none;
@@ -824,23 +823,14 @@ body::before {
   .card:hover {
     transform: none;
   }
-
-  .card--selected {
-    transform: none;
-  }
 }
 /* #endregion */
 
 /* #region [RESPONSIVE] ----------------------------- */
 @media (pointer: coarse) {
-  :root {
-    .card-hand {
-      padding-top: var(--size-padding-block-end-card-hand); /* take advantage of unused space */
-    }
-  }
-
   .card-hand {
     justify-content: flex-start;
+    padding-top: var(--size-padding-block-end-card-hand); /* take advantage of unused space */
     padding-inline: var(--size-padding-inline-card-hand-mobile);
 
     overflow-x: auto;
