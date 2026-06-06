@@ -39,7 +39,7 @@ The main purpose of this project is to:
 
 ## ✨ Current Features
 
-### 🗺️ Responsive Game Layout
+### 📐 Responsive Game Layout
 - CSS Grid-based battlefield structure,
 - separate enemy and player sections,
 - center action area for game controls,
@@ -84,6 +84,17 @@ The main purpose of this project is to:
 - modular section-based stylesheet organization,
 - scalable component structure,
 - reusable utility-like design tokens.
+
+---
+
+## 🗺️ Roadmap
+
+| Version | Milestone | Status |
+|---|---|---|
+| `v0.1.0` | HTML/CSS Foundation | ✅ Done |
+| `v0.2.0` | JavaScript Core | 🔄 Planned |
+| `v0.3.0` | UI Improvements | 🔄 Planned |
+| `v1.0.0` | React Migration | 🔄 Planned |
 
 ---
 
@@ -189,11 +200,7 @@ This project is also used to practice a professional frontend workflow:
 
 ## 🚧 Project Status
 
-The current version focuses on:
-- responsive UI foundations,
-- scalable CSS architecture,
-- accessibility improvements,
-- preparing the project for JavaScript game systems.
+Current version: `v0.1.0`
 
 > 🚀 **[Live Demo](https://pparys93.github.io/card-duel)**
 

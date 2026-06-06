@@ -10,7 +10,7 @@
 
   --size-line-height-global-tight: 1.2;
   --size-line-height-global-normal: 1.4;   /* reserved */
-  --size-line-height-global-relaxed: 1.6;  /* reserved */
+  --size-line-height-global-relaxed: 1.6;
 
   --size-letter-spacing-global-tight: 0.0375rem;
   --size-letter-spacing-global-normal: 0.0625rem;
@@ -65,8 +65,8 @@
   --color-border-card-art-divider: rgba(255, 255, 255, 0.07);
   --color-border-card-selected: #FFD700;
 
-  --color-outline-btn-focus: rgba(255, 255, 255, 0.9);
   --color-outline-slot-focus: rgba(124, 183, 255, 0.9);
+  --color-outline-btn-focus: rgba(255, 255, 255, 0.9);
 
   --color-bg-scrollbar-track: rgba(255, 255, 255, 0.05);
   --color-bg-scrollbar-thumb: rgba(124, 183, 255, 0.55);
@@ -92,15 +92,6 @@
   --size-width-btn: clamp(7.5rem, 11.5vw, 10.5rem);
   --size-width-card: clamp(7.8rem, 11.25vw, 10rem);
 
-  /* RADIUS */
-  --size-radius-panel: var(--size-radius-global-lg);
-  --size-radius-panel-stat: var(--size-radius-global-base);
-  --size-radius-slot: var(--size-radius-global-lg);
-  --size-radius-button: var(--size-radius-global-md);
-  --size-radius-card: var(--size-radius-global-lg);
-  --size-radius-card-stat: var(--size-radius-global-sm);
-  --size-radius-scrollbar: var(--size-radius-global-round);
-
   /* SPACING */
   --size-padding-layout: clamp(0.625rem, 1.0vw, 1.25rem);
   --size-padding-block-panel: clamp(0.625rem, 1.2vh, 1rem);
@@ -120,6 +111,15 @@
   --size-gap-turn-controls: clamp(0.5rem, 1vw, 0.875rem);
 
   --size-height-scrollbar: var(--size-space-global-sm);
+
+  /* RADIUS */
+  --size-radius-panel: var(--size-radius-global-lg);
+  --size-radius-panel-stat: var(--size-radius-global-base);
+  --size-radius-slot: var(--size-radius-global-lg);
+  --size-radius-button: var(--size-radius-global-md);
+  --size-radius-card: var(--size-radius-global-lg);
+  --size-radius-card-stat: var(--size-radius-global-sm);
+  --size-radius-scrollbar: var(--size-radius-global-round);
 }
 /* #endregion */
 
@@ -180,10 +180,9 @@ body::before {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
-
   text-align: center;
 
+  gap: 1.5rem;
   padding: 2rem;
 
   background: rgba(0, 0, 0, 0.88);
@@ -282,8 +281,9 @@ body::before {
   height: 100dvh;
   overflow: hidden; /* ensures layout always fills viewport height */
 
-  padding: var(--size-padding-layout);
   gap: var(--size-gap-layout);
+  padding: var(--size-padding-layout);
+
 }
 
 /* #endregion */
@@ -332,8 +332,8 @@ body::before {
 .player-panel__stat {
   display: flex;
   align-items: center;
-  gap: var(--size-space-global-2xs);
 
+  gap: var(--size-space-global-2xs);
   padding: var(--size-padding-block-panel-stat) var(--size-padding-inline-panel-stat);
    
   background-color: var(--color-bg-panel-stat);
@@ -388,6 +388,8 @@ body::before {
     border-color 0.2s ease,
     background-color 0.2s ease,
     transform 0.2s ease;
+
+  cursor: default;
 }
 
 .board__slot--inactive {
@@ -395,6 +397,17 @@ body::before {
   border-color: rgba(180, 60, 60, 0.25);
   border-style: solid;
   cursor: not-allowed;
+}
+
+.board__slot--occupied {
+  border-style: solid;
+  cursor: default;
+  pointer-events: none;
+}
+
+.game--card-selected 
+.board__slot:not(.board__slot--inactive) {
+  cursor: pointer;
 }
 
 .board__slot:focus-visible {
@@ -410,9 +423,9 @@ body::before {
 
   display: flex;
   flex-wrap: wrap;
-  gap: var(--size-gap-turn-controls);
   justify-content: center;
   align-items: center;
+  gap: var(--size-gap-turn-controls);
 }
 
 .turn-controls::before {
@@ -837,7 +850,6 @@ body::before {
     overflow-y: hidden;
 
     overscroll-behavior-x: contain;
-    -webkit-overflow-scrolling: touch;
     scrollbar-gutter: stable both-edges;
     scrollbar-width: thin;
     scrollbar-color: var(--color-bg-scrollbar-thumb) var(--color-bg-scrollbar-track);
