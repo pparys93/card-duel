@@ -9,23 +9,27 @@
 
 </div>
 
-A browser-based fantasy card game interface built as a frontend portfolio project focused on clean architecture, responsive design, and accessibility-first thinking.
+A browser-based fantasy card game built as a frontend portfolio project. The first milestone (`HTML/CSS Foundation`) is complete: the game arena is fully structured, styled, and accessible. Next up: bringing it to life with JavaScript.
 
 ---
 
 ## 📖 About The Project
 
-Card Duel is a turn-based fantasy card game built in the browser. Two players face each other across a battlefield, placing cards, managing mana, and fighting to reduce the opponent's HP to zero.
+Card Duel is a turn-based fantasy card game built in the browser. The player faces an AI opponent across a battlefield, placing cards, managing mana, and fighting to reduce the opponent's HP to zero.
+The project aims to deliver a fully playable game experience - from a polished UI to complete game logic entirely in the browser.
 
-The project currently focuses on building a strong frontend architecture and a polished user interface before implementing full game logic and React integration.
+---
 
-The main purpose of this project is to:
-- improve frontend development skills,
-- practice modern HTML & CSS architecture,
-- learn scalable project organization,
-- build reusable UI structures,
-- prepare the application for JavaScript and React implementation,
-- document continuous learning progress through a real development workflow.
+## 🎯 Development Goals
+
+This project is also used to practice a professional frontend workflow:
+- version control with Git,
+- regular commits,
+- responsive UI architecture,
+- writing maintainable code,
+- accessibility-first thinking,
+- scalable frontend structure,
+- preparing production-like project organization.
 
 ---
 
@@ -44,22 +48,15 @@ The main purpose of this project is to:
 - separate enemy and player sections,
 - center action area for game controls,
 - responsive spacing using `clamp()`,
-- horizontal scrolling for the hand on mobile screens.
-
-### 🧙 Player Interface
-- dedicated enemy and player status panels,
-- HP and mana indicators,
-- card counter structure,
-- glassmorphism-inspired UI containers,
-- fully responsive stat elements.
+- horizontal scrolling for the hand on touch devices.
 
 ### 🃏 Game Board
 - interactive board slots,
 - hover animations,
 - keyboard focus support,
-- accessible slot labels using `aria-label`,
-- player hand/deck interface,
+- player hand interface,
 - fan-style hand layout by default, classic overlap on touch devices.
+- enemy and player status panels with HP and mana indicators plus card counter for enemy
 
 ### 🎨 UI & Visual Design
 - fantasy-inspired visual style,
@@ -67,13 +64,14 @@ The main purpose of this project is to:
 - smooth transitions and hover effects,
 - custom typography using Google Fonts,
 - minimalist spell icons on cards crafted from vector shape paths,
+- glassmorphism-inspired UI containers,
 - subtle depth effects using shadows and backdrop blur.
 
 ### ♿ Accessibility & UX
 - semantic HTML structure,
 - keyboard-accessible interactive elements,
 - `focus-visible` states,
-- improved button accessibility,
+- ARIA markup for screen reader support,
 - touch-friendly controls,
 - visually hidden headings for screen readers using the `visually-hidden` class,
 - screen-guard overlay when the browser window is too short or the device is in a non-optimal orientation.
@@ -100,7 +98,7 @@ The main purpose of this project is to:
 
 ## ✍🏻 Planned Features
 
-### ➡️ JavaScript Features
+### 🔄 JavaScript Features
 - full turn-based game logic,
 - card placement system,
 - mana system,
@@ -109,13 +107,13 @@ The main purpose of this project is to:
 - win/lose conditions,
 - dynamic card rendering.
 
-### ➡️ UI Improvements
+### 🔄 UI Improvements
 - card animations,
 - drag & drop mechanics,
 - visual spell/effect animations,
 - sound effects.
 
-### ➡️ React Migration
+### 🔄 React Migration
 - reusable components,
 - state management,
 - dynamic rendering,
@@ -185,19 +183,6 @@ PLAYER REGION
 
 ---
 
-## 🎯 Development Goals
-
-This project is also used to practice a professional frontend workflow:
-- version control with Git,
-- regular commits,
-- responsive UI architecture,
-- writing maintainable code,
-- accessibility-first thinking,
-- scalable frontend structure,
-- preparing production-like project organization.
-
----
-
 ## 🚧 Project Status
 
 Current version: `v0.1.0`
@@ -208,14 +193,14 @@ Current version: `v0.1.0`
 
 ## 📸 Preview
 
-### ⌗ Layout
+### 🖼️ Layout
 
 | Desktop | Mobile |
 |---|---|
 | <img src="assets/images/desktop-ui.png" width="400" alt="Desktop UI"> | <img src="assets/images/mobile-ui.png" width="200" alt="Mobile UI"> |
 
 
-### 🔒︎ Screen Guard Overlay
+### 🔒 Screen Guard Overlay
 
 <img src="assets/images/screen-guard.gif" width="400" alt="Screen guard overlay appearing automatically on narrow or portrait-oriented viewport">
 
