@@ -4,6 +4,7 @@
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-In%20Progress-yellow)
 
@@ -36,6 +37,7 @@ This project is also used to practice a professional frontend workflow:
 ## 🛠️ Current Tech Stack
 - HTML5
 - CSS3
+- JavaScript (ES6+)
 - Git & GitHub
 - Visual Studio Code
 
@@ -83,6 +85,9 @@ This project is also used to practice a professional frontend workflow:
 - scalable component structure,
 - reusable utility-like design tokens.
 
+### ⚙️ JavaScript Features
+- dynamic card rendering.
+
 ---
 
 ## 🗺️ Roadmap
@@ -90,7 +95,7 @@ This project is also used to practice a professional frontend workflow:
 | Version | Milestone | Status |
 |---|---|---|
 | `v0.1.0` | HTML/CSS Foundation | ✅ Done |
-| `v0.2.0` | JavaScript Core | 🔄 Planned |
+| `v0.2.0` | JavaScript Core | ⏳ In Progress |
 | `v0.3.0` | UI Improvements | 🔄 Planned |
 | `v1.0.0` | React Migration | 🔄 Planned |
 
@@ -104,8 +109,7 @@ This project is also used to practice a professional frontend workflow:
 - mana system,
 - health system,
 - turn management,
-- win/lose conditions,
-- dynamic card rendering.
+- win/lose conditions.
 
 ### 🔄 UI Improvements
 - card animations,
@@ -135,7 +139,7 @@ card-duel/
 │   ├── favicons/
 │   └── images/
 │
-├── scripts/ (planned)
+├── scripts/
 │
 └── README.md
 ```
