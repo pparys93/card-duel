@@ -405,8 +405,7 @@ body::before {
   pointer-events: none;
 }
 
-.game--card-selected 
-.board__slot:not(.board__slot--inactive) {
+.game--card-selected .board__slot:not(.board__slot--inactive) {
   cursor: pointer;
 }
 
@@ -613,7 +612,7 @@ body::before {
 
   color: var(--color-text-base-inverse);
   font-size: var(--size-font-global-medium);
-  font-weight: 900;
+  font-weight: 700;
 
   background: var(--color-bg-card-mana);
   box-shadow: var(--shadow-box-card-mana);
@@ -712,7 +711,7 @@ body::before {
 
   color: var(--color-text-base-inverse);
   font-size: var(--size-font-global-medium);
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .card__stat--attack {

@@ -185,7 +185,7 @@ PLAYER REGION
 
 ## 🚧 Project Status
 
-Current version: `v0.1.0`
+Current version: `v0.1.1`
 
 > 🚀 **[Live Demo](https://pparys93.github.io/card-duel)**
 
