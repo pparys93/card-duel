@@ -131,6 +131,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+button {
+  font: inherit;
+  color: inherit;
+}
 /* #endregion */
 
 /* #region [BASE] ----------------------------------- */
@@ -400,12 +405,62 @@ body::before {
 }
 
 .board__slot--occupied {
+  container: slot / inline-size; /* keeps slot content proportionate (cqi) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  overflow: hidden;
+
   border-style: solid;
   cursor: default;
   pointer-events: none;
 }
 
-.game--card-selected .board__slot:not(.board__slot--inactive) {
+.board__card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.board__card .card__art {
+  flex: 1;
+  width: 100%;
+  height: auto;
+
+  border-bottom: 1px solid var(--color-border-card-art-divider);
+  background: linear-gradient(
+    180deg,
+    var(--color-bg-card-art-overlay-start),
+    var(--color-bg-card-art-overlay-end)
+  );
+}
+
+.board__card .card__art-icon {
+  width: clamp(48px, 65cqi, 90px);
+  height: clamp(48px, 65cqi, 90px);
+}
+
+.board__card .card__stat {
+  margin: 0;
+  align-self: stretch;
+  border-radius: 0;
+
+  width: 100%;
+  height: auto;
+
+  padding-block: clamp(6px, 10cqi, 14px);
+
+  font-size: clamp(0.9rem, 30cqi, 1.5rem);
+}
+
+.game--card-selected 
+  .board--player 
+    .board__slot:not(.board__slot--inactive):not(.board__slot--occupied) {
+  border-color: var(--color-border-slot-hover);
+  background-color: var(--color-bg-slot-hover);
   cursor: pointer;
 }
 
@@ -544,8 +599,9 @@ body::before {
 
   box-shadow: var(--shadow-box-card);
 
-  --card-rotation: 0deg;  /* fallback; overwritten by nth-child */
+  --card-rotation: 0deg;  /* fallback values; set by JS in updateHandLayout() */
   --card-lift: 0px;
+
   transform-origin: bottom center;
   transform: rotate(var(--card-rotation)) translateY(var(--card-lift));
 }
@@ -556,31 +612,6 @@ body::before {
 
 .card:last-child  { 
   margin-right: 0; 
-}
-
-.card:nth-child(1) {
-  --card-rotation: -10deg;
-  --card-lift: 16px;
-}
-
-.card:nth-child(2) {
-  --card-rotation: -5deg;
-  --card-lift: 4px;
-}
-
-.card:nth-child(3) {
-  --card-rotation: 0deg;
-  --card-lift: 0px;
-}
-
-.card:nth-child(4) {
-  --card-rotation: 5deg;
-  --card-lift: 4px;
-}
-
-.card:nth-child(5) {
-  --card-rotation: 10deg;
-  --card-lift: 16px;
 }
 
 .card:focus-visible {
@@ -880,11 +911,6 @@ body::before {
     transform-origin: initial;
     margin-inline: 0;
     margin-left: clamp(-48px, -3.5vw, -30px);
-  }
-
-  .card:nth-child(n) {
-  --card-rotation: 0deg;
-  --card-lift: 0px;
   }
 }
 /* #endregion */

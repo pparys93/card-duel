@@ -86,7 +86,9 @@ This project is also used to practice a professional frontend workflow:
 - reusable utility-like design tokens.
 
 ### ⚙️ JavaScript Features
-- dynamic card rendering.
+- dynamic card rendering,
+- dynamic fan-layout scaling based on hand size,
+- card placement system.
 
 ---
 
@@ -105,7 +107,6 @@ This project is also used to practice a professional frontend workflow:
 
 ### 🔄 JavaScript Features
 - full turn-based game logic,
-- card placement system,
 - mana system,
 - health system,
 - turn management,
