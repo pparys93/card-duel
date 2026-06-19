@@ -106,10 +106,11 @@ This project is also used to practice a professional frontend workflow:
 ## ✍🏻 Planned Features
 
 ### 🔄 JavaScript Features
-- full turn-based game logic,
+- turn management,
+- draw card mechanic,
 - mana system,
 - health system,
-- turn management,
+- enemy turn logic,
 - win/lose conditions.
 
 ### 🔄 UI Improvements
