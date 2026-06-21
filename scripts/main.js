@@ -54,7 +54,7 @@ let selectedCard = null;
 
 function renderSlotCard(card) {
   const wrapper = document.createElement("div");
-  wrapper.className = "slot-card";
+  wrapper.className = "board__card";
   wrapper.innerHTML = `
     <div class="card__art">
       ${icons[card.id]}
