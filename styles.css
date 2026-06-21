@@ -583,7 +583,8 @@ body::before {
   display: flex;
   flex-direction: column;
 
-  margin-inline: clamp(-42px, -3.5vw, -32px); /* overlap effect */
+  /* overlap effect - always equals 20% of card width, keeping overlap in sync with card size */
+  margin-inline: calc(var(--size-width-card) * -0.2);
 
   border: 1px solid var(--color-border-card);
   border-radius: var(--size-radius-card);
