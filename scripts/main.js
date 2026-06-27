@@ -11,6 +11,43 @@ if (!cardHand) {
 }
 // #endregion
 
+// #region [MANA SYSTEM] ----------------------------->
+let playerMana = 10;
+let currentHand = [];
+
+const playerManaDisplay = document.querySelector(".player-panel--player .player-panel__stat--mana .player-panel__value");
+
+function updateManaDisplay() {
+  playerManaDisplay.textContent = playerMana;
+}
+
+function hasEnoughMana(card) {
+  return card.mana <= playerMana;
+}
+
+function spendMana(amount) {
+  playerMana -= amount;
+  updateManaDisplay();
+}
+
+function refreshHandAffordability() {
+  const cardElements = cardHand.querySelectorAll(".card");
+  cardElements.forEach((cardEl, i) => {
+    const card = currentHand[i];
+    const affordable = hasEnoughMana(card);
+
+    cardEl.classList.toggle("card--unaffordable", !affordable);
+    cardEl.setAttribute("aria-disabled", String(!affordable));
+
+    if (!affordable) {
+      cardEl.setAttribute("aria-label", `${card.name}, not enough mana to play`);
+    } else {
+      cardEl.removeAttribute("aria-label");
+    }
+  });
+}
+// #endregion
+
 // #region [HAND LAYOUT] ----------------------------->
 const MAX_CARD_ROTATION_DEG = 10;  // rotation applied to the outermost cards
 const MAX_CARD_LIFT_PX = 16;       // vertical lift applied to the outermost cards
@@ -80,7 +117,7 @@ function selectCard(cardElement, card) {
     return;
   }
 
-  if (allSlotsFull()) return;
+  if (allSlotsFull() || !hasEnoughMana(card)) return;
 
   if (selectedCard) {
     selectedCard.element.classList.remove("card--selected");
@@ -96,10 +133,15 @@ function placeCard(slotElement) {
   slotElement.innerHTML = "";
   slotElement.appendChild(renderSlotCard(selectedCard.data));
   slotElement.classList.add("board__slot--occupied");
+  spendMana(selectedCard.data.mana);
+
+  currentHand = currentHand.filter(card => card !== selectedCard.data);
+
   selectedCard.element.remove();
   selectedCard = null;
   game.classList.remove("game--card-selected");
   updateHandLayout();
+  refreshHandAffordability();
 }
 
 function initPlacement() {
@@ -142,6 +184,15 @@ function renderCard(card) {
     }
   });
 
+if (!hasEnoughMana(card)) {
+  article.classList.add("card--unaffordable");
+  article.setAttribute("aria-disabled", "true");
+  article.setAttribute("aria-label", `${card.name}, not enough mana to play`);
+} else {
+  article.setAttribute("aria-disabled", "false");
+  article.removeAttribute("aria-label");
+}
+
   return article;
 }
 
@@ -156,11 +207,13 @@ function drawHand(cards, count = 5) {
 
 function renderHand(cards) {
   cardHand.innerHTML = "";
-  drawHand(cards).forEach(card => {
+  currentHand = drawHand(cards);
+  currentHand.forEach(card => {
     cardHand.appendChild(renderCard(card));
   });
   updateHandLayout();
 }
 
 renderHand(cards);
+updateManaDisplay(); // sync display with playerMana on page load
 // #endregion

@@ -625,7 +625,16 @@ body::before {
   box-shadow:
     0 0 0 2px var(--color-border-card-selected),
     var(--shadow-box-card);
+  
   z-index: 20; /* stays above hover (z-index: 10) regardless of DOM order */
+}
+
+.card--unaffordable {
+  cursor: not-allowed;
+}
+
+.card--unaffordable > * {
+  opacity: 0.5;
 }
 
 .card__mana {
@@ -800,11 +809,15 @@ body::before {
   }
 
   .card {
-    z-index: 0;
+    z-index: 1;
   }
 
-  .card:is(:focus, :active, .card--selected) {
+  .card:is(:focus, :active):not(.card--selected) {
     z-index: 10;
+  }
+
+  .card--selected {
+    z-index: 20; /* always wins over tapped neighbors, regardless of DOM order */
   }
 }
 /* #endregion */
