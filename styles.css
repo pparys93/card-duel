@@ -1,7 +1,7 @@
 /* #region [TOKENS] --------------------------------- */
 :root {
-/* GLOBAL TOKENS
-   scheme: type-property-scope-scale */
+  /* GLOBAL TOKENS
+  scheme: type-property-scope-scale */
 
   /* TYPOGRAPHY */
   --size-font-global-small: clamp(0.7rem, 1vw, 0.95rem);
@@ -31,8 +31,8 @@
   --size-radius-global-xl: 1.25rem; /* reserved */
   --size-radius-global-round: 50%;
 
-/* SEMANTIC VARIABLES
-   scheme: type-property-component-(state) */
+  /* SEMANTIC VARIABLES
+  scheme: type-property-component-(state) */
 
   /* COLORS */
   --color-text-base-default: #e8dcc8;
@@ -56,6 +56,9 @@
   --color-bg-card-health: linear-gradient(135deg, #4ea96b, #2f7d4a);
   --color-bg-card-art-overlay-start: rgba(255, 255, 255, 0.06);
   --color-bg-card-art-overlay-end: rgba(255, 255, 255, 0.01);
+  --color-bg-scrollbar-track: rgba(255, 255, 255, 0.05);
+  --color-bg-scrollbar-thumb: rgba(124, 183, 255, 0.55);
+  --color-bg-scrollbar-thumb-hover: rgba(124, 183, 255, 0.75);
 
   --color-border-panel: rgba(255, 255, 255, 0.08);
   --color-border-panel-stat: rgba(255, 255, 255, 0.1);
@@ -68,9 +71,12 @@
   --color-outline-slot-focus: rgba(124, 183, 255, 0.9);
   --color-outline-btn-focus: rgba(255, 255, 255, 0.9);
 
-  --color-bg-scrollbar-track: rgba(255, 255, 255, 0.05);
-  --color-bg-scrollbar-thumb: rgba(124, 183, 255, 0.55);
-  --color-bg-scrollbar-thumb-hover: rgba(124, 183, 255, 0.75);
+  --color-icon-fire: #ff8b8b;
+  --color-icon-frost: #8ce8dd;
+  --color-icon-storm: #f5cc45;
+  --color-icon-earth: #e8a87c;
+  --color-icon-arcane: #7cb7ff;
+  --color-icon-vital: #f2f6f2;
 
   /* SHADOWS */
   --shadow-box-panel: 0 4px 18px rgba(0, 0, 0, 0.3);
@@ -689,24 +695,32 @@ body::before {
   filter: var(--shadow-filter-icon);
 }
 
-.card__art-icon--fire { 
-  color: #ff8b8b; 
+.card__art-icon--fireball,
+.card__art-icon--sunfire {
+  color: var(--color-icon-fire);
 }
 
-.card__art-icon--shield { 
-  color: #7cb7ff; 
+.card__art-icon--frostbite {
+  color: var(--color-icon-frost);
 }
 
-.card__art-icon--bow { 
-  color: #e8a87c; 
+.card__art-icon--lightning {
+  color: var(--color-icon-storm);
 }
 
-.card__art-icon--lightning { 
-  color: #f5cc45; 
+.card__art-icon--precision,
+.card__art-icon--ensnare {
+  color: var(--color-icon-earth);
 }
 
-.card__art-icon--healing { 
-  color: #f2f6f2; 
+.card__art-icon--shield,
+.card__art-icon--absorb {
+  color: var(--color-icon-arcane);
+}
+
+.card__art-icon--healing,
+.card__art-icon--potion {
+  color: var(--color-icon-vital);
 }
 
 .card__content {
