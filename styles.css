@@ -680,7 +680,7 @@ body::before {
 }
 
 .card__title {
-  font-size: var(--size-font-global-large);
+  font-size: clamp(1rem, 14cqi, 1.4rem);
   font-weight: 700;
   letter-spacing: var(--size-letter-spacing-global-tight);
 
@@ -693,7 +693,7 @@ body::before {
   margin-block: auto; /* vertically center */
 
   color: var(--color-text-card-description);
-  font-size: var(--size-font-global-medium);
+  font-size: clamp(0.95rem, 12.5cqi, 1.25rem);
   line-height: var(--size-line-height-global-tight);
 }
 
