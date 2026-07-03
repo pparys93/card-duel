@@ -112,11 +112,16 @@ function allSlotsFull() {
   return [...slots].every(slot => slot.classList.contains("board__slot--occupied"));
 }
 
+function deselectCard() {
+  if (!selectedCard) return;
+  selectedCard.element.classList.remove("card--selected");
+  selectedCard = null;
+  game.classList.remove("game--card-selected");
+}
+
 function selectCard(cardElement, card) {
   if (selectedCard && selectedCard.element === cardElement) {
-    selectedCard.element.classList.remove("card--selected");
-    selectedCard = null;
-    game.classList.remove("game--card-selected");
+    deselectCard();
     return;
   }
 
@@ -133,12 +138,17 @@ function selectCard(cardElement, card) {
 function placeCard(slotElement) {
   if (!selectedCard) return;
 
-  slotElement.innerHTML = "";
-  slotElement.appendChild(renderSlotCard(selectedCard.data));
-  slotElement.classList.add("board__slot--occupied");
-  spendMana(selectedCard.data.mana);
+  const card = selectedCard.data;
 
-  currentHand = currentHand.filter(card => card !== selectedCard.data);
+  slotElement.innerHTML = "";
+  slotElement.appendChild(renderSlotCard(card));
+  slotElement.classList.add("board__slot--occupied");
+  slotElement.dataset.cardId = card.id; // used for round resolution once health system exists
+  slotElement.disabled = true;
+  slotElement.setAttribute("aria-label", `${slotElement.dataset.baseLabel}, occupied by ${card.name}`);
+  spendMana(card.mana);
+
+  currentHand = currentHand.filter(c => c !== card);
 
   selectedCard.element.remove();
   selectedCard = null;
@@ -149,6 +159,7 @@ function placeCard(slotElement) {
 
 function initPlacement() {
   document.querySelectorAll(".board--player .board__slot").forEach(slot => {
+    slot.dataset.baseLabel = slot.getAttribute("aria-label"); // remembered so the label can be restored later
     slot.addEventListener("click", () => placeCard(slot));
   });
 }
