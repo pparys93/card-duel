@@ -12,7 +12,7 @@ if (!cardHand) {
 // #endregion
 
 // #region [MANA SYSTEM] ----------------------------->
-let playerMana = 10;
+let playerMana = 1;
 
 const playerManaDisplay = document.querySelector(".player-panel--player .player-panel__stat--mana .player-panel__value");
 
@@ -52,13 +52,13 @@ function refreshHandAffordability() {
 // #endregion
 
 // #region [HAND LAYOUT] ----------------------------->
-const MAX_CARD_ROTATION_DEG = 10;  // rotation applied to the outermost cards
-const MAX_CARD_LIFT_PX = 16;       // vertical lift applied to the outermost cards
+const MAX_CARD_ROTATION_DEG = 10; // rotation applied to the outermost cards
+const MAX_CARD_LIFT_PX = 16; // vertical lift applied to the outermost cards
 
 function getCardTransform(index, count) {
   const mid = (count - 1) / 2;
-  const offset = index - mid;       // negative = left of center, positive = right
-  const maxOffset = mid || 1;       // avoid divide-by-zero when count is 1
+  const offset = index - mid; // negative = left of center, positive = right
+  const maxOffset = mid || 1; // avoid divide-by-zero when count is 1
 
   const ratio = offset / maxOffset; // normalized from -1 to 1
 
@@ -201,7 +201,24 @@ function drawHand(cards, count = 5) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
-  return shuffled.slice(0, count);
+
+  const hand = shuffled.slice(0, count);
+  // Guarantee at least one playable card in the opening hand
+  const hasPlayableCard = hand.some(card => hasEnoughMana(card));
+  
+  if (!hasPlayableCard) {
+    const affordableLeftover = shuffled.slice(count).filter(card => hasEnoughMana(card));
+    if (affordableLeftover.length > 0) {
+      let mostExpensiveIndex = 0;
+      // find the priciest card in hand to swap out
+      hand.forEach((card, i) => {
+        if (card.mana > hand[mostExpensiveIndex].mana) mostExpensiveIndex = i;
+      });
+      hand[mostExpensiveIndex] = affordableLeftover[0];
+    }
+  } 
+  
+  return hand;
 }
 
 function renderHand(cards) {
