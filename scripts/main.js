@@ -13,7 +13,6 @@ if (!cardHand) {
 
 // #region [MANA SYSTEM] ----------------------------->
 let playerMana = 10;
-let currentHand = [];
 
 const playerManaDisplay = document.querySelector(".player-panel--player .player-panel__stat--mana .player-panel__value");
 
@@ -30,20 +29,24 @@ function spendMana(amount) {
   updateManaDisplay();
 }
 
+function setCardAffordability(cardEl, card) {
+  const affordable = hasEnoughMana(card);
+ 
+  cardEl.classList.toggle("card--unaffordable", !affordable);
+  cardEl.setAttribute("aria-disabled", String(!affordable));
+ 
+  if (!affordable) {
+    cardEl.setAttribute("aria-label", `${card.name}, not enough mana to play`);
+  } else {
+    cardEl.removeAttribute("aria-label");
+  }
+}
+
 function refreshHandAffordability() {
   const cardElements = cardHand.querySelectorAll(".card");
-  cardElements.forEach((cardEl, i) => {
-    const card = currentHand[i];
-    const affordable = hasEnoughMana(card);
-
-    cardEl.classList.toggle("card--unaffordable", !affordable);
-    cardEl.setAttribute("aria-disabled", String(!affordable));
-
-    if (!affordable) {
-      cardEl.setAttribute("aria-label", `${card.name}, not enough mana to play`);
-    } else {
-      cardEl.removeAttribute("aria-label");
-    }
+  cardElements.forEach(cardEl => {
+    const card = currentHand.find(c => c.id === cardEl.dataset.cardId);
+    if (card) setCardAffordability(cardEl, card);
   });
 }
 // #endregion
@@ -154,10 +157,13 @@ initPlacement();
 // #endregion
 
 // #region [DYNAMIC CARD RENDERING] ------------------>
+let currentHand = [];
+
 function renderCard(card) {
   const article = document.createElement("article");
   article.className = "card";
   article.tabIndex = 0;
+  article.dataset.cardId = card.id; // enables lookup by identity instead of DOM position
 
   article.innerHTML = `
     <div class="card__mana" aria-label="Mana cost ${card.mana}">${card.mana}</div>
@@ -184,14 +190,7 @@ function renderCard(card) {
     }
   });
 
-if (!hasEnoughMana(card)) {
-  article.classList.add("card--unaffordable");
-  article.setAttribute("aria-disabled", "true");
-  article.setAttribute("aria-label", `${card.name}, not enough mana to play`);
-} else {
-  article.setAttribute("aria-disabled", "false");
-  article.removeAttribute("aria-label");
-}
+  setCardAffordability(article, card);
 
   return article;
 }
