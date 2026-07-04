@@ -4,6 +4,7 @@ const cardHand = document.querySelector(".card-hand");
 const endTurnButton = document.querySelector(".button--end-turn");
 const playerNameEl = document.querySelector(".player-panel--player .player-panel__name");
 const enemyNameEl = document.querySelector(".player-panel--enemy .player-panel__name");
+const drawCardButton = document.querySelector(".button--draw-card");
 
 let currentTurn = "player"; // "player" | "enemy"
 
@@ -15,7 +16,7 @@ if (!cardHand) {
   throw new Error("main.js: .card-hand element not found in DOM");
 }
 
-if (!endTurnButton || !playerNameEl || !enemyNameEl) {
+if (!endTurnButton || !playerNameEl || !enemyNameEl || !drawCardButton) {
   throw new Error("main.js: turn UI elements not found in DOM");
 }
 // #endregion
@@ -90,7 +91,7 @@ function getCardTransform(index, count) {
   const rotation = `${(ratio * MAX_CARD_ROTATION_DEG).toFixed(2)}deg`;
 
   // lift uses squared ratio (not linear) so cards near the center stay low and flat
-  // while lift accelerates toward the edges - mimics a natural fan curve.
+  // while lift accelerates toward the edges - mimics a natural fan curve
   const lift = `${Math.pow(Math.abs(ratio), 2) * MAX_CARD_LIFT_PX}px`;
 
   return { rotation, lift };
@@ -184,6 +185,7 @@ function placeCard(slotElement) {
   game.classList.remove("game--card-selected");
   updateHandLayout();
   refreshHandAffordability();
+  updateDrawButtonState();
 }
 
 function clearPlayerBoard() {
@@ -218,8 +220,10 @@ function updateTurnUI() {
 
 function startPlayerTurn() {
   currentTurn = "player";
+  hasDrawnThisTurn = false;
   incrementPlayerMana();
   refreshHandAffordability();
+  updateDrawButtonState();
   updateTurnUI();
 }
 
@@ -234,6 +238,7 @@ function startEnemyTurn() {
     incrementEnemyMana();
   }
   enemyHasHadFirstTurn = true;
+  updateDrawButtonState();
   updateTurnUI();
 
   setTimeout(() => {
@@ -255,6 +260,7 @@ endTurnButton.addEventListener("click", endTurn);
 // #endregion
 
 // #region [DYNAMIC CARD RENDERING] ------------------>
+const MAX_HAND_SIZE = 5;
 let currentHand = [];
 
 function renderCard(card) {
@@ -293,7 +299,7 @@ function renderCard(card) {
   return article;
 }
 
-function drawHand(cards, count = 5) {
+function drawHand(cards, count = MAX_HAND_SIZE) {
   const shuffled = [...cards];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -301,8 +307,7 @@ function drawHand(cards, count = 5) {
   }
 
   const hand = shuffled.slice(0, count);
-  // guarantee at least one playable card in the opening hand
-  const hasPlayableCard = hand.some(card => hasEnoughMana(card));
+  const hasPlayableCard = hand.some(card => hasEnoughMana(card)); // guarantee at least one playable card in the opening hand
 
   if (!hasPlayableCard) {
     const affordableLeftover = shuffled.slice(count).filter(card => hasEnoughMana(card));
@@ -331,4 +336,41 @@ function renderHand(cards) {
 renderHand(cards);
 updateManaDisplay(); // sync display with playerMana on page load
 updateTurnUI(); // sync turn indicator UI with default currentTurn = "player" on page load
+// #endregion
+
+// #region [DRAW CARD MECHANIC] ---------------------->
+const DRAW_COST = 1;
+let hasDrawnThisTurn = false;
+
+function canDrawCard() {
+  return currentTurn === "player"
+    && !hasDrawnThisTurn
+    && currentHand.length < MAX_HAND_SIZE
+    && playerMana >= DRAW_COST;
+}
+
+function updateDrawButtonState() {
+  drawCardButton.disabled = !canDrawCard();
+}
+
+function drawCard() {
+  if (!canDrawCard()) return;
+
+  const randomIndex = Math.floor(Math.random() * cards.length);
+  // guards against a duplicate draw: if the same card is already in hand, playing either
+  // copy would otherwise delete both from currentHand, since placeCard removes by reference
+  const newCard = { ...cards[randomIndex] }; //
+  currentHand.push(newCard);
+  cardHand.appendChild(renderCard(newCard));
+
+  spendMana(DRAW_COST);
+  hasDrawnThisTurn = true;
+
+  updateHandLayout();
+  refreshHandAffordability();
+  updateDrawButtonState();
+}
+
+drawCardButton.addEventListener("click", drawCard);
+updateDrawButtonState(); // sync initial disabled state - hand starts full, so this should start disabled
 // #endregion

@@ -90,7 +90,8 @@ This project is also used to practice a professional frontend workflow:
 - dynamic fan-layout scaling based on hand size,
 - card placement system,
 - mana system,
-- turn management.
+- turn management,
+- draw card mechanic.
 
 ---
 
@@ -108,7 +109,6 @@ This project is also used to practice a professional frontend workflow:
 ## ✍🏻 Planned Features
 
 ### 🔄 JavaScript Features
-- draw card mechanic,
 - health system,
 - enemy turn logic,
 - win/lose conditions.
