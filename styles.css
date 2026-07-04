@@ -332,6 +332,10 @@ body::before {
   text-transform: uppercase;
 }
 
+.player-panel__name--inactive {
+  opacity: 0.35;
+}
+
 .player-panel__stats {
   margin: 0;
   padding: 0;

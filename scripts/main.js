@@ -1,6 +1,11 @@
 // #region [DOM REFERENCES] -------------------------->
 const game = document.querySelector(".game");
 const cardHand = document.querySelector(".card-hand");
+const endTurnButton = document.querySelector(".button--end-turn");
+const playerNameEl = document.querySelector(".player-panel--player .player-panel__name");
+const enemyNameEl = document.querySelector(".player-panel--enemy .player-panel__name");
+
+let currentTurn = "player"; // "player" | "enemy"
 
 if (!game) {
   throw new Error("main.js: .game element not found in DOM");
@@ -9,15 +14,35 @@ if (!game) {
 if (!cardHand) {
   throw new Error("main.js: .card-hand element not found in DOM");
 }
+
+if (!endTurnButton || !playerNameEl || !enemyNameEl) {
+  throw new Error("main.js: turn UI elements not found in DOM");
+}
 // #endregion
 
 // #region [MANA SYSTEM] ----------------------------->
+const MAX_MANA = 10;
+const MANA_INCREMENT = 2;
+
 let playerMana = 1;
+let enemyMana = 1;
 
 const playerManaDisplay = document.querySelector(".player-panel--player .player-panel__stat--mana .player-panel__value");
+const enemyManaDisplay = document.querySelector(".player-panel--enemy .player-panel__stat--mana .player-panel__value");
 
 function updateManaDisplay() {
   playerManaDisplay.textContent = playerMana;
+  enemyManaDisplay.textContent = enemyMana;
+}
+
+function incrementPlayerMana() {
+  playerMana = Math.min(playerMana + MANA_INCREMENT, MAX_MANA);
+  updateManaDisplay();
+}
+
+function incrementEnemyMana() {
+  enemyMana = Math.min(enemyMana + MANA_INCREMENT, MAX_MANA);
+  updateManaDisplay();
 }
 
 function hasEnoughMana(card) {
@@ -64,7 +89,7 @@ function getCardTransform(index, count) {
 
   const rotation = `${(ratio * MAX_CARD_ROTATION_DEG).toFixed(2)}deg`;
 
-  // Lift uses ratio² (not linear) so cards near the center stay low and flat,
+  // lift uses squared ratio (not linear) so cards near the center stay low and flat
   // while lift accelerates toward the edges - mimics a natural fan curve.
   const lift = `${Math.pow(Math.abs(ratio), 2) * MAX_CARD_LIFT_PX}px`;
 
@@ -77,6 +102,8 @@ function updateHandLayout() {
   const isMobile = window.matchMedia("(pointer: coarse)").matches;
 
   renderedCards.forEach((card, i) => {
+    // skip the fan effect on touch devices
+    // pointers don't benefit from the extra rotation/lift, so cards stay flat
     if (isMobile) {
       card.style.removeProperty("--card-rotation");
       card.style.removeProperty("--card-lift");
@@ -120,15 +147,17 @@ function deselectCard() {
 }
 
 function selectCard(cardElement, card) {
+  if (currentTurn !== "player") return;
+  // clicking the already-selected card again acts as a toggle: deselect it
   if (selectedCard && selectedCard.element === cardElement) {
     deselectCard();
     return;
   }
-
+  // can't select a card with nowhere to place it, or one the player can't afford
   if (allSlotsFull() || !hasEnoughMana(card)) return;
 
   if (selectedCard) {
-    selectedCard.element.classList.remove("card--selected");
+    selectedCard.element.classList.remove("card--selected"); // switching selection to a different card
   }
   selectedCard = { element: cardElement, data: card };
   cardElement.classList.add("card--selected");
@@ -136,7 +165,7 @@ function selectCard(cardElement, card) {
 }
 
 function placeCard(slotElement) {
-  if (!selectedCard) return;
+  if (!selectedCard || currentTurn !== "player") return;
 
   const card = selectedCard.data;
 
@@ -157,14 +186,72 @@ function placeCard(slotElement) {
   refreshHandAffordability();
 }
 
+function clearPlayerBoard() {
+  const slots = document.querySelectorAll(".board--player .board__slot");
+  slots.forEach(slot => {
+    slot.innerHTML = "";
+    slot.classList.remove("board__slot--occupied");
+    delete slot.dataset.cardId;
+    slot.disabled = false;
+    slot.setAttribute("aria-label", slot.dataset.baseLabel);
+  });
+}
+
 function initPlacement() {
   document.querySelectorAll(".board--player .board__slot").forEach(slot => {
-    slot.dataset.baseLabel = slot.getAttribute("aria-label"); // remembered so the label can be restored later
+    slot.dataset.baseLabel = slot.getAttribute("aria-label"); // stored so clearPlayerBoard can restore it
     slot.addEventListener("click", () => placeCard(slot));
   });
 }
 
 initPlacement();
+// #endregion
+
+// #region [TURN MANAGEMENT] ------------------------->
+let enemyHasHadFirstTurn = false;
+
+function updateTurnUI() {
+  playerNameEl.classList.toggle("player-panel__name--inactive", currentTurn !== "player");
+  enemyNameEl.classList.toggle("player-panel__name--inactive", currentTurn !== "enemy");
+  endTurnButton.disabled = currentTurn !== "player";
+}
+
+function startPlayerTurn() {
+  currentTurn = "player";
+  incrementPlayerMana();
+  refreshHandAffordability();
+  updateTurnUI();
+}
+
+function startEnemyTurn() {
+  currentTurn = "enemy";
+  deselectCard(); // player may have selected a card without playing it before End Turn
+
+  // player skips mana growth on turn 1 (playerMana starts at 1 in the MANA SYSTEM region above
+  // incrementPlayerMana() is never called for that first turn)
+  // enemy mirrors that here so both sides reach the same mana on their own turn N
+  if (enemyHasHadFirstTurn) {
+    incrementEnemyMana();
+  }
+  enemyHasHadFirstTurn = true;
+  updateTurnUI();
+
+  setTimeout(() => {
+    endEnemyTurn();
+  }, 1000); // simulates enemy thinking; replace with real AI logic here
+}
+
+function endEnemyTurn() {
+  clearPlayerBoard(); // clears after enemy's turn, before player's turn starts
+  startPlayerTurn(); // no AI yet - immediately hands control back to player
+}
+
+function endTurn() {
+  if (currentTurn !== "player") return;
+  startEnemyTurn();
+}
+
+endTurnButton.addEventListener("click", endTurn);
 // #endregion
 
 // #region [DYNAMIC CARD RENDERING] ------------------>
@@ -214,9 +301,9 @@ function drawHand(cards, count = 5) {
   }
 
   const hand = shuffled.slice(0, count);
-  // Guarantee at least one playable card in the opening hand
+  // guarantee at least one playable card in the opening hand
   const hasPlayableCard = hand.some(card => hasEnoughMana(card));
-  
+
   if (!hasPlayableCard) {
     const affordableLeftover = shuffled.slice(count).filter(card => hasEnoughMana(card));
     if (affordableLeftover.length > 0) {
@@ -227,8 +314,8 @@ function drawHand(cards, count = 5) {
       });
       hand[mostExpensiveIndex] = affordableLeftover[0];
     }
-  } 
-  
+  }
+
   return hand;
 }
 
@@ -243,4 +330,5 @@ function renderHand(cards) {
 
 renderHand(cards);
 updateManaDisplay(); // sync display with playerMana on page load
+updateTurnUI(); // sync turn indicator UI with default currentTurn = "player" on page load
 // #endregion
