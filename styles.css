@@ -558,8 +558,35 @@ body::before {
 
 /* draw-card button */
 .button--draw-card {
+  position: relative;
+
   background: var(--color-bg-btn-draw);
   box-shadow: var(--shadow-box-btn-draw);
+}
+
+.button--draw-card::after {
+  content: attr(data-cost); /* value set in main.js, kept in sync with DRAW_COST */
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  pointer-events: none;
+
+  width: clamp(22px, 3vw, 26px);
+  height: clamp(22px, 3vw, 26px);
+  border-radius: var(--size-radius-global-round);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: var(--size-font-global-small);
+  font-weight: 700;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--color-text-base-inverse);
+
+  background: var(--color-bg-card-mana);
+  box-shadow: var(--shadow-box-card-mana);
 }
 
 .button--draw-card:active:not(:disabled) {

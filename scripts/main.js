@@ -371,6 +371,9 @@ function drawCard() {
   updateDrawButtonState();
 }
 
+drawCardButton.dataset.cost = DRAW_COST;
+drawCardButton.setAttribute("aria-label", `Draw Card, costs ${DRAW_COST} mana`)
 drawCardButton.addEventListener("click", drawCard);
-updateDrawButtonState(); // sync initial disabled state - hand starts full, so this should start disabled
+// sync initial disabled state - hand starts full, so this should start disabled
+updateDrawButtonState();
 // #endregion
