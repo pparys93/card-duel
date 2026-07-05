@@ -50,14 +50,14 @@ const cards = [
   }, 
   // #endregion
 
-  // #region [TYPE: HEALTH] ---------------------------->
+  // #region [TYPE: HEAL] ---------------------------->
   {
     id: "absorb",
     name: "Absorb",
     description: "Additional health.",
     mana: 2,
     stat: 3,
-    type: "health"
+    type: "heal"
   }, 
   {
     id: "healing",
@@ -65,7 +65,7 @@ const cards = [
     description: "Restore vitality.",
     mana: 2,
     stat: 4,
-    type: "health"
+    type: "heal"
   }, 
   {
     id: "potion",
@@ -73,7 +73,7 @@ const cards = [
     description: "Restore health.",
     mana: 2,
     stat: 1,
-    type: "health"
+    type: "heal"
   },
   {
     id: "shield",
@@ -81,7 +81,7 @@ const cards = [
     description: "Magical protection.",
     mana: 2,
     stat: 6,
-    type: "health"
+    type: "heal"
   }
   // #endregion
 ];

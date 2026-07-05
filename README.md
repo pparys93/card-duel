@@ -178,7 +178,7 @@ PLAYER REGION
 │        ├─ .card__content
 │        │    ├─ .card__title
 │        │    └─ .card__description
-│        └─ .card__stat (--attack or --health)
+│        └─ .card__stat (--attack or --heal)
 │
 └── .player-panel .player-panel--player
      ├─ .player-panel__name

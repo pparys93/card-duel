@@ -128,7 +128,7 @@ function renderSlotCard(card) {
       ${icons[card.id]}
     </div>
     <div class="card__stat card__stat--${card.type}" 
-      aria-label="${card.type === "attack" ? "Attack" : "Health"} ${card.stat}">
+      aria-label="${card.type === "attack" ? "Attack" : "Heal"} ${card.stat}">
       ${card.stat}
     </div>
   `;
@@ -281,7 +281,7 @@ function renderCard(card) {
       <p class="card__description">${card.description}</p>
     </div>
 
-    <div class="card__stat card__stat--${card.type}" aria-label="${card.type === "attack" ? "Attack" : "Health"} ${card.stat}">
+    <div class="card__stat card__stat--${card.type}" aria-label="${card.type === "attack" ? "Attack" : "Heal"} ${card.stat}">
       ${card.stat}
     </div>
   `;
@@ -359,7 +359,7 @@ function drawCard() {
   const randomIndex = Math.floor(Math.random() * cards.length);
   // guards against a duplicate draw: if the same card is already in hand, playing either
   // copy would otherwise delete both from currentHand, since placeCard removes by reference
-  const newCard = { ...cards[randomIndex] }; //
+  const newCard = { ...cards[randomIndex] };
   currentHand.push(newCard);
   cardHand.appendChild(renderCard(newCard));
 
@@ -372,7 +372,7 @@ function drawCard() {
 }
 
 drawCardButton.dataset.cost = DRAW_COST;
-drawCardButton.setAttribute("aria-label", `Draw Card, costs ${DRAW_COST} mana`)
+drawCardButton.setAttribute("aria-label", `Draw Card, costs ${DRAW_COST} mana`);
 drawCardButton.addEventListener("click", drawCard);
 // sync initial disabled state - hand starts full, so this should start disabled
 updateDrawButtonState();

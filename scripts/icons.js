@@ -40,7 +40,7 @@ const icons = {
   </svg>`,
   // #endregion
 
-  // #region [TYPE: HEALTH] ---------------------------->
+  // #region [TYPE: HEAL] ---------------------------->
   absorb: `<svg class="card__art-icon card__art-icon--absorb" viewBox="0 0 24 24" aria-hidden="true">
     <path d="M12,8 A4,4 0 1,1 12,16"/>
     <path d="M12,16 A4,4 0 1,1 12,8"/>

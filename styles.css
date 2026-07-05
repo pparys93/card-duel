@@ -53,7 +53,7 @@
   --color-bg-card: linear-gradient(160deg, #2b3140, #1a1f2c);
   --color-bg-card-mana: linear-gradient(135deg, #3f7cff, #6cb2ff);
   --color-bg-card-attack: linear-gradient(135deg, #c96a6a, #9b3d3d);
-  --color-bg-card-health: linear-gradient(135deg, #4ea96b, #2f7d4a);
+  --color-bg-card-heal: linear-gradient(135deg, #4ea96b, #2f7d4a);
   --color-bg-card-art-overlay-start: rgba(255, 255, 255, 0.06);
   --color-bg-card-art-overlay-end: rgba(255, 255, 255, 0.01);
   --color-bg-scrollbar-track: rgba(255, 255, 255, 0.05);
@@ -804,8 +804,8 @@ body::before {
   background: var(--color-bg-card-attack);
 }
 
-.card__stat--health {
-  background: var(--color-bg-card-health);
+.card__stat--heal {
+  background: var(--color-bg-card-heal);
 }
 /* #endregion */
 
