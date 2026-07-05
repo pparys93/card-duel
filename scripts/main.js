@@ -5,6 +5,7 @@ const endTurnButton = document.querySelector(".button--end-turn");
 const playerNameEl = document.querySelector(".player-panel--player .player-panel__name");
 const enemyNameEl = document.querySelector(".player-panel--enemy .player-panel__name");
 const drawCardButton = document.querySelector(".button--draw-card");
+const drawCardManaBadge = drawCardButton.querySelector(".button__mana");
 
 let currentTurn = "player"; // "player" | "enemy"
 
@@ -16,7 +17,7 @@ if (!cardHand) {
   throw new Error("main.js: .card-hand element not found in DOM");
 }
 
-if (!endTurnButton || !playerNameEl || !enemyNameEl || !drawCardButton) {
+if (!endTurnButton || !playerNameEl || !enemyNameEl || !drawCardButton || !drawCardManaBadge) {
   throw new Error("main.js: turn UI elements not found in DOM");
 }
 // #endregion
@@ -24,12 +25,10 @@ if (!endTurnButton || !playerNameEl || !enemyNameEl || !drawCardButton) {
 // #region [MANA SYSTEM] ----------------------------->
 const MAX_MANA = 10;
 const MANA_INCREMENT = 2;
-
-let playerMana = 1;
-let enemyMana = 1;
-
 const playerManaDisplay = document.querySelector(".player-panel--player .player-panel__stat--mana .player-panel__value");
 const enemyManaDisplay = document.querySelector(".player-panel--enemy .player-panel__stat--mana .player-panel__value");
+let playerMana = 1;
+let enemyMana = 1;
 
 function updateManaDisplay() {
   playerManaDisplay.textContent = playerMana;
@@ -85,11 +84,8 @@ function getCardTransform(index, count) {
   const mid = (count - 1) / 2;
   const offset = index - mid; // negative = left of center, positive = right
   const maxOffset = mid || 1; // avoid divide-by-zero when count is 1
-
   const ratio = offset / maxOffset; // normalized from -1 to 1
-
   const rotation = `${(ratio * MAX_CARD_ROTATION_DEG).toFixed(2)}deg`;
-
   // lift uses squared ratio (not linear) so cards near the center stay low and flat
   // while lift accelerates toward the edges - mimics a natural fan curve
   const lift = `${Math.pow(Math.abs(ratio), 2) * MAX_CARD_LIFT_PX}px`;
@@ -190,6 +186,7 @@ function placeCard(slotElement) {
 
 function clearPlayerBoard() {
   const slots = document.querySelectorAll(".board--player .board__slot");
+
   slots.forEach(slot => {
     slot.innerHTML = "";
     slot.classList.remove("board__slot--occupied");
@@ -301,6 +298,7 @@ function renderCard(card) {
 
 function drawHand(cards, count = MAX_HAND_SIZE) {
   const shuffled = [...cards];
+
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -371,7 +369,7 @@ function drawCard() {
   updateDrawButtonState();
 }
 
-drawCardButton.dataset.cost = DRAW_COST;
+drawCardManaBadge.textContent = DRAW_COST;
 drawCardButton.setAttribute("aria-label", `Draw Card, costs ${DRAW_COST} mana`);
 drawCardButton.addEventListener("click", drawCard);
 // sync initial disabled state - hand starts full, so this should start disabled
