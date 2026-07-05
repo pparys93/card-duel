@@ -5,7 +5,7 @@ const endTurnButton = document.querySelector(".button--end-turn");
 const playerNameEl = document.querySelector(".player-panel--player .player-panel__name");
 const enemyNameEl = document.querySelector(".player-panel--enemy .player-panel__name");
 const drawCardButton = document.querySelector(".button--draw-card");
-const drawCardManaBadge = drawCardButton.querySelector(".button__mana");
+const drawCardManaBadge = drawCardButton?.querySelector(".button__mana");
 
 let currentTurn = "player"; // "player" | "enemy"
 
