@@ -169,7 +169,6 @@ function placeCard(slotElement) {
   slotElement.innerHTML = "";
   slotElement.appendChild(renderSlotCard(card));
   slotElement.classList.add("board__slot--occupied");
-  slotElement.dataset.cardId = card.id; // used for round resolution once health system exists
   slotElement.disabled = true;
   slotElement.setAttribute("aria-label", `${slotElement.dataset.baseLabel}, occupied by ${card.name}`);
   spendMana(card.mana);
@@ -190,7 +189,6 @@ function clearPlayerBoard() {
   slots.forEach(slot => {
     slot.innerHTML = "";
     slot.classList.remove("board__slot--occupied");
-    delete slot.dataset.cardId;
     slot.disabled = false;
     slot.setAttribute("aria-label", slot.dataset.baseLabel);
   });
