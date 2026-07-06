@@ -101,12 +101,12 @@ function healPlayer(amount) {
   playerHP = Math.min(playerHP + amount, MAX_HP);
   updateHPDisplay();
 }
-// called by enemy turn logic once implemented
+
 function damagePlayer(amount) {
   playerHP = Math.max(playerHP - amount, 0);
   updateHPDisplay();
 }
-// called by enemy turn logic once implemented
+// not called yet - enemy AI currently plays attack cards only
 function healEnemy(amount) {
   enemyHP = Math.min(enemyHP + amount, MAX_HP);
   updateHPDisplay();
@@ -239,6 +239,14 @@ function clearPlayerBoard() {
   });
 }
 
+function clearEnemyBoard() {
+  const slots = document.querySelectorAll(".board--enemy .board__slot");
+  slots.forEach(slot => {
+    slot.innerHTML = "";
+    slot.classList.remove("board__slot--occupied");
+  });
+}
+
 function initPlacement() {
   document.querySelectorAll(".board--player .board__slot").forEach(slot => {
     slot.dataset.baseLabel = slot.getAttribute("aria-label"); // stored so clearPlayerBoard can restore it
@@ -282,13 +290,18 @@ function startEnemyTurn() {
   updateTurnUI();
 
   setTimeout(() => {
-    endEnemyTurn();
-  }, 1000); // simulates enemy thinking; replace with real AI logic here
+    playEnemyTurn();
+
+    setTimeout(() => {
+      endEnemyTurn();
+    }, 1500); // keep enemy cards visible before clearing the board
+  }, 0); // waits for the UI to update before placing enemy cards on the board
 }
 
 function endEnemyTurn() {
   clearPlayerBoard(); // clears after enemy's turn, before player's turn starts
-  startPlayerTurn(); // no AI yet - immediately hands control back to player
+  clearEnemyBoard();
+  startPlayerTurn();
 }
 
 function endTurn() {
@@ -297,6 +310,48 @@ function endTurn() {
 }
 
 endTurnButton.addEventListener("click", endTurn);
+// #endregion
+
+// #region [ENEMY TURN LOGIC] ------------------------>
+const ENEMY_SKIP_CHANCE = 0.3; // probability enemy skips playing cards this turn
+const ENEMY_MAX_CARDS_PER_TURN = 2; // max cards enemy can place per turn
+
+function getRandomAttackCard() {
+  const attackCards = cards.filter(c => c.type === "attack");
+  const randomIndex = Math.floor(Math.random() * attackCards.length);
+  return { ...attackCards[randomIndex] }; // copy, not reference - same reason as drawCard
+}
+
+function getAvailableEnemySlots() {
+  return [...document.querySelectorAll(".board--enemy .board__slot--inactive:not(.board__slot--occupied)")];
+}
+
+function playEnemyTurn() {
+  if (Math.random() < ENEMY_SKIP_CHANCE) return; // enemy skips this turn
+
+  let cardsPlayed = 0;
+
+  while (cardsPlayed < ENEMY_MAX_CARDS_PER_TURN) {
+    const availableSlots = getAvailableEnemySlots();
+    if (availableSlots.length === 0) break; // no free slots
+
+    const card = getRandomAttackCard();
+    if (enemyMana < card.mana) break; // can't afford any card - end turn early
+
+    const slot = availableSlots[Math.floor(Math.random() * availableSlots.length)];
+
+    slot.innerHTML = "";
+    slot.appendChild(renderSlotCard(card));
+    slot.classList.add("board__slot--occupied");
+
+    enemyMana -= card.mana;
+    damagePlayer(card.stat);
+
+    cardsPlayed++;
+  }
+
+  updateManaDisplay();
+}
 // #endregion
 
 // #region [DYNAMIC CARD RENDERING] ------------------>

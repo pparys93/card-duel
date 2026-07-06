@@ -92,7 +92,8 @@ This project is also used to practice a professional frontend workflow:
 - mana system,
 - turn management,
 - draw card mechanic,
-- health system.
+- health system,
+- enemy turn logic.
 
 ---
 
@@ -110,7 +111,6 @@ This project is also used to practice a professional frontend workflow:
 ## ✍🏻 Planned Features
 
 ### 🔄 JavaScript Features
-- enemy turn logic,
 - win/lose conditions.
 
 ### 🔄 UI Improvements
