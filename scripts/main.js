@@ -25,8 +25,10 @@ if (!endTurnButton || !playerNameEl || !enemyNameEl || !drawCardButton || !drawC
 // #region [MANA SYSTEM] ----------------------------->
 const MAX_MANA = 10;
 const MANA_INCREMENT = 2;
+
 const playerManaDisplay = document.querySelector(".player-panel--player .player-panel__stat--mana .player-panel__value");
 const enemyManaDisplay = document.querySelector(".player-panel--enemy .player-panel__stat--mana .player-panel__value");
+
 let playerMana = 1;
 let enemyMana = 1;
 
@@ -73,6 +75,41 @@ function refreshHandAffordability() {
     const card = currentHand.find(c => c.id === cardEl.dataset.cardId);
     if (card) setCardAffordability(cardEl, card);
   });
+}
+// #endregion
+
+// #region [HEALTH SYSTEM] --------------------------->
+const MAX_HP = 20;
+
+const playerHPDisplay = document.querySelector(".player-panel--player .player-panel__stat--hp .player-panel__value");
+const enemyHPDisplay = document.querySelector(".player-panel--enemy .player-panel__stat--hp .player-panel__value");
+
+let playerHP = MAX_HP;
+let enemyHP = MAX_HP;
+
+function updateHPDisplay() {
+  playerHPDisplay.textContent = playerHP;
+  enemyHPDisplay.textContent = enemyHP;
+}
+
+function damageEnemy(amount) {
+  enemyHP = Math.max(enemyHP - amount, 0);
+  updateHPDisplay();
+}
+
+function healPlayer(amount) {
+  playerHP = Math.min(playerHP + amount, MAX_HP);
+  updateHPDisplay();
+}
+// called by enemy turn logic once implemented
+function damagePlayer(amount) {
+  playerHP = Math.max(playerHP - amount, 0);
+  updateHPDisplay();
+}
+// called by enemy turn logic once implemented
+function healEnemy(amount) {
+  enemyHP = Math.min(enemyHP + amount, MAX_HP);
+  updateHPDisplay();
 }
 // #endregion
 
@@ -154,11 +191,13 @@ function selectCard(cardElement, card) {
   if (allSlotsFull() || !hasEnoughMana(card)) return;
 
   if (selectedCard) {
-    selectedCard.element.classList.remove("card--selected"); // switching selection to a different card
+    // switching selection to a different card
+    selectedCard.element.classList.remove("card--selected");
   }
   selectedCard = { element: cardElement, data: card };
   cardElement.classList.add("card--selected");
-  game.classList.add("game--card-selected"); // toggles .game--card-selected, which CSS uses to highlight valid empty slots
+  // toggles .game--card-selected, which CSS uses to highlight valid empty slots
+  game.classList.add("game--card-selected");
 }
 
 function placeCard(slotElement) {
@@ -172,6 +211,12 @@ function placeCard(slotElement) {
   slotElement.disabled = true;
   slotElement.setAttribute("aria-label", `${slotElement.dataset.baseLabel}, occupied by ${card.name}`);
   spendMana(card.mana);
+
+  if (card.type === "attack") {
+    damageEnemy(card.stat);
+  } else {
+    healPlayer(card.stat);
+  }
 
   currentHand = currentHand.filter(c => c !== card);
 
@@ -303,7 +348,8 @@ function drawHand(cards, count = MAX_HAND_SIZE) {
   }
 
   const hand = shuffled.slice(0, count);
-  const hasPlayableCard = hand.some(card => hasEnoughMana(card)); // guarantee at least one playable card in the opening hand
+  // guarantee at least one playable card in the opening hand
+  const hasPlayableCard = hand.some(card => hasEnoughMana(card));
 
   if (!hasPlayableCard) {
     const affordableLeftover = shuffled.slice(count).filter(card => hasEnoughMana(card));
@@ -331,6 +377,7 @@ function renderHand(cards) {
 
 renderHand(cards);
 updateManaDisplay(); // sync display with playerMana on page load
+updateHPDisplay(); // sync display with playerHP/enemyHP on page load
 updateTurnUI(); // sync turn indicator UI with default currentTurn = "player" on page load
 // #endregion
 
