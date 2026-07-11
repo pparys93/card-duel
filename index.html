@@ -24,6 +24,8 @@
 </head>
 
 <body>
+  <!-- #region [OVERLAYS] --------------------------------> 
+  <!-- screen guard -->
   <div class="screen-guard" role="alert">
     <svg 
       class="screen-guard__icon" 
@@ -41,6 +43,28 @@
       The battlefield requires more space. Rotate your device or extend your browser window vertically to continue.
     </p>
   </div>
+
+  <!-- game over -->
+  <div 
+    class="game-over" 
+    role="alertdialog" 
+    aria-modal="true" 
+    aria-labelledby="game-over-title" 
+    aria-describedby="game-over-message"
+  >
+    <p 
+      class="game-over__title" 
+      id="game-over-title"
+      role="heading" 
+      aria-level="2"
+    ></p>
+    <p class="game-over__message" id="game-over-message"></p>
+    <button 
+      class="button button--play-again game-over__button" 
+      type="button"
+    >Play Again</button>
+  </div>
+  <!-- #endregion -->
 
   <main class="game">
     <h1 class="visually-hidden">Card Duel</h1>
@@ -86,10 +110,10 @@
     </div>
     <!-- #endregion -->
 
-    <!-- #region [TURN CONTROLS] ------------------------->
+    <!-- #region [GAME CONTROLS] ------------------------->
     <div class="turn-controls" role="toolbar" aria-label="Turn actions" aria-orientation="horizontal">
       <button class="button button--draw-card" type="button">
-        <span class="button__mana" aria-hidden="true"></span>
+        <span class="button__mana-badge" aria-hidden="true"></span>
         Draw Card
       </button>
       <button class="button button--end-turn" type="button">

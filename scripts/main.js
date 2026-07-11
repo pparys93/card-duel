@@ -5,7 +5,7 @@ const endTurnButton = document.querySelector(".button--end-turn");
 const playerNameEl = document.querySelector(".player-panel--player .player-panel__name");
 const enemyNameEl = document.querySelector(".player-panel--enemy .player-panel__name");
 const drawCardButton = document.querySelector(".button--draw-card");
-const drawCardManaBadge = drawCardButton?.querySelector(".button__mana");
+const drawCardManaBadge = drawCardButton?.querySelector(".button__mana-badge");
 
 let currentTurn = "player"; // "player" | "enemy"
 
@@ -217,6 +217,8 @@ function placeCard(slotElement) {
   } else {
     healPlayer(card.stat);
   }
+  // stop if either HP reaches 0
+  if (checkWinCondition()) return;
 
   currentHand = currentHand.filter(c => c !== card);
 
@@ -346,6 +348,8 @@ function playEnemyTurn() {
 
     enemyMana -= card.mana;
     damagePlayer(card.stat);
+    // stop if either HP reaches 0
+    if (checkWinCondition()) return;
 
     cardsPlayed++;
   }
@@ -474,4 +478,39 @@ drawCardButton.setAttribute("aria-label", `Draw Card, costs ${DRAW_COST} mana`);
 drawCardButton.addEventListener("click", drawCard);
 // sync initial disabled state - hand starts full, so this should start disabled
 updateDrawButtonState();
+// #endregion
+
+// #region [WIN/LOSE CONDITION] ---------------------->
+const gameOverEl = document.querySelector(".game-over");
+const gameOverTitle = document.querySelector("#game-over-title");
+const gameOverMessage = document.querySelector("#game-over-message");
+const playAgainButton = document.querySelector(".game-over__button");
+
+if (!gameOverEl || !gameOverTitle || !gameOverMessage || !playAgainButton) {
+  throw new Error("main.js: game over elements not found in DOM");
+}
+
+function showGameOver(playerWon) {
+  gameOverTitle.textContent = playerWon ? "Victory!" : "Defeated!";
+  gameOverMessage.textContent = playerWon
+    ? "Your spells proved superior. The enemy stands defeated."
+    : "Your defenses crumbled. The enemy stands victorious.";
+  gameOverEl.classList.add("game-over--visible");
+}
+
+function checkWinCondition() {
+  if (enemyHP <= 0) {
+    showGameOver(true);
+    return true;
+  }
+  if (playerHP <= 0) {
+    showGameOver(false);
+    return true;
+  }
+  return false;
+}
+
+playAgainButton.addEventListener("click", () => {
+  location.reload();
+});
 // #endregion

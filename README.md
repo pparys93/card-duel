@@ -93,7 +93,8 @@ This project is also used to practice a professional frontend workflow:
 - turn management,
 - draw card mechanic,
 - health system,
-- enemy turn logic.
+- enemy turn logic,
+- win/lose conditions.
 
 ---
 
@@ -109,9 +110,6 @@ This project is also used to practice a professional frontend workflow:
 ---
 
 ## ✍🏻 Planned Features
-
-### 🔄 JavaScript Features
-- win/lose conditions.
 
 ### 🔄 UI Improvements
 - card animations,

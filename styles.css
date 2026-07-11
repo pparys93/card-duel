@@ -50,6 +50,8 @@
   --color-bg-btn-end-turn: linear-gradient(135deg, #3f7cff, #5f9bff);
   --color-bg-btn-draw: linear-gradient(135deg, #3e5b74, #2f4b62);
   --color-bg-btn-draw-hover: linear-gradient(135deg, #4e6f8d, #385670);
+  --color-bg-btn-play-again: linear-gradient(135deg, #4ea96b, #2f7d4a);
+  --color-bg-btn-play-again-hover: linear-gradient(135deg, #5bba7a, #3a8f57);
   --color-bg-card: linear-gradient(160deg, #2b3140, #1a1f2c);
   --color-bg-card-mana: linear-gradient(135deg, #3f7cff, #6cb2ff);
   --color-bg-card-attack: linear-gradient(135deg, #c96a6a, #9b3d3d);
@@ -88,6 +90,8 @@
   --shadow-box-btn-end-turn-hover: 0 7px 20px rgba(63, 124, 255, 0.37);
   --shadow-box-btn-draw: 0 5px 15px rgba(56, 86, 112, 0.32);
   --shadow-box-btn-draw-hover: 0 7px 18px rgba(56, 86, 112, 0.36);
+  --shadow-box-btn-play-again: 0 5px 15px rgba(46, 125, 74, 0.35);
+  --shadow-box-btn-play-again-hover: 0 7px 18px rgba(46, 125, 74, 0.45);
   --shadow-box-card: 0 8px 24px rgba(0, 0, 0, 0.5);
   --shadow-box-card-mana: 0 0 10px rgba(63, 124, 255, 0.5);
   
@@ -181,33 +185,70 @@ body::before {
 }
 /* #endregion */
 
-/* #region [SCREEN GUARD] --------------------------- */
-.screen-guard {
+/* #region [OVERLAYS] ------------------------------- */
+/* shared overlay styles */
+.game-over,
+.screen-guard
+ {
   position: fixed;
   inset: 0;
-  z-index: 9999;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-
   gap: 1.5rem;
   padding: 2rem;
 
   background: rgba(0, 0, 0, 0.88);
-  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
-  /* Default state: HIDDEN */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
 
-  transition:
-    opacity 0.5s ease,
-    visibility 0.5s ease;
+.game-over__title,
+.screen-guard__title
+{
+  color: var(--color-text-base-default);
+  font-size: var(--size-font-global-large);
+  font-weight: 700;
+  letter-spacing: var(--size-letter-spacing-global-wide);
+  text-transform: uppercase;
+}
+
+.game-over__message,
+.screen-guard__message
+ {
+  max-width: 280px;
+  font-size: var(--size-font-global-small);
+  line-height: var(--size-line-height-global-relaxed);
+  opacity: 0.7;
+}
+
+/* game over overlay */
+.game-over {
+  z-index: 9998;
+}
+
+.game-over--visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.game-over__button {
+  margin-top: clamp(0.5rem, 1.5vh, 1rem);
+  min-width: var(--size-width-btn);
+}
+
+/* screen guard overlay */
+.screen-guard {
+  z-index: 9999;
 }
 
 .screen-guard__icon {
@@ -221,23 +262,9 @@ body::before {
   stroke-linejoin: round;
   filter: var(--shadow-filter-icon);
 
-  animation: rotatePhone 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.screen-guard__title {
-  color: var(--color-text-base-default);
-  font-size: var(--size-font-global-large);
-  font-weight: 700;
-  letter-spacing: var(--size-letter-spacing-global-wide);
-  text-transform: uppercase;
-}
-
-.screen-guard__message {
-  max-width: 280px;
-
-  font-size: var(--size-font-global-small);
-  line-height: var(--size-line-height-global-relaxed);
-  opacity: 0.7;
+  animation: 
+    rotatePhone 2.4s cubic-bezier(0.4, 0, 0.2, 1)
+    infinite;
 }
 
 @keyframes rotatePhone {
@@ -480,7 +507,7 @@ body::before {
 }
 /* #endregion */
 
-/* #region [TURN CONTROLS] -------------------------- */
+/* #region [GAME CONTROLS] -------------------------- */
 .turn-controls {
   grid-area: turn-controls;
   position: relative;
@@ -545,7 +572,7 @@ body::before {
   outline-offset: var(--size-space-global-2xs);
 }
 
-.button__mana {
+.button__mana-badge {
   position: absolute;
   top: -6px;
   left: -6px;
@@ -589,6 +616,17 @@ body::before {
 }
 
 .button--draw-card:active:not(:disabled) {
+  filter: brightness(0.96);
+  transform: translateY(0);
+}
+
+/* play-again button */
+.button--play-again {
+  background: var(--color-bg-btn-play-again);
+  box-shadow: var(--shadow-box-btn-play-again);
+}
+
+.button--play-again:active:not(:disabled) {
   filter: brightness(0.96);
   transform: translateY(0);
 }
@@ -835,6 +873,12 @@ body::before {
     background: var(--color-bg-btn-draw-hover);
     transform: translateY(-2px);
     box-shadow: var(--shadow-box-btn-draw-hover);
+  }
+
+  .button--play-again:hover:not(:disabled) {
+    background: var(--color-bg-btn-play-again-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-box-btn-play-again-hover);
   }
 
   .card:not(.card--selected):hover {
