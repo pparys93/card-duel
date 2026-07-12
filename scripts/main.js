@@ -349,7 +349,10 @@ function playEnemyTurn() {
     enemyMana -= card.mana;
     damagePlayer(card.stat);
     // stop if either HP reaches 0
-    if (checkWinCondition()) return;
+    if (checkWinCondition()) {
+      updateManaDisplay();
+      return;
+    }
 
     cardsPlayed++;
   }
