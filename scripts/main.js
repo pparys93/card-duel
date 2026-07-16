@@ -78,6 +78,24 @@ function refreshHandAffordability() {
 }
 // #endregion
 
+// #region [DATA VALIDATION] ------------------------->
+function validateCardData() {
+  cards.forEach(card => {
+    if (!icons[card.id]) {
+      console.warn(`Card "${card.id}" has no matching icon`);
+    }
+    if (card.mana < 0 || card.mana > MAX_MANA) {
+      console.warn(`Card "${card.id}" has suspicious mana value: ${card.mana}`);
+    }
+    if (card.stat <= 0) {
+      console.warn(`Card "${card.id}" has a non-positive stat value: ${card.stat}`);
+    }
+  });
+}
+
+validateCardData();
+// #endregion
+
 // #region [HEALTH SYSTEM] --------------------------->
 const MAX_HP = 20;
 
