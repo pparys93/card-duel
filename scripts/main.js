@@ -171,6 +171,11 @@ function updateHandLayout() {
 // #region [CARD PLACEMENT SYSTEM] ------------------->
 let selectedCard = null;
 
+// also used by renderCard in [DYNAMIC CARD RENDERING]
+function getStatLabel(card) {
+  return `${card.type === "attack" ? "Attack" : "Heal"} ${card.stat}`;
+}
+
 function renderSlotCard(card) {
   const wrapper = document.createElement("div");
   wrapper.className = "board__card";
@@ -179,7 +184,7 @@ function renderSlotCard(card) {
       ${icons[card.id]}
     </div>
     <div class="card__stat card__stat--${card.type}" 
-      aria-label="${card.type === "attack" ? "Attack" : "Heal"} ${card.stat}">
+      aria-label="${getStatLabel(card)}">
       ${card.stat}
     </div>
   `;
@@ -401,7 +406,7 @@ function renderCard(card) {
       <p class="card__description">${card.description}</p>
     </div>
 
-    <div class="card__stat card__stat--${card.type}" aria-label="${card.type === "attack" ? "Attack" : "Heal"} ${card.stat}">
+    <div class="card__stat card__stat--${card.type}" aria-label="${getStatLabel(card)}">
       ${card.stat}
     </div>
   `;
