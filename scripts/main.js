@@ -522,6 +522,8 @@ function showGameOver(playerWon) {
     ? "Your spells proved superior. The enemy stands defeated."
     : "Your defenses crumbled. The enemy stands victorious.";
   gameOverEl.classList.add("game-over--visible");
+  game.inert = true; // blocks focus/interaction with the board, and hides it from screen readers
+  playAgainButton.focus(); // moves focus into the modal, matching aria-modal="true"
 }
 
 function checkWinCondition() {
