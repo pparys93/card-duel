@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A frontend UI prototype for a fantasy card duel game, built with HTML and CSS with a focus on responsiveness and accessibility." />
+  <meta name="description" content="A fantasy card duel game built with HTML, CSS, and JavaScript, with a focus on responsiveness and accessibility." />
   <title>Card Duel</title>
 
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -18,9 +18,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
+  <script src="scripts/icons.js" defer></script>
+  <script src="scripts/cards.js" defer></script>
+  <script src="scripts/main.js" defer></script>
 </head>
 
 <body>
+  <!-- #region [OVERLAYS] --------------------------------> 
+  <!-- screen guard -->
   <div class="screen-guard" role="alert">
     <svg 
       class="screen-guard__icon" 
@@ -39,6 +44,28 @@
     </p>
   </div>
 
+  <!-- game over -->
+  <div 
+    class="game-over" 
+    role="alertdialog" 
+    aria-modal="true" 
+    aria-labelledby="game-over-title" 
+    aria-describedby="game-over-message"
+  >
+    <p 
+      class="game-over__title" 
+      id="game-over-title"
+      role="heading" 
+      aria-level="2"
+    ></p>
+    <p class="game-over__message" id="game-over-message"></p>
+    <button 
+      class="button button--play-again game-over__button" 
+      type="button"
+    >Play Again</button>
+  </div>
+  <!-- #endregion -->
+
   <main class="game">
     <h1 class="visually-hidden">Card Duel</h1>
 
@@ -48,12 +75,11 @@
       <dl class="player-panel__stats" aria-label="Enemy stats">
         <div class="player-panel__stat">
           <dt class="player-panel__term">Cards</dt>
-          <dd 
-            class="player-panel__value" 
-            aria-live="polite" 
-            aria-atomic="true"
-          >5</dd>
+          <!-- static placeholder - enemy hand size isn't tracked yet;
+              add aria-live/aria-atomic if this ever starts reflecting real state (e.g. multiplayer) -->
+          <dd class="player-panel__value">5</dd>
         </div>
+
         <div class="player-panel__stat player-panel__stat--hp">
           <dt class="player-panel__term">HP</dt>
           <dd 
@@ -62,6 +88,7 @@
             aria-atomic="true"
           >20</dd>
         </div>
+
         <div class="player-panel__stat player-panel__stat--mana">
           <dt class="player-panel__term">Mana</dt>
           <dd 
@@ -86,6 +113,7 @@
     <!-- #region [TURN CONTROLS] ------------------------->
     <div class="turn-controls" role="toolbar" aria-label="Turn actions" aria-orientation="horizontal">
       <button class="button button--draw-card" type="button">
+        <span class="button__mana-badge" aria-hidden="true"></span>
         Draw Card
       </button>
       <button class="button button--end-turn" type="button">
@@ -104,126 +132,7 @@
     <!-- #endregion -->
 
     <!-- #region [PLAYER HAND] --------------------------->
-    <div class="card-hand" role="group" aria-label="Player hand">
-      <!-- #region card: FIREBALL -->
-      <article class="card" tabindex="0">
-        <div class="card__mana" aria-label="Mana cost 6">6</div>
-
-        <div class="card__art">
-          <svg 
-            class="card__art-icon card__art-icon--fire" 
-            viewBox="0 0 24 24" 
-            aria-hidden="true"
-          >
-            <path d="M12 2C12 2 6 8 6 13a6 6 0 0012 0c0-2-1-4-2-5.5C15.5 9 16 10.5 16 12a4 4 0 01-8 0c0-2.5 2-5 4-6z"/>
-            <path d="M12 14c0 1.1-.9 2-2 2s-2-.9-2-2 2-4 2-4 2 2.9 2 4z"/>
-          </svg>
-        </div>
-
-        <div class="card__content">
-          <h3 class="card__title">Fireball</h3>
-          <p class="card__description">Burns everything.</p>
-        </div>
-
-        <div class="card__stat card__stat--attack" aria-label="Attack 7">7</div>
-      </article>
-      <!-- #endregion -->
-
-      <!-- #region card: SHIELD -->
-      <article class="card" tabindex="0">
-        <div class="card__mana" aria-label="Mana cost 2">2</div>
-
-        <div class="card__art">
-          <svg 
-            class="card__art-icon card__art-icon--shield" 
-            viewBox="0 0 24 24" 
-            aria-hidden="true"
-          >
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
-
-        <div class="card__content">
-          <h3 class="card__title">Shield</h3>
-          <p class="card__description">Magical protection.</p>
-        </div>
-
-        <div class="card__stat card__stat--health" aria-label="Health 6">6</div>
-      </article>
-      <!-- #endregion -->
-
-      <!-- #region card: PRECISION -->
-      <article class="card" tabindex="0">
-        <div class="card__mana" aria-label="Mana cost 4">4</div>
-
-        <div class="card__art">
-          <svg 
-            class="card__art-icon card__art-icon--bow" 
-            viewBox="0 0 24 24" 
-            aria-hidden="true"
-          >
-            <path d="M5 3c8 4 8 14 0 18"/>
-            <path d="M5 12h14"/>
-            <path d="M15 9l4 3-4 3"/>
-          </svg>
-        </div>
-
-        <div class="card__content">
-          <h3 class="card__title">Precision</h3>
-          <p class="card__description">Strikes with accuracy.</p>
-        </div>
-
-        <div class="card__stat card__stat--attack" aria-label="Attack 3">3</div>
-      </article>
-      <!-- #endregion -->
-
-      <!-- #region card: LIGHTNING -->
-      <article class="card" tabindex="0">
-        <div class="card__mana" aria-label="Mana cost 3">3</div>
-
-        <div class="card__art">
-          <svg 
-            class="card__art-icon card__art-icon--lightning" 
-            viewBox="0 0 24 24" 
-            aria-hidden="true"
-          >
-            <path d="M13 2L5 14h5l-1 8 8-12h-5l1-8z"/>
-          </svg>
-        </div>
-
-        <div class="card__content">
-          <h3 class="card__title">Lightning</h3>
-          <p class="card__description">Immediately shock.</p>
-        </div>
-
-        <div class="card__stat card__stat--attack" aria-label="Attack 2">2</div>
-      </article>
-      <!-- #endregion -->
-
-      <!-- #region card: HEALING WOUNDS -->
-      <article class="card" tabindex="0">
-        <div class="card__mana" aria-label="Mana cost 2">2</div>
-
-        <div class="card__art">
-          <svg 
-            class="card__art-icon card__art-icon--healing" 
-            viewBox="0 0 24 24" 
-            aria-hidden="true"
-          >
-            <path d="M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6z"/>
-          </svg>
-        </div>
-
-        <div class="card__content">
-          <h3 class="card__title">Healing</h3>
-          <p class="card__description">Restore vitality.</p>
-        </div>
-
-        <div class="card__stat card__stat--health" aria-label="Health 4">4</div>
-      </article>
-      <!-- #endregion -->
-
-    </div>
+    <div class="card-hand" role="group" aria-label="Player hand"></div>
     <!-- #endregion -->
 
     <!-- #region [PLAYER PANEL] -------------------------->
@@ -238,6 +147,7 @@
             aria-atomic="true"
           >20</dd>
         </div>
+
         <div class="player-panel__stat player-panel__stat--mana">
           <dt class="player-panel__term">Mana</dt>
           <dd 
