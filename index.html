@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A frontend UI prototype for a fantasy card duel game, built with HTML and CSS with a focus on responsiveness and accessibility." />
+  <meta name="description" content="A fantasy card duel game built with HTML, CSS, and JavaScript, with a focus on responsiveness and accessibility." />
   <title>Card Duel</title>
 
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -75,12 +75,11 @@
       <dl class="player-panel__stats" aria-label="Enemy stats">
         <div class="player-panel__stat">
           <dt class="player-panel__term">Cards</dt>
-          <dd 
-            class="player-panel__value" 
-            aria-live="polite" 
-            aria-atomic="true"
-          >5</dd>
+          <!-- static placeholder - enemy hand size isn't tracked yet;
+              add aria-live/aria-atomic if this ever starts reflecting real state (e.g. multiplayer) -->
+          <dd class="player-panel__value">5</dd>
         </div>
+
         <div class="player-panel__stat player-panel__stat--hp">
           <dt class="player-panel__term">HP</dt>
           <dd 
@@ -89,6 +88,7 @@
             aria-atomic="true"
           >20</dd>
         </div>
+
         <div class="player-panel__stat player-panel__stat--mana">
           <dt class="player-panel__term">Mana</dt>
           <dd 
@@ -110,7 +110,7 @@
     </div>
     <!-- #endregion -->
 
-    <!-- #region [GAME CONTROLS] ------------------------->
+    <!-- #region [TURN CONTROLS] ------------------------->
     <div class="turn-controls" role="toolbar" aria-label="Turn actions" aria-orientation="horizontal">
       <button class="button button--draw-card" type="button">
         <span class="button__mana-badge" aria-hidden="true"></span>
@@ -147,6 +147,7 @@
             aria-atomic="true"
           >20</dd>
         </div>
+
         <div class="player-panel__stat player-panel__stat--mana">
           <dt class="player-panel__term">Mana</dt>
           <dd 

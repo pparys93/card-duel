@@ -10,14 +10,26 @@
 
 </div>
 
-A browser-based fantasy card game built as a frontend portfolio project. The first milestone (`HTML/CSS Foundation`) is complete: the game arena is fully structured, styled, and accessible. Next up: bringing it to life with JavaScript.
+A browser-based fantasy card game built as a frontend portfolio project. The second milestone (`JavaScript Core`) is complete. The battlefield is now brought to life with JavaScript and fully playable end-to-end. Next up: elevating the experience with UI improvements.
 
 ---
 
-## 📖 About The Project
+## ℹ️ About The Project
 
 Card Duel is a turn-based fantasy card game built in the browser. The player faces an AI opponent across a battlefield, placing cards, managing mana, and fighting to reduce the opponent's HP to zero.
 The project aims to deliver a fully playable game experience - from a polished UI to complete game logic entirely in the browser.
+
+### 📜 Game Rules
+
+1. Reduce your opponent's HP to 0 to win.
+2. Attack cards deal damage to the enemy; heal cards restore your own HP.
+3. Your hand can hold up to 5 cards.
+4. Both sides start with 1 Mana and gain +2 Mana at the start of each subsequent turn, up to a maximum of 10.
+5. Drawing a card is optional and costs 1 Mana.
+6. Playing a card costs its Mana value. Board slots limit you to 4 cards per turn.
+7. Cards placed on the board cannot be moved or returned to your hand.
+8. Card effects resolve immediately when played.
+9. HP starts at 20 and cannot exceed this cap.
 
 ---
 
@@ -57,8 +69,8 @@ This project is also used to practice a professional frontend workflow:
 - hover animations,
 - keyboard focus support,
 - player hand interface,
-- fan-style hand layout by default, classic overlap on touch devices.
-- enemy and player status panels with HP and mana indicators plus card counter for enemy
+- fan-style hand layout by default, classic overlap on touch devices,
+- enemy and player status panels with HP and mana indicators plus a static card counter for enemy.
 
 ### 🎨 UI & Visual Design
 - fantasy-inspired visual style,
@@ -75,6 +87,7 @@ This project is also used to practice a professional frontend workflow:
 - `focus-visible` states,
 - ARIA markup for screen reader support,
 - touch-friendly controls,
+- `prefers-reduced-motion` support,
 - visually hidden headings for screen readers using the `visually-hidden` class,
 - screen-guard overlay when the browser window is too short or the device is in a non-optimal orientation.
 
@@ -102,9 +115,9 @@ This project is also used to practice a professional frontend workflow:
 
 | Version | Milestone | Status |
 |---|---|---|
-| `v0.1.0` | HTML/CSS Foundation | ✅ Done |
-| `v0.2.0` | JavaScript Core | ⏳ In Progress |
-| `v0.3.0` | UI Improvements | 🔄 Planned |
+| [`v0.1.0`](https://github.com/pparys93/card-duel/releases/tag/v0.1.0) | HTML/CSS Foundation | ✅ Done |
+| [`v0.2.0`](https://github.com/pparys93/card-duel/releases/tag/v0.2.0) | JavaScript Core | ✅ Done |
+| `v0.3.0` | UI Improvements | ⏳ Planned |
 | `v1.0.0` | React Migration | 🔄 Planned |
 
 ---
@@ -114,7 +127,7 @@ This project is also used to practice a professional frontend workflow:
 ### 🔄 UI Improvements
 - card animations,
 - drag & drop mechanics,
-- visual spell/effect animations,
+- visual spell effect animations,
 - sound effects.
 
 ### 🔄 React Migration
@@ -140,6 +153,9 @@ card-duel/
 │   └── images/
 │
 ├── scripts/
+│   ├── icons.js
+│   ├── cards.js
+│   └── main.js
 │
 └── README.md
 ```
@@ -153,7 +169,7 @@ ENEMY REGION
 ├── .player-panel .player-panel--enemy
 │    ├─ .player-panel__name
 │    └─ .player-panel__stats
-│        ├─ .player-panel__stat--cards-counter
+│        ├─ .player-panel__stat (Cards)
 │        ├─ .player-panel__stat--hp
 │        └─ .player-panel__stat--mana
 │
@@ -170,7 +186,7 @@ PLAYER REGION
 │    └─ .board__slot * 4
 │
 ├── .card-hand
-│    └─ .card * N
+│    └─ .card * N (max 5)
 │        ├─ .card__mana
 │        ├─ .card__art
 │        ├─ .card__content
@@ -189,7 +205,7 @@ PLAYER REGION
 
 ## 🚧 Project Status
 
-Current version: `v0.1.3`
+Current version: `v0.2.0`
 
 > 🚀 **[Live Demo](https://pparys93.github.io/card-duel)**
 
@@ -203,10 +219,11 @@ Current version: `v0.1.3`
 |---|---|
 | <img src="assets/images/desktop-ui.png" width="400" alt="Desktop UI"> | <img src="assets/images/mobile-ui.png" width="200" alt="Mobile UI"> |
 
+### 🎭 Overlays
 
-### 🔒 Screen Guard Overlay
-
-<img src="assets/images/screen-guard.gif" width="400" alt="Screen guard overlay appearing automatically on narrow or portrait-oriented viewport">
+| Screen Guard | Game Over |
+|---|---|
+| <img src="assets/images/screen-guard.gif" width="400" alt="Screen guard overlay prompting to rotate device or resize window"> | <img src="assets/images/game-over.png" width="200" alt="Game over screen showing outcome based on match result"> |
 
 ---
 
