@@ -4,9 +4,9 @@
   scheme: type-property-scope-scale */
 
   /* TYPOGRAPHY */
-  --size-font-global-small: clamp(0.7rem, 1vw, 0.95rem);
-  --size-font-global-medium: clamp(0.95rem, 1.2vw, 1.25rem);
-  --size-font-global-large: clamp(1rem, 1.3vw, 1.4rem);
+  --size-font-global-sm: clamp(0.7rem, 1vw, 0.95rem);
+  --size-font-global-md: clamp(0.95rem, 1.2vw, 1.25rem);
+  --size-font-global-lg: clamp(1rem, 1.3vw, 1.4rem);
 
   --size-line-height-global-tight: 1.2;
   --size-line-height-global-normal: 1.4;   /* reserved */
@@ -215,7 +215,7 @@ body::before {
 .screen-guard__title
 {
   color: var(--color-text-base-default);
-  font-size: var(--size-font-global-large);
+  font-size: var(--size-font-global-lg);
   font-weight: 700;
   letter-spacing: var(--size-letter-spacing-global-wide);
   text-transform: uppercase;
@@ -225,7 +225,7 @@ body::before {
 .screen-guard__message
  {
   max-width: 280px;
-  font-size: var(--size-font-global-small);
+  font-size: var(--size-font-global-sm);
   line-height: var(--size-line-height-global-relaxed);
   opacity: 0.7;
 }
@@ -353,7 +353,7 @@ body::before {
 }
 
 .player-panel__name {
-  font-size: var(--size-font-global-large);
+  font-size: var(--size-font-global-lg);
   font-weight: 700;
   letter-spacing: var(--size-letter-spacing-global-wide);
   text-transform: uppercase;
@@ -382,7 +382,7 @@ body::before {
   border-radius: var(--size-radius-panel-stat);
   border: 1px solid var(--color-border-panel-stat);
 
-  font-size: var(--size-font-global-small);
+  font-size: var(--size-font-global-sm);
   font-weight: 700;
   letter-spacing: var(--size-letter-spacing-global-normal);
 }
@@ -462,6 +462,7 @@ body::before {
   flex-direction: column;
 }
 
+/* narrower board container shifts cqi scaling compared to in-hand cards - overrides below compensate */
 .board__card .card__art {
   flex: 1;
   width: 100%;
@@ -543,7 +544,7 @@ body::before {
 
   font-family: inherit;
   color: var(--color-text-base-inverse);
-  font-size: var(--size-font-global-small);
+  font-size: var(--size-font-global-sm);
   font-weight: 700;
   letter-spacing: var(--size-letter-spacing-global-wide);
   text-transform: uppercase;
@@ -587,7 +588,7 @@ body::before {
   align-items: center;
 
   color: var(--color-text-base-inverse);
-  font-size: var(--size-font-global-small);
+  font-size: var(--size-font-global-sm);
   font-weight: 700;
   letter-spacing: normal;
   text-transform: none;
@@ -685,7 +686,7 @@ body::before {
   margin-left: 0;
 }
 
-.card:last-child  { 
+.card:last-child { 
   margin-right: 0; 
 }
 
@@ -726,7 +727,7 @@ body::before {
   align-items: center;
 
   color: var(--color-text-base-inverse);
-  font-size: var(--size-font-global-medium);
+  font-size: var(--size-font-global-md);
   font-weight: 700;
 
   background: var(--color-bg-card-mana);
@@ -833,7 +834,7 @@ body::before {
   align-items: center;
 
   color: var(--color-text-base-inverse);
-  font-size: var(--size-font-global-medium);
+  font-size: var(--size-font-global-md);
   font-weight: 700;
 }
 
