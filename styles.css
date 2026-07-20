@@ -215,7 +215,7 @@ body::before {
 .screen-guard__title
 {
   color: var(--color-text-base-default);
-  font-size: var(--size-font-global-lg);
+  font-size: clamp(1.5rem, 3vw, 3rem);
   font-weight: 700;
   letter-spacing: var(--size-letter-spacing-global-wide);
   text-transform: uppercase;
@@ -224,8 +224,8 @@ body::before {
 .game-over__message,
 .screen-guard__message
  {
-  max-width: 280px;
-  font-size: var(--size-font-global-sm);
+  max-width: 480px;
+  font-size: clamp(0.9rem, 1.5vw, 1.25rem);
   line-height: var(--size-line-height-global-relaxed);
   opacity: 0.7;
 }
@@ -241,9 +241,9 @@ body::before {
   pointer-events: auto;
 }
 
-.game-over__button {
+.button.game-over__button {
   margin-top: clamp(0.5rem, 1.5vh, 1rem);
-  min-width: var(--size-width-btn);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
 }
 
 /* screen guard overlay */
@@ -254,8 +254,8 @@ body::before {
 /* shared icon styles */
 .screen-guard__icon,
 .game-over__icon {
-  width: 56px;
-  height: 56px;
+  width: clamp(56px, 5vw, 96px);
+  height: clamp(56px, 5vw, 96px);
 
   fill: none;
   stroke: var(--color-text-base-default);
