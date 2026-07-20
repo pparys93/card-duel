@@ -398,6 +398,10 @@ body::before {
 .player-panel__stat--mana {
   color: var(--color-text-panel-mana);
 }
+
+.player-panel__term {
+  color: var(--color-text-base-default);
+}
 /* #endregion */
 
 /* #region [BOARD] ---------------------------------- */
