@@ -251,7 +251,9 @@ body::before {
   z-index: 9999;
 }
 
-.screen-guard__icon {
+/* shared icon styles */
+.screen-guard__icon,
+.game-over__icon {
   width: 56px;
   height: 56px;
 
@@ -261,7 +263,9 @@ body::before {
   stroke-linecap: round;
   stroke-linejoin: round;
   filter: var(--shadow-filter-icon);
+}
 
+.screen-guard__icon {
   animation: 
     rotatePhone 2.4s cubic-bezier(0.4, 0, 0.2, 1)
     infinite;
