@@ -647,6 +647,14 @@ body::before {
   align-items: flex-end;
   flex-wrap: nowrap;
 
+  /* Matches one card's height (aspect-ratio 2/3) plus this container's own padding.
+   Keeps the hand's grid row a fixed size so the board doesn't jump when the last card is played. */
+  min-height: calc(
+    var(--size-width-card) * 1.5
+    + var(--size-padding-block-start-card-hand)
+    + var(--size-padding-block-end-card-hand)
+  );
+
   padding-top: var(--size-padding-block-start-card-hand);
   padding-bottom: var(--size-padding-block-end-card-hand);
 }
