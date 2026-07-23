@@ -469,6 +469,8 @@ body::before {
 .board__card .card__art-icon {
   width: clamp(48px, 65cqi, 90px);
   height: clamp(48px, 65cqi, 90px);
+
+  animation: cardIconGlow 0.9s ease-in-out;
 }
 
 .board__card .card__stat {
@@ -937,6 +939,21 @@ body::before {
 @keyframes cardEnter {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+/* used by .board__card .card__art-icon in [BOARD];
+   currentColor automatically picks up each spell type's color */
+@keyframes cardIconGlow {
+  0% {
+    filter: drop-shadow(0 0 0 currentColor);
+  }
+  40% {
+    filter: drop-shadow(0 0 6px currentColor);
+  }
+  100% {
+    /* back to the element's regular (non-animated) style */
+    filter: var(--shadow-filter-icon);
+  }
 }
 /* #endregion */
 
