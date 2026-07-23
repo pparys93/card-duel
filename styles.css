@@ -305,7 +305,6 @@ body::before {
 
   gap: var(--size-gap-layout);
   padding: var(--size-padding-layout);
-
 }
 
 /* #endregion */
@@ -446,8 +445,11 @@ body::before {
 .board__card {
   width: 100%;
   height: 100%;
+
   display: flex;
   flex-direction: column;
+
+  animation: cardEnter 0.3s ease-out;
 }
 
 /* narrower board container shifts cqi scaling compared to in-hand cards - overrides below compensate */
@@ -676,6 +678,7 @@ body::before {
 
   transform-origin: bottom center;
   transform: rotate(var(--card-rotation)) translateY(var(--card-lift));
+  animation: cardEnter 0.3s ease-out;
 }
 
 .card:first-child {
@@ -928,6 +931,12 @@ body::before {
   100% {
     transform: rotate(0deg);
   }
+}
+
+/* used by .board__card in [BOARD] and .card in [CARD HAND] */
+@keyframes cardEnter {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 /* #endregion */
 
