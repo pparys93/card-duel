@@ -174,15 +174,6 @@ body::before {
     transparent 70%
   );
 }
-
-@keyframes fadeInBg {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 /* #endregion */
 
 /* #region [OVERLAYS] ------------------------------- */
@@ -269,17 +260,6 @@ body::before {
   animation: 
     rotatePhone 2.4s cubic-bezier(0.4, 0, 0.2, 1)
     infinite;
-}
-
-@keyframes rotatePhone {
-  0%,  
-  35% { 
-    transform: rotate(90deg); 
-  }
-  55%, 
-  100% { 
-    transform: rotate(0deg); 
-  }
 }
 
 /* mobile landscape/low height */
@@ -923,6 +903,30 @@ body::before {
 
   .card--selected {
     z-index: 20; /* always wins over tapped neighbors, regardless of DOM order */
+  }
+}
+/* #endregion */
+
+/* #region [ANIMATIONS] ----------------------------- */
+/* used by body in [BASE] */
+@keyframes fadeInBg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* used by .screen-guard__icon in [OVERLAYS] */
+@keyframes rotatePhone {
+  0%,
+  35% {
+    transform: rotate(90deg);
+  }
+  55%,
+  100% {
+    transform: rotate(0deg);
   }
 }
 /* #endregion */
