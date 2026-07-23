@@ -110,24 +110,37 @@ function updateHPDisplay() {
   enemyHPDisplay.textContent = enemyHP;
 }
 
+function showStatPopup(statEl, amount) {
+  const popup = document.createElement("span");
+  popup.className = `stat-popup ${amount < 0 ? "stat-popup--negative" : "stat-popup--positive"}`;
+  popup.textContent = amount > 0 ? `+${amount}` : `${amount}`;
+  popup.setAttribute("aria-hidden", "true");
+  statEl.appendChild(popup);
+  popup.addEventListener("animationend", () => popup.remove());
+}
+
 function damageEnemy(amount) {
   enemyHP = Math.max(enemyHP - amount, 0);
   updateHPDisplay();
+  showStatPopup(enemyHPDisplay, -amount);
 }
 
 function healPlayer(amount) {
   playerHP = Math.min(playerHP + amount, MAX_HP);
   updateHPDisplay();
+  showStatPopup(playerHPDisplay, amount);
 }
 
 function damagePlayer(amount) {
   playerHP = Math.max(playerHP - amount, 0);
   updateHPDisplay();
+  showStatPopup(playerHPDisplay, -amount);
 }
 // not called yet - enemy AI currently plays attack cards only
 function healEnemy(amount) {
   enemyHP = Math.min(enemyHP + amount, MAX_HP);
   updateHPDisplay();
+  showStatPopup(enemyHPDisplay, amount);
 }
 // #endregion
 

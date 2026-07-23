@@ -39,6 +39,7 @@
   --color-text-base-inverse: #fff;
   --color-text-panel-hp: #ff8b8b;
   --color-text-panel-mana: #7cb7ff;
+  --color-text-panel-heal: #4ea96b;
   --color-text-card-description: #aebfd6;
 
   --color-bg-arena: radial-gradient(ellipse at top, #1e2a3a 0%, #0d1117 60%);
@@ -380,6 +381,31 @@ body::before {
 
 .player-panel__term {
   color: var(--color-text-base-default);
+}
+
+.player-panel__value {
+  position: relative;
+}
+
+.stat-popup {
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-weight: 700;
+  font-size: var(--size-font-global-sm);
+  pointer-events: none;
+
+  animation: statPopupFloat 0.9s ease-out;
+}
+
+.stat-popup--negative {
+  color: var(--color-text-panel-hp);
+}
+
+.stat-popup--positive {
+  color: var(--color-text-panel-heal);
 }
 /* #endregion */
 
@@ -955,6 +981,24 @@ body::before {
     filter: var(--shadow-filter-icon);
   }
 }
+
+/* used by .stat-popup in [PLAYER PANEL] */
+@keyframes statPopupFloat {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -24px);
+  }
+}
+
+/* reduced-motion variant of statPopupFloat - see [ACCESSIBILITY] */
+@keyframes statPopupFadeOnly {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
 /* #endregion */
 
 /* #region [ACCESSIBILITY] -------------------------- */
@@ -1015,6 +1059,10 @@ body::before {
   .card:hover {
     transform: none;
   }
+
+  .stat-popup {
+    animation-name: statPopupFadeOnly;
+}
 }
 /* #endregion */
 
