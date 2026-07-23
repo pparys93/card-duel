@@ -155,6 +155,9 @@ body {
   height: 100dvh;
   overflow: hidden; /* prevents vertical scrolling */
 
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+
   font-family: 'Cinzel', 'Palatino Linotype', Georgia, serif;
   color: var(--color-text-base-default);
   background: var(--color-bg-arena);
