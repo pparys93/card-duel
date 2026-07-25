@@ -471,6 +471,15 @@ body::before {
   pointer-events: none;
 }
 
+/* mirrors the :hover style, but is applied by JS during dragging
+  because pointer capture makes :hover unreliable */
+.board__slot--drop-target {
+  transform: translateY(-4px);
+  background-color: var(--color-bg-slot-hover);
+  border-color: var(--color-border-slot-hover);
+  box-shadow: var(--shadow-box-slot-hover);
+}
+
 .board__card {
   width: 100%;
   height: 100%;
@@ -742,6 +751,15 @@ body::before {
   opacity: 0.5;
 }
 
+.card--dragging {
+  transition: none;
+  z-index: 30;
+  /* allow elementFromPoint() to hit the slot below;
+    pointer capture still keeps drag events on this card */
+  pointer-events: none;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
 .card__mana {
   position: absolute;
   top: var(--size-space-global-sm);
@@ -938,6 +956,16 @@ body::before {
   .card--selected {
     z-index: 20; /* always wins over tapped neighbors, regardless of DOM order */
   }
+}
+
+@media (pointer: fine) {
+  .card {
+    cursor: grab;
+  }
+}
+
+.card--dragging {
+  cursor: grabbing;
 }
 /* #endregion */
 
