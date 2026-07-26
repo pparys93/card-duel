@@ -1002,10 +1002,13 @@ body::before {
    currentColor automatically picks up each spell type's color */
 @keyframes cardIconGlow {
   0% {
-    filter: drop-shadow(0 0 0 currentColor);
+    filter: var(--shadow-filter-icon);
   }
-  40% {
-    filter: drop-shadow(0 0 6px currentColor);
+  30% {
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+  55% {
+    filter: drop-shadow(0 0 10px currentColor);
   }
   100% {
     /* back to the element's regular (non-animated) style */
