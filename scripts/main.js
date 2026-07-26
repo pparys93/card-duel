@@ -393,12 +393,12 @@ function enableCardDrag(cardEl, card) {
     // the browser still fires a click after this gesture despite the movement -
     // suppress it so it doesn't immediately toggle the card back off via selectCard
     cardEl.dataset.suppressClick = "true";
-  if (dropTarget) {
-    placeCard(dropTarget);
-  } else {
-    cardEl.classList.add("card--selected");
-  }
-});
+    if (dropTarget) {
+      placeCard(dropTarget);
+    } else {
+      cardEl.classList.add("card--selected");
+    }
+  });
 
   cardEl.addEventListener("pointercancel", endDrag);
 }

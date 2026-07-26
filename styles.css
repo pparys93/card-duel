@@ -1096,7 +1096,7 @@ body::before {
 
   .stat-popup {
     animation-name: statPopupFadeOnly;
-}
+  }
 }
 /* #endregion */
 
