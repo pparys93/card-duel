@@ -123,24 +123,46 @@ function damageEnemy(amount) {
   enemyHP = Math.max(enemyHP - amount, 0);
   updateHPDisplay();
   showStatPopup(enemyHPDisplay, -amount);
+  playSound("spellEffect");
 }
 
 function healPlayer(amount) {
   playerHP = Math.min(playerHP + amount, MAX_HP);
   updateHPDisplay();
   showStatPopup(playerHPDisplay, amount);
+  playSound("spellEffect");
 }
 
 function damagePlayer(amount) {
   playerHP = Math.max(playerHP - amount, 0);
   updateHPDisplay();
   showStatPopup(playerHPDisplay, -amount);
+  playSound("spellEffect");
 }
 // not called yet - enemy AI currently plays attack cards only
 function healEnemy(amount) {
   enemyHP = Math.min(enemyHP + amount, MAX_HP);
   updateHPDisplay();
   showStatPopup(enemyHPDisplay, amount);
+  playSound("spellEffect");
+}
+// #endregion
+
+// #region [SOUND SYSTEM] ---------------------------->
+const sounds = {
+  buttonClick: new Audio("assets/audio/button-click.mp3"),
+  cardDraw: new Audio("assets/audio/card-draw.mp3"),
+  cardPlace: new Audio("assets/audio/card-place.mp3"),
+  cardPreview: new Audio("assets/audio/card-preview.mp3"),
+  cardSelect: new Audio("assets/audio/card-select.mp3"),
+  spellEffect: new Audio("assets/audio/spell-effect.mp3"),
+  gameOver: new Audio("assets/audio/game-over.mp3"),
+};
+
+function playSound(name) {
+  const sound = sounds[name];
+  sound.currentTime = 0; // restart if the same sound is still playing (e.g. rapid actions)
+  sound.play().catch(() => {}); // ignore playback errors (e.g. autoplay restrictions)
 }
 // #endregion
 
@@ -234,6 +256,7 @@ function selectCard(cardElement, card) {
   cardElement.classList.add("card--selected");
   // toggles .game--card-selected, which CSS uses to highlight valid empty slots
   game.classList.add("game--card-selected");
+  playSound("cardSelect");
 }
 
 function placeCard(slotElement) {
@@ -243,6 +266,7 @@ function placeCard(slotElement) {
 
   slotElement.innerHTML = "";
   slotElement.appendChild(renderSlotCard(card));
+  playSound("cardPlace");
   slotElement.classList.add("board__slot--occupied");
   slotElement.disabled = true;
   slotElement.setAttribute("aria-label", `${slotElement.dataset.baseLabel}, occupied by ${card.name}`);
@@ -335,7 +359,7 @@ function enableCardDrag(cardEl, card) {
       if (currentTurn !== "player" || allSlotsFull() || !hasEnoughMana(card)) return;
       dragging = true;
       cardEl.classList.add("card--dragging");
-      
+
       // deselect whatever was previously selected - mirrors the same cleanup
       // selectCard() does when switching selection to a different card
       if (selectedCard && selectedCard.element !== cardEl) {
@@ -429,6 +453,7 @@ function endEnemyTurn() {
 
 function endTurn() {
   if (currentTurn !== "player") return;
+  playSound("buttonClick");
   startEnemyTurn();
 }
 
@@ -524,6 +549,7 @@ function renderCard(card) {
     }
   });
 
+  article.addEventListener("pointerenter", () => playSound("cardPreview"));
   enableCardDrag(article, card);
   setCardAffordability(article, card);
 
@@ -596,6 +622,7 @@ function drawCard() {
   const newCard = { ...cards[randomIndex] };
   currentHand.push(newCard);
   cardHand.appendChild(renderCard(newCard));
+  playSound("cardDraw");
 
   spendMana(DRAW_COST);
   hasDrawnThisTurn = true;
@@ -630,6 +657,7 @@ function showGameOver(playerWon) {
   gameOverEl.classList.add("game-over--visible");
   game.inert = true; // blocks focus/interaction with the board, and hides it from screen readers
   playAgainButton.focus(); // moves focus into the modal, matching aria-modal="true"
+  playSound("gameOver");
 }
 
 function checkWinCondition() {
