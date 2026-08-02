@@ -133,12 +133,13 @@ function healPlayer(amount) {
   playSound("spellEffect");
 }
 
-function damagePlayer(amount) {
+function damagePlayer(amount, { showPopup = true } = {}) {
   playerHP = Math.max(playerHP - amount, 0);
   updateHPDisplay();
-  showStatPopup(playerHPDisplay, -amount);
+  if (showPopup) showStatPopup(playerHPDisplay, -amount);
   playSound("spellEffect");
 }
+
 // not called yet - enemy AI currently plays attack cards only
 function healEnemy(amount) {
   enemyHP = Math.min(enemyHP + amount, MAX_HP);
@@ -478,6 +479,7 @@ function playEnemyTurn() {
   if (Math.random() < ENEMY_SKIP_CHANCE) return; // enemy skips this turn
 
   let cardsPlayed = 0;
+  let totalDamage = 0;
 
   while (cardsPlayed < ENEMY_MAX_CARDS_PER_TURN) {
     const availableSlots = getAvailableEnemySlots();
@@ -493,16 +495,17 @@ function playEnemyTurn() {
     slot.classList.add("board__slot--occupied");
 
     enemyMana -= card.mana;
-    damagePlayer(card.stat);
-    // stop if either HP reaches 0
-    if (checkWinCondition()) {
-      updateManaDisplay();
-      return;
-    }
+    totalDamage += card.stat;
+    damagePlayer(card.stat, { showPopup: false });
 
     cardsPlayed++;
+
+    if (checkWinCondition()) break; // stop playing further cards once someone has won
   }
 
+  if (totalDamage > 0) {
+    showStatPopup(playerHPDisplay, -totalDamage);
+  }
   updateManaDisplay();
 }
 // #endregion
