@@ -657,6 +657,7 @@ function showGameOver(playerWon) {
   gameOverMessage.textContent = playerWon
     ? "Your spells proved superior. The enemy stands defeated."
     : "Your defenses crumbled. The enemy stands victorious.";
+  gameOverEl.classList.add(playerWon ? "game-over--victory" : "game-over--defeat");
   gameOverEl.classList.add("game-over--visible");
   game.inert = true; // blocks focus/interaction with the board, and hides it from screen readers
   playAgainButton.focus(); // moves focus into the modal, matching aria-modal="true"

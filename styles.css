@@ -260,6 +260,17 @@ body::before {
   filter: var(--shadow-filter-icon);
 }
 
+/* only one game-over icon shows at a time, matched to whichever
+  game-over--victory/--defeat modifier showGameOver() added in main.js */
+.game-over__icon {
+  display: none;
+}
+
+.game-over--victory .game-over__icon--victory,
+.game-over--defeat .game-over__icon--defeat {
+  display: block;
+}
+
 .screen-guard__icon {
   animation: 
     rotatePhone 2.4s cubic-bezier(0.4, 0, 0.2, 1)
