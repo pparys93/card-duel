@@ -110,24 +110,60 @@ function updateHPDisplay() {
   enemyHPDisplay.textContent = enemyHP;
 }
 
+function showStatPopup(statEl, amount) {
+  const popup = document.createElement("span");
+  popup.className = `stat-popup ${amount < 0 ? "stat-popup--negative" : "stat-popup--positive"}`;
+  popup.textContent = amount > 0 ? `+${amount}` : `${amount}`;
+  popup.setAttribute("aria-hidden", "true");
+  statEl.appendChild(popup);
+  popup.addEventListener("animationend", () => popup.remove());
+}
+
 function damageEnemy(amount) {
   enemyHP = Math.max(enemyHP - amount, 0);
   updateHPDisplay();
+  showStatPopup(enemyHPDisplay, -amount);
+  playSound("spellEffect");
 }
 
 function healPlayer(amount) {
   playerHP = Math.min(playerHP + amount, MAX_HP);
   updateHPDisplay();
+  showStatPopup(playerHPDisplay, amount);
+  playSound("spellEffect");
 }
 
-function damagePlayer(amount) {
+function damagePlayer(amount, { showPopup = true } = {}) {
   playerHP = Math.max(playerHP - amount, 0);
   updateHPDisplay();
+  if (showPopup) showStatPopup(playerHPDisplay, -amount);
+  playSound("spellEffect");
 }
+
 // not called yet - enemy AI currently plays attack cards only
 function healEnemy(amount) {
   enemyHP = Math.min(enemyHP + amount, MAX_HP);
   updateHPDisplay();
+  showStatPopup(enemyHPDisplay, amount);
+  playSound("spellEffect");
+}
+// #endregion
+
+// #region [SOUND SYSTEM] ---------------------------->
+const sounds = {
+  buttonClick: new Audio("assets/audio/button-click.mp3"),
+  cardDraw: new Audio("assets/audio/card-draw.mp3"),
+  cardPlace: new Audio("assets/audio/card-place.mp3"),
+  cardPreview: new Audio("assets/audio/card-preview.mp3"),
+  cardSelect: new Audio("assets/audio/card-select.mp3"),
+  spellEffect: new Audio("assets/audio/spell-effect.mp3"),
+  gameOver: new Audio("assets/audio/game-over.mp3"),
+};
+
+function playSound(name) {
+  const sound = sounds[name];
+  sound.currentTime = 0; // restart if the same sound is still playing (e.g. rapid actions)
+  sound.play().catch(() => {}); // ignore playback errors (e.g. autoplay restrictions)
 }
 // #endregion
 
@@ -221,6 +257,7 @@ function selectCard(cardElement, card) {
   cardElement.classList.add("card--selected");
   // toggles .game--card-selected, which CSS uses to highlight valid empty slots
   game.classList.add("game--card-selected");
+  playSound("cardSelect");
 }
 
 function placeCard(slotElement) {
@@ -230,6 +267,7 @@ function placeCard(slotElement) {
 
   slotElement.innerHTML = "";
   slotElement.appendChild(renderSlotCard(card));
+  playSound("cardPlace");
   slotElement.classList.add("board__slot--occupied");
   slotElement.disabled = true;
   slotElement.setAttribute("aria-label", `${slotElement.dataset.baseLabel}, occupied by ${card.name}`);
@@ -282,6 +320,91 @@ function initPlacement() {
 initPlacement();
 // #endregion
 
+// #region [DRAG & DROP] ----------------------------->
+const DRAG_THRESHOLD_PX = 8;
+const supportsDrag = window.matchMedia("(pointer: fine)").matches;
+// touch devices use tap-to-select/tap-to-place instead;
+// dragging would conflict with horizontal hand scrolling.
+
+function enableCardDrag(cardEl, card) {
+  if (!supportsDrag) return;
+
+  let startX, startY, dragging = false;
+  let currentDropTarget = null; // slot currently under the pointer
+
+  function endDrag() {
+    cardEl.style.removeProperty("transform");
+    cardEl.classList.remove("card--dragging");
+    currentDropTarget?.classList.remove("board__slot--drop-target");
+    currentDropTarget = null;
+    dragging = false;
+    startX = undefined;
+  }
+
+  cardEl.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    startX = e.clientX;
+    startY = e.clientY;
+    // keeps pointermove/pointerup targeting this card even if the cursor
+    // moves over other elements (e.g. a board slot) mid-gesture
+    cardEl.setPointerCapture(e.pointerId);
+  });
+
+  cardEl.addEventListener("pointermove", (e) => {
+    if (startX === undefined) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+
+    if (!dragging) {
+      if (Math.hypot(dx, dy) < DRAG_THRESHOLD_PX) return;
+      if (currentTurn !== "player" || allSlotsFull() || !hasEnoughMana(card)) return;
+      dragging = true;
+      cardEl.classList.add("card--dragging");
+
+      // deselect whatever was previously selected - mirrors the same cleanup
+      // selectCard() does when switching selection to a different card
+      if (selectedCard && selectedCard.element !== cardEl) {
+        selectedCard.element.classList.remove("card--selected");
+      }
+
+      selectedCard = { element: cardEl, data: card };
+      game.classList.add("game--card-selected");
+    }
+
+    cardEl.style.transform = `translate(${dx}px, ${dy}px)`;
+
+    // pointer capture keeps e.target on the card, so look up the element
+    // under the cursor manually. Update classes only when the target changes.
+    const target = document
+      .elementFromPoint(e.clientX, e.clientY)
+      ?.closest(".board--player .board__slot:not(.board__slot--occupied)");
+
+    if (target !== currentDropTarget) {
+      currentDropTarget?.classList.remove("board__slot--drop-target");
+      target?.classList.add("board__slot--drop-target");
+      currentDropTarget = target;
+    }
+  });
+
+  cardEl.addEventListener("pointerup", () => {
+    if (!dragging) { startX = undefined; return; } // plain click - existing click handler takes over
+    const dropTarget = currentDropTarget; // already known from the last pointermove
+    endDrag();
+
+    // the browser still fires a click after this gesture despite the movement -
+    // suppress it so it doesn't immediately toggle the card back off via selectCard
+    cardEl.dataset.suppressClick = "true";
+    if (dropTarget) {
+      placeCard(dropTarget);
+    } else {
+      cardEl.classList.add("card--selected");
+    }
+  });
+
+  cardEl.addEventListener("pointercancel", endDrag);
+}
+// #endregion
+
 // #region [TURN MANAGEMENT] ------------------------->
 let enemyHasHadFirstTurn = false;
 
@@ -331,6 +454,7 @@ function endEnemyTurn() {
 
 function endTurn() {
   if (currentTurn !== "player") return;
+  playSound("buttonClick");
   startEnemyTurn();
 }
 
@@ -355,6 +479,7 @@ function playEnemyTurn() {
   if (Math.random() < ENEMY_SKIP_CHANCE) return; // enemy skips this turn
 
   let cardsPlayed = 0;
+  let totalDamage = 0;
 
   while (cardsPlayed < ENEMY_MAX_CARDS_PER_TURN) {
     const availableSlots = getAvailableEnemySlots();
@@ -370,16 +495,17 @@ function playEnemyTurn() {
     slot.classList.add("board__slot--occupied");
 
     enemyMana -= card.mana;
-    damagePlayer(card.stat);
-    // stop if either HP reaches 0
-    if (checkWinCondition()) {
-      updateManaDisplay();
-      return;
-    }
+    totalDamage += card.stat;
+    damagePlayer(card.stat, { showPopup: false });
 
     cardsPlayed++;
+
+    if (checkWinCondition()) break; // stop playing further cards once someone has won
   }
 
+  if (totalDamage > 0) {
+    showStatPopup(playerHPDisplay, -totalDamage);
+  }
   updateManaDisplay();
 }
 // #endregion
@@ -411,7 +537,14 @@ function renderCard(card) {
     </div>
   `;
 
-  article.addEventListener("click", () => selectCard(article, card));
+  article.addEventListener("click", () => {
+    if (article.dataset.suppressClick) {
+      delete article.dataset.suppressClick;
+      return;
+    }
+    selectCard(article, card);
+  });
+
   article.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -419,6 +552,8 @@ function renderCard(card) {
     }
   });
 
+  article.addEventListener("pointerenter", () => playSound("cardPreview"));
+  enableCardDrag(article, card);
   setCardAffordability(article, card);
 
   return article;
@@ -490,6 +625,7 @@ function drawCard() {
   const newCard = { ...cards[randomIndex] };
   currentHand.push(newCard);
   cardHand.appendChild(renderCard(newCard));
+  playSound("cardDraw");
 
   spendMana(DRAW_COST);
   hasDrawnThisTurn = true;
@@ -521,9 +657,11 @@ function showGameOver(playerWon) {
   gameOverMessage.textContent = playerWon
     ? "Your spells proved superior. The enemy stands defeated."
     : "Your defenses crumbled. The enemy stands victorious.";
+  gameOverEl.classList.add(playerWon ? "game-over--victory" : "game-over--defeat");
   gameOverEl.classList.add("game-over--visible");
   game.inert = true; // blocks focus/interaction with the board, and hides it from screen readers
   playAgainButton.focus(); // moves focus into the modal, matching aria-modal="true"
+  playSound("gameOver");
 }
 
 function checkWinCondition() {

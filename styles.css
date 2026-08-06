@@ -39,6 +39,7 @@
   --color-text-base-inverse: #fff;
   --color-text-panel-hp: #ff8b8b;
   --color-text-panel-mana: #7cb7ff;
+  --color-text-panel-heal: #4ea96b;
   --color-text-card-description: #aebfd6;
 
   --color-bg-arena: radial-gradient(ellipse at top, #1e2a3a 0%, #0d1117 60%);
@@ -154,6 +155,9 @@ body {
   height: 100dvh;
   overflow: hidden; /* prevents vertical scrolling */
 
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+
   font-family: 'Cinzel', 'Palatino Linotype', Georgia, serif;
   color: var(--color-text-base-default);
   background: var(--color-bg-arena);
@@ -173,15 +177,6 @@ body::before {
     rgba(63, 124, 255, 0.10) 0%,
     transparent 70%
   );
-}
-
-@keyframes fadeInBg {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 /* #endregion */
 
@@ -215,7 +210,7 @@ body::before {
 .screen-guard__title
 {
   color: var(--color-text-base-default);
-  font-size: var(--size-font-global-lg);
+  font-size: clamp(1.5rem, 3vw, 3rem);
   font-weight: 700;
   letter-spacing: var(--size-letter-spacing-global-wide);
   text-transform: uppercase;
@@ -224,8 +219,8 @@ body::before {
 .game-over__message,
 .screen-guard__message
  {
-  max-width: 280px;
-  font-size: var(--size-font-global-sm);
+  max-width: 480px;
+  font-size: clamp(0.9rem, 1.5vw, 1.25rem);
   line-height: var(--size-line-height-global-relaxed);
   opacity: 0.7;
 }
@@ -241,9 +236,9 @@ body::before {
   pointer-events: auto;
 }
 
-.game-over__button {
+.button.game-over__button {
   margin-top: clamp(0.5rem, 1.5vh, 1rem);
-  min-width: var(--size-width-btn);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
 }
 
 /* screen guard overlay */
@@ -251,9 +246,11 @@ body::before {
   z-index: 9999;
 }
 
-.screen-guard__icon {
-  width: 56px;
-  height: 56px;
+/* shared icon styles */
+.screen-guard__icon,
+.game-over__icon {
+  width: clamp(56px, 5vw, 96px);
+  height: clamp(56px, 5vw, 96px);
 
   fill: none;
   stroke: var(--color-text-base-default);
@@ -261,21 +258,23 @@ body::before {
   stroke-linecap: round;
   stroke-linejoin: round;
   filter: var(--shadow-filter-icon);
+}
 
+/* only one game-over icon shows at a time, matched to whichever
+  game-over--victory/--defeat modifier showGameOver() added in main.js */
+.game-over__icon {
+  display: none;
+}
+
+.game-over--victory .game-over__icon--victory,
+.game-over--defeat .game-over__icon--defeat {
+  display: block;
+}
+
+.screen-guard__icon {
   animation: 
     rotatePhone 2.4s cubic-bezier(0.4, 0, 0.2, 1)
     infinite;
-}
-
-@keyframes rotatePhone {
-  0%,  
-  35% { 
-    transform: rotate(90deg); 
-  }
-  55%, 
-  100% { 
-    transform: rotate(0deg); 
-  }
 }
 
 /* mobile landscape/low height */
@@ -321,7 +320,6 @@ body::before {
 
   gap: var(--size-gap-layout);
   padding: var(--size-padding-layout);
-
 }
 
 /* #endregion */
@@ -394,6 +392,35 @@ body::before {
 .player-panel__stat--mana {
   color: var(--color-text-panel-mana);
 }
+
+.player-panel__term {
+  color: var(--color-text-base-default);
+}
+
+.player-panel__value {
+  position: relative;
+}
+
+.stat-popup {
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-weight: 700;
+  font-size: var(--size-font-global-sm);
+  pointer-events: none;
+
+  animation: statPopupFloat 0.9s ease-out;
+}
+
+.stat-popup--negative {
+  color: var(--color-text-panel-hp);
+}
+
+.stat-popup--positive {
+  color: var(--color-text-panel-heal);
+}
 /* #endregion */
 
 /* #region [BOARD] ---------------------------------- */
@@ -455,11 +482,23 @@ body::before {
   pointer-events: none;
 }
 
+/* mirrors the :hover style, but is applied by JS during dragging
+  because pointer capture makes :hover unreliable */
+.board__slot--drop-target {
+  transform: translateY(-4px);
+  background-color: var(--color-bg-slot-hover);
+  border-color: var(--color-border-slot-hover);
+  box-shadow: var(--shadow-box-slot-hover);
+}
+
 .board__card {
   width: 100%;
   height: 100%;
+
   display: flex;
   flex-direction: column;
+
+  animation: cardEnter 0.3s ease-out;
 }
 
 /* narrower board container shifts cqi scaling compared to in-hand cards - overrides below compensate */
@@ -479,6 +518,8 @@ body::before {
 .board__card .card__art-icon {
   width: clamp(48px, 65cqi, 90px);
   height: clamp(48px, 65cqi, 90px);
+
+  animation: cardIconGlow 0.9s ease-in-out;
 }
 
 .board__card .card__stat {
@@ -643,6 +684,14 @@ body::before {
   align-items: flex-end;
   flex-wrap: nowrap;
 
+  /* Matches one card's height (aspect-ratio 2/3) plus this container's own padding.
+   Keeps the hand's grid row a fixed size so the board doesn't jump when the last card is played. */
+  min-height: calc(
+    var(--size-width-card) * 1.5
+    + var(--size-padding-block-start-card-hand)
+    + var(--size-padding-block-end-card-hand)
+  );
+
   padding-top: var(--size-padding-block-start-card-hand);
   padding-bottom: var(--size-padding-block-end-card-hand);
 }
@@ -680,6 +729,7 @@ body::before {
 
   transform-origin: bottom center;
   transform: rotate(var(--card-rotation)) translateY(var(--card-lift));
+  animation: cardEnter 0.3s ease-out;
 }
 
 .card:first-child {
@@ -710,6 +760,15 @@ body::before {
 
 .card--unaffordable > * {
   opacity: 0.5;
+}
+
+.card--dragging {
+  transition: none;
+  z-index: 30;
+  /* allow elementFromPoint() to hit the slot below;
+    pointer capture still keeps drag events on this card */
+  pointer-events: none;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
 .card__mana {
@@ -909,6 +968,82 @@ body::before {
     z-index: 20; /* always wins over tapped neighbors, regardless of DOM order */
   }
 }
+
+@media (pointer: fine) {
+  .card {
+    cursor: grab;
+  }
+}
+
+.card--dragging {
+  cursor: grabbing;
+}
+/* #endregion */
+
+/* #region [ANIMATIONS] ----------------------------- */
+/* used by body in [BASE] */
+@keyframes fadeInBg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* used by .screen-guard__icon in [OVERLAYS] */
+@keyframes rotatePhone {
+  0%,
+  35% {
+    transform: rotate(90deg);
+  }
+  55%,
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* used by .board__card in [BOARD] and .card in [CARD HAND] */
+@keyframes cardEnter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* used by .board__card .card__art-icon in [BOARD];
+   currentColor automatically picks up each spell type's color */
+@keyframes cardIconGlow {
+  0% {
+    filter: var(--shadow-filter-icon);
+  }
+  30% {
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+  55% {
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+  100% {
+    /* back to the element's regular (non-animated) style */
+    filter: var(--shadow-filter-icon);
+  }
+}
+
+/* used by .stat-popup in [PLAYER PANEL] */
+@keyframes statPopupFloat {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -24px);
+  }
+}
+
+/* reduced-motion variant of statPopupFloat - see [ACCESSIBILITY] */
+@keyframes statPopupFadeOnly {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
 /* #endregion */
 
 /* #region [ACCESSIBILITY] -------------------------- */
@@ -968,6 +1103,10 @@ body::before {
 
   .card:hover {
     transform: none;
+  }
+
+  .stat-popup {
+    animation-name: statPopupFadeOnly;
   }
 }
 /* #endregion */
