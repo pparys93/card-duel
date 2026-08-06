@@ -10,7 +10,7 @@
 
 </div>
 
-A browser-based fantasy card game built as a frontend portfolio project. The second milestone (`JavaScript Core`) is complete. The battlefield is now brought to life with JavaScript and fully playable end-to-end. Next up: elevating the experience with UI improvements.
+A browser-based fantasy card game built as a frontend portfolio project. The third milestone (`UI Improvements`) is complete. The game now offers a more polished and immersive experience, enhancing the feel of every match. Next up: migrating the architecture to React.
 
 ---
 
@@ -70,16 +70,23 @@ This project is also used to practice a professional frontend workflow:
 - keyboard focus support,
 - player hand interface,
 - fan-style hand layout by default, classic overlap on touch devices,
-- enemy and player status panels with HP and mana indicators plus a static card counter for enemy.
+- enemy and player status panels with HP and mana indicators plus a static card counter for enemy,
+- drag-and-drop card placement alongside click-to-place.
 
 ### 🎨 UI & Visual Design
 - fantasy-inspired visual style,
 - dark gradient background,
 - smooth transitions and hover effects,
 - custom typography using Google Fonts,
-- minimalist spell icons on cards crafted from vector shape paths,
+- minimalist stroke-based icon system, spanning card spell and overlay screens,
 - glassmorphism-inspired UI containers,
-- subtle depth effects using shadows and backdrop blur.
+- subtle depth effects using shadows and backdrop blur,
+- animated card entrances and spell-cast glow effects,
+- floating damage/heal indicators over stat panels.
+
+### 🔊 Sound Design
+- audio feedback for core card interactions, including drawing, previewing, selecting, and playing cards,
+- distinct sound cues for interface actions, spell effects, and match outcomes.
 
 ### ♿ Accessibility & UX
 - semantic HTML structure,
@@ -107,7 +114,9 @@ This project is also used to practice a professional frontend workflow:
 - draw card mechanic,
 - health system,
 - enemy turn logic,
-- win/lose conditions.
+- win/lose conditions,
+- pointer-based drag and drop,
+- audio feedback system.
 
 ---
 
@@ -117,18 +126,12 @@ This project is also used to practice a professional frontend workflow:
 |---|---|---|
 | [`v0.1.0`](https://github.com/pparys93/card-duel/releases/tag/v0.1.0) | HTML/CSS Foundation | ✅ Done |
 | [`v0.2.0`](https://github.com/pparys93/card-duel/releases/tag/v0.2.0) | JavaScript Core | ✅ Done |
-| `v0.3.0` | UI Improvements | ⏳ Planned |
-| `v1.0.0` | React Migration | 🔄 Planned |
+| [`v0.3.0`](https://github.com/pparys93/card-duel/releases/tag/v0.3.0) | UI Improvements | ✅ Done |
+| `v1.0.0` | React Migration | ⏳ Planned |
 
 ---
 
 ## ✍🏻 Planned Features
-
-### 🔄 UI Improvements
-- card animations,
-- drag & drop mechanics,
-- visual spell effect animations,
-- sound effects.
 
 ### 🔄 React Migration
 - reusable components,
@@ -149,6 +152,7 @@ card-duel/
 ├── favicon.ico
 │
 ├── assets/
+│   ├── audio/
 │   ├── favicons/
 │   └── images/
 │
@@ -205,7 +209,7 @@ PLAYER REGION
 
 ## 🚧 Project Status
 
-Current version: `v0.2.0`
+Current version: `v0.3.0`
 
 > 🚀 **[Live Demo](https://pparys93.github.io/card-duel)**
 
@@ -223,7 +227,20 @@ Current version: `v0.2.0`
 
 | Screen Guard | Game Over |
 |---|---|
-| <img src="assets/images/screen-guard.gif" width="400" alt="Screen guard overlay prompting to rotate device or resize window"> | <img src="assets/images/game-over.png" width="200" alt="Game over screen showing outcome based on match result"> |
+| <img src="assets/images/screen-guard.gif" width="400" alt="Screen guard overlay prompting to rotate device or resize window"> | <img src="assets/images/game-over.gif" width="200" alt="Game over screen showing outcome based on match result"> |
+
+### 🃏 Card Placement Mechanics
+
+| Drag & Drop | Tap to Place |
+|---|---|
+| <img src="assets/images/drag-drop.gif" width="200" alt="Dragging a card from the hand to a board slot"> | <img src="assets/images/tap-place.gif" width="200" alt="Tap to select and place a card on the board"> |
+
+
+### ✨ Card Animations & Spell Effects
+
+| Card Entrance | Stats Update |
+|---|---|
+| <img src="assets/images/card-entrance.gif" width="300" alt="Dragging a card from the hand to a board slot"> | <img src="assets/images/popup.gif" width="220" alt="Tap to select and place a card on the board"> |
 
 ---
 
