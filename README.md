@@ -25,7 +25,7 @@ The project aims to deliver a fully playable game experience - from a polished U
 2. Attack cards deal damage to the enemy; heal cards restore your own HP.
 3. Your hand can hold up to 5 cards.
 4. Both sides start with 1 Mana and gain +2 Mana at the start of each subsequent turn, up to a maximum of 10.
-5. Drawing a card is optional and costs 1 Mana.
+5. Drawing a card is optional, costs 1 Mana, and can only be done once per turn.
 6. Playing a card costs its Mana value. Board slots limit you to 4 cards per turn.
 7. Cards placed on the board cannot be moved or returned to your hand.
 8. Card effects resolve immediately when played.
