@@ -441,6 +441,7 @@ function startEnemyTurn() {
     playEnemyTurn();
 
     setTimeout(() => {
+      if (gameEnded) return; // player or enemy already won - skip the turn handoff
       endEnemyTurn();
     }, 1500); // keep enemy cards visible before clearing the board
   }, 0); // waits for the UI to update before placing enemy cards on the board
@@ -652,7 +653,10 @@ if (!gameOverEl || !gameOverTitle || !gameOverMessage || !playAgainButton) {
   throw new Error("main.js: game over elements not found in DOM");
 }
 
+let gameEnded = false; // guards timers scheduled before the win/loss was known
+
 function showGameOver(playerWon) {
+  gameEnded = true;
   gameOverTitle.textContent = playerWon ? "Victory!" : "Defeated!";
   gameOverMessage.textContent = playerWon
     ? "Your spells proved superior. The enemy stands defeated."
