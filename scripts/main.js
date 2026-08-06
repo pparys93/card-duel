@@ -278,8 +278,6 @@ function placeCard(slotElement) {
   } else {
     healPlayer(card.stat);
   }
-  // stop if either HP reaches 0
-  if (checkWinCondition()) return;
 
   currentHand = currentHand.filter(c => c !== card);
 
@@ -289,6 +287,8 @@ function placeCard(slotElement) {
   updateHandLayout();
   refreshHandAffordability();
   updateDrawButtonState();
+  // checked last so cleanup above always runs, even on the finishing blow
+  checkWinCondition();
 }
 
 function clearPlayerBoard() {
