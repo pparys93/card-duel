@@ -96,7 +96,8 @@ This project is also used to practice a professional frontend workflow:
 - touch-friendly controls,
 - `prefers-reduced-motion` support,
 - visually hidden headings for screen readers using the `visually-hidden` class,
-- screen-guard overlay when the browser window is too short or the device is in a non-optimal orientation.
+- screen-guard overlay when the browser window is too short or the device is in a non-optimal orientation,
+- game rules overlay shown on load, introducing new players to the mechanics before their first move.
 
 ### 🧱 CSS Architecture
 - BEM naming convention,
@@ -127,6 +128,7 @@ This project is also used to practice a professional frontend workflow:
 | [`v0.1.0`](https://github.com/pparys93/card-duel/releases/tag/v0.1.0) | HTML/CSS Foundation | ✅ Done |
 | [`v0.2.0`](https://github.com/pparys93/card-duel/releases/tag/v0.2.0) | JavaScript Core | ✅ Done |
 | [`v0.3.0`](https://github.com/pparys93/card-duel/releases/tag/v0.3.0) | UI Improvements | ✅ Done |
+| [`v0.4.0`](https://github.com/pparys93/card-duel/releases/tag/v0.4.0) | Rules Overlay | ✅ Done |
 | `v1.0.0` | React Migration | ⏳ Planned |
 
 ---
@@ -209,7 +211,7 @@ PLAYER REGION
 
 ## 🚧 Project Status
 
-Current version: `v0.3.3`
+Current version: `v0.4.0`
 
 > 🚀 **[Live Demo](https://pparys93.github.io/card-duel)**
 
@@ -225,9 +227,13 @@ Current version: `v0.3.3`
 
 ### 🎭 Overlays
 
-| Screen Guard | Game Over |
+| Game Rules | Game Over |
 |---|---|
-| <img src="assets/images/screen-guard.gif" width="400" alt="Screen guard overlay prompting to rotate device or resize window"> | <img src="assets/images/game-over.gif" width="200" alt="Game over screen showing outcome based on match result"> |
+| <img src="assets/images/game-rules.png" width="200" alt="Rules overlay shown on page load, listing core game rules with a link to the full ruleset"> | <img src="assets/images/game-over.gif" width="200" alt="Game over screen showing outcome based on match result"> |
+
+| Screen Guard |
+|---|
+| <img src="assets/images/screen-guard.gif" width="400" alt="Screen guard overlay prompting to rotate device or resize window"> |
 
 ### 🃏 Card Placement Mechanics
 
