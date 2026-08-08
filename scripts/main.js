@@ -22,6 +22,25 @@ if (!endTurnButton || !playerNameEl || !enemyNameEl || !drawCardButton || !drawC
 }
 // #endregion
 
+// #region [RULES OVERLAY] --------------------------->
+const rulesOverlayEl = document.querySelector(".rules-overlay");
+const rulesOverlayButton = document.querySelector(".rules-overlay__button");
+
+if (!rulesOverlayEl || !rulesOverlayButton) {
+  throw new Error("main.js: rules overlay elements not found in DOM");
+}
+
+rulesOverlayEl.classList.add("rules-overlay--visible");
+game.inert = true; // blocks focus/interaction with the board, and hides it from screen readers
+rulesOverlayButton.focus(); // moves focus into the modal, matching aria-modal="true"
+
+rulesOverlayButton.addEventListener("click", () => {
+  rulesOverlayEl.classList.remove("rules-overlay--visible");
+  game.inert = false;
+  drawCardButton.focus(); // hands focus to the first meaningful action
+});
+// #endregion
+
 // #region [MANA SYSTEM] ----------------------------->
 const MAX_MANA = 10;
 const MANA_INCREMENT = 2;

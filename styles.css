@@ -183,7 +183,8 @@ body::before {
 /* #region [OVERLAYS] ------------------------------- */
 /* shared overlay styles */
 .game-over,
-.screen-guard
+.screen-guard,
+.rules-overlay
  {
   position: fixed;
   inset: 0;
@@ -207,7 +208,8 @@ body::before {
 }
 
 .game-over__title,
-.screen-guard__title
+.screen-guard__title,
+.rules-overlay__title
 {
   color: var(--color-text-base-default);
   font-size: clamp(1.5rem, 3vw, 3rem);
@@ -217,7 +219,8 @@ body::before {
 }
 
 .game-over__message,
-.screen-guard__message
+.screen-guard__message,
+.rules-overlay__list
  {
   max-width: 480px;
   font-size: clamp(0.9rem, 1.5vw, 1.25rem);
@@ -246,9 +249,58 @@ body::before {
   z-index: 9999;
 }
 
+/* rules overlay */
+.rules-overlay {
+  z-index: 9997;
+}
+
+.rules-overlay--visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.rules-overlay__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  list-style: decimal;
+  padding-left: 1.4em;
+  text-align: left;
+}
+
+.rules-overlay__list li::marker {
+  color: var(--color-text-base-default);
+  font-weight: 700;
+}
+
+.rules-overlay__link {
+  color: var(--color-text-panel-mana);
+  font-size: var(--size-font-global-md);
+  text-decoration: underline;
+}
+
+.button.rules-overlay__button {
+  margin-top: clamp(0.5rem, 1.5vh, 1rem);
+}
+
+.rules-overlay__stat {
+  font-weight: 700;
+}
+
+.rules-overlay__stat--hp {
+  color: var(--color-text-panel-hp);
+}
+
+.rules-overlay__stat--mana {
+  color: var(--color-text-panel-mana);
+}
+
 /* shared icon styles */
 .screen-guard__icon,
-.game-over__icon {
+.game-over__icon,
+.rules-overlay__icon {
   width: clamp(56px, 5vw, 96px);
   height: clamp(56px, 5vw, 96px);
 

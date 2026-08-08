@@ -25,6 +25,48 @@
 
 <body>
   <!-- #region [OVERLAYS] --------------------------------> 
+  <!-- rules -->
+  <div 
+    class="rules-overlay" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="rules-overlay-title" 
+    aria-describedby="rules-overlay-message"
+  >
+    <svg 
+      class="rules-overlay__icon" 
+      viewBox="0 0 24 24" 
+      aria-hidden="true"
+    >
+      <path d="M15 12h-5"/>
+      <path d="M15 8h-5"/>
+      <path d="M19 17V5a2 2 0 0 0-2-2H4"/>
+      <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/>
+    </svg>
+    <p 
+      class="rules-overlay__title" 
+      id="rules-overlay-title"
+      role="heading" 
+      aria-level="2"
+    >How to Play</p>
+    <ol class="rules-overlay__list" id="rules-overlay-message">
+      <li>Reduce your opponent's <span class="rules-overlay__stat rules-overlay__stat--hp">HP</span> to 0 to win.</li>
+      <li><span class="rules-overlay__stat rules-overlay__stat--mana">Mana</span> grows every turn - spend it to play cards from your hand.</li>
+      <li>Your hand holds up to 5 cards at once.</li>
+      <li>The match ends the instant either side's <span class="rules-overlay__stat rules-overlay__stat--hp">HP</span> reaches 0.</li>
+    </ol>
+    <a 
+      class="rules-overlay__link"
+      href="https://github.com/pparys93/card-duel#readme"
+      target="_blank"
+      rel="noopener noreferrer"
+    >Full rules on GitHub</a>
+    <button 
+      class="button button--play-again rules-overlay__button" 
+      type="button"
+    >Begin the Duel</button>
+</div>
+
   <!-- screen guard -->
   <div class="screen-guard" role="alert">
     <svg 
