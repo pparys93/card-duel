@@ -30,13 +30,20 @@ if (!rulesOverlayEl || !rulesOverlayButton) {
   throw new Error("main.js: rules overlay elements not found in DOM");
 }
 
-rulesOverlayEl.classList.add("rules-overlay--visible");
-game.inert = true; // blocks focus/interaction with the board, and hides it from screen readers
-rulesOverlayButton.focus(); // moves focus into the modal, matching aria-modal="true"
+const RULES_SEEN_KEY = "cardDuelRulesSeen";
+
+// shown once per session - persists across "Play Again" reloads, resets on a
+// new visit, preserving the forced first click that unlocks audio
+if (!sessionStorage.getItem(RULES_SEEN_KEY)) {
+  rulesOverlayEl.classList.add("rules-overlay--visible");
+  game.inert = true; // blocks focus/interaction with the board, and hides it from screen readers
+  rulesOverlayButton.focus(); // moves focus into the modal, matching aria-modal="true"
+}
 
 rulesOverlayButton.addEventListener("click", () => {
   rulesOverlayEl.classList.remove("rules-overlay--visible");
   game.inert = false;
+  sessionStorage.setItem(RULES_SEEN_KEY, "true");
   drawCardButton.focus(); // hands focus to the first meaningful action
 });
 // #endregion
