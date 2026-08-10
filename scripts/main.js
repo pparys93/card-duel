@@ -579,7 +579,10 @@ function renderCard(card) {
     }
   });
 
-  article.addEventListener("pointerenter", () => playSound("cardPreview"));
+  article.addEventListener("pointerenter", () => {
+    if (article.classList.contains("card--selected")) return;
+    playSound("cardPreview");
+  });
   enableCardDrag(article, card);
   setCardAffordability(article, card);
 
