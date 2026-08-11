@@ -164,7 +164,8 @@ card-duel/
 │   └── main.js
 │
 ├── README.md
-└── CHANGELOG.md
+├── CHANGELOG.md
+└── LICENSE
 ```
 
 ---
