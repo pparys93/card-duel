@@ -163,7 +163,8 @@ card-duel/
 │   ├── cards.js
 │   └── main.js
 │
-└── README.md
+├── README.md
+└── CHANGELOG.md
 ```
 
 ---
@@ -211,7 +212,7 @@ PLAYER REGION
 
 ## 🚧 Project Status
 
-Current version: `v0.4.2`
+Current version: [`v0.4.2`](./CHANGELOG.md)
 
 > 🚀 **[Live Demo](https://pparys93.github.io/card-duel)**
 
