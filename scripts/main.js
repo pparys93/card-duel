@@ -338,7 +338,8 @@ function clearEnemyBoard() {
 
 function initPlacement() {
   document.querySelectorAll(".board--player .board__slot").forEach(slot => {
-    slot.dataset.baseLabel = slot.getAttribute("aria-label"); // stored so clearPlayerBoard can restore it
+    // stored so clearPlayerBoard can restore it
+    slot.dataset.baseLabel = slot.getAttribute("aria-label");
     slot.addEventListener("click", () => placeCard(slot));
   });
 }
@@ -350,7 +351,7 @@ initPlacement();
 const DRAG_THRESHOLD_PX = 8;
 const supportsDrag = window.matchMedia("(pointer: fine)").matches;
 // touch devices use tap-to-select/tap-to-place instead;
-// dragging would conflict with horizontal hand scrolling.
+// dragging would conflict with horizontal hand scrolling
 
 function enableCardDrag(cardEl, card) {
   if (!supportsDrag) return;
@@ -400,7 +401,7 @@ function enableCardDrag(cardEl, card) {
     cardEl.style.transform = `translate(${dx}px, ${dy}px)`;
 
     // pointer capture keeps e.target on the card, so look up the element
-    // under the cursor manually. Update classes only when the target changes.
+    // under the cursor manually; update classes only when the target changes
     const target = document
       .elementFromPoint(e.clientX, e.clientY)
       ?.closest(".board--player .board__slot:not(.board__slot--occupied)");
@@ -413,7 +414,8 @@ function enableCardDrag(cardEl, card) {
   });
 
   cardEl.addEventListener("pointerup", () => {
-    if (!dragging) { startX = undefined; return; } // plain click - existing click handler takes over
+    // plain click - existing click handler takes over
+    if (!dragging) { startX = undefined; return; }
     const dropTarget = currentDropTarget; // already known from the last pointermove
     endDrag();
 

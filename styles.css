@@ -313,7 +313,7 @@ body::before {
 }
 
 /* only one game-over icon shows at a time, matched to whichever
-  game-over--victory/--defeat modifier showGameOver() added in main.js */
+game-over--victory/--defeat modifier showGameOver() added in main.js */
 .game-over__icon {
   display: none;
 }
@@ -535,7 +535,7 @@ body::before {
 }
 
 /* mirrors the :hover style, but is applied by JS during dragging
-  because pointer capture makes :hover unreliable */
+because pointer capture makes :hover unreliable */
 .board__slot--drop-target {
   transform: translateY(-4px);
   background-color: var(--color-bg-slot-hover);
@@ -736,8 +736,8 @@ body::before {
   align-items: flex-end;
   flex-wrap: nowrap;
 
-  /* Matches one card's height (aspect-ratio 2/3) plus this container's own padding.
-   Keeps the hand's grid row a fixed size so the board doesn't jump when the last card is played. */
+  /* matches one card's height (aspect-ratio 2/3) plus this container's own padding;
+  keeps the hand's grid row a fixed size so the board doesn't jump when the last card is played */
   min-height: calc(
     var(--size-width-card) * 1.5
     + var(--size-padding-block-start-card-hand)
@@ -817,8 +817,9 @@ body::before {
 .card--dragging {
   transition: none;
   z-index: 30;
+
   /* allow elementFromPoint() to hit the slot below;
-    pointer capture still keeps drag events on this card */
+  pointer capture still keeps drag events on this card */
   pointer-events: none;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
@@ -1062,7 +1063,7 @@ body::before {
 }
 
 /* used by .board__card .card__art-icon in [BOARD];
-   currentColor automatically picks up each spell type's color */
+currentColor automatically picks up each spell type's color */
 @keyframes cardIconGlow {
   0% {
     filter: var(--shadow-filter-icon);

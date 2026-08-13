@@ -73,5 +73,5 @@ const icons = {
   `)
   // #endregion
 };
-// Fixed lookup table - freezing is enough since every value here is an immutable string.
+// fixed lookup table - freezing is enough since every value here is an immutable string
 Object.freeze(icons);

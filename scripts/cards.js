@@ -86,6 +86,6 @@ const cards = [
   // #endregion
 ];
 // Object.freeze() is shallow - each card object needs freezing individually,
-// otherwise cards[i].mana = 999 would still work despite freezing the array.
+// otherwise cards[i].mana = 999 would still work despite freezing the array
 cards.forEach(card => Object.freeze(card));
 Object.freeze(cards);
