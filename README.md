@@ -213,7 +213,7 @@ PLAYER REGION
 
 ## 🚧 Project Status
 
-Current version: [`v0.4.2`](./CHANGELOG.md)
+Current version: [`v0.4.3`](./CHANGELOG.md)
 
 > 🚀 **[Live Demo](https://pparys93.github.io/card-duel)**
 

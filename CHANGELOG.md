@@ -17,6 +17,9 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 <details>
 <summary><strong>Patches on top of v0.4.0</strong> - v0.4.1, v0.4.2</summary>
 
+**[v0.4.3] | 2026-08-15**
+- Fixed: audio feedback no longer plays while the `screen-guard` overlay is covering the board, avoiding the impression that something is happening off-screen when the player can't see it
+
 **[v0.4.2] | 2026-08-10**
 - Fixed: hover preview sound (`cardPreview`) no longer replays when hovering a card that's already selected
 
@@ -100,6 +103,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 [v0.4.0]: https://github.com/pparys93/card-duel/releases/tag/v0.4.0
 [v0.4.1]: https://github.com/pparys93/card-duel/releases/tag/v0.4.1
 [v0.4.2]: https://github.com/pparys93/card-duel/releases/tag/v0.4.2
+[v0.4.3]: https://github.com/pparys93/card-duel/releases/tag/v0.4.3
 [v0.3.0]: https://github.com/pparys93/card-duel/releases/tag/v0.3.0
 [v0.3.1]: https://github.com/pparys93/card-duel/releases/tag/v0.3.1
 [v0.3.2]: https://github.com/pparys93/card-duel/releases/tag/v0.3.2
