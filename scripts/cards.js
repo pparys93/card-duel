@@ -1,6 +1,6 @@
 const cards = [
   // #region [TYPE: ATTACK] ---------------------------->
-   {
+  {
     id: "ensnare",
     name: "Ensnare",
     description: "Trap enemies.",
@@ -47,7 +47,7 @@ const cards = [
     mana: 1,
     stat: 3,
     type: "attack"
-  }, 
+  },
   // #endregion
 
   // #region [TYPE: HEAL] ---------------------------->
@@ -58,7 +58,7 @@ const cards = [
     mana: 2,
     stat: 3,
     type: "heal"
-  }, 
+  },
   {
     id: "healing",
     name: "Healing",
@@ -66,7 +66,7 @@ const cards = [
     mana: 2,
     stat: 4,
     type: "heal"
-  }, 
+  },
   {
     id: "potion",
     name: "Potion",

@@ -184,8 +184,7 @@ body::before {
 /* shared overlay styles */
 .game-over,
 .screen-guard,
-.rules-overlay
- {
+.rules-overlay {
   position: fixed;
   inset: 0;
 
@@ -209,8 +208,7 @@ body::before {
 
 .game-over__title,
 .screen-guard__title,
-.rules-overlay__title
-{
+.rules-overlay__title {
   color: var(--color-text-base-default);
   font-size: clamp(1.5rem, 3vw, 3rem);
   font-weight: 700;
@@ -220,8 +218,7 @@ body::before {
 
 .game-over__message,
 .screen-guard__message,
-.rules-overlay__list
- {
+.rules-overlay__list {
   max-width: 480px;
   font-size: clamp(0.9rem, 1.5vw, 1.25rem);
   line-height: var(--size-line-height-global-relaxed);
