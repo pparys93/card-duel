@@ -1,3 +1,5 @@
+"use strict";
+
 const cards = [
   // #region [TYPE: ATTACK] ---------------------------->
   {

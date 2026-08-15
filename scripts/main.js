@@ -1,3 +1,5 @@
+"use strict";
+
 // #region [DOM REFERENCES] -------------------------->
 const game = document.querySelector(".game");
 const cardHand = document.querySelector(".card-hand");

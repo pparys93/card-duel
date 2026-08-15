@@ -1,3 +1,5 @@
+"use strict";
+
 // name is passed explicitly (not derived from the object key) 
 // to keep it in sync with the modifier class below
 const icon = (name, paths) =>
