@@ -1,0 +1,37 @@
+.icon {
+  display: block;
+
+  width: clamp(52px, 35cqi, 68px);
+  height: clamp(52px, 35cqi, 68px);
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: var(--shadow-filter-icon);
+}
+
+.fire {
+  color: var(--color-icon-fire);
+}
+
+.frost {
+  color: var(--color-icon-frost);
+}
+
+.storm {
+  color: var(--color-icon-storm);
+}
+
+.earth {
+  color: var(--color-icon-earth);
+}
+
+.arcane {
+  color: var(--color-icon-arcane);
+}
+
+.vital {
+  color: var(--color-icon-vital);
+}
