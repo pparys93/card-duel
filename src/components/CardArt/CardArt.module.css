@@ -1,0 +1,15 @@
+.art {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: clamp(64px, 45cqi, 110px);
+
+  border-bottom: 1px solid var(--color-border-card-art-divider);
+
+  background: linear-gradient(
+    180deg,
+    var(--color-bg-card-art-overlay-start),
+    var(--color-bg-card-art-overlay-end)
+  );
+}
