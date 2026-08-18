@@ -1,0 +1,25 @@
+.stat {
+  margin: 0 0 var(--size-space-global-sm) var(--size-space-global-sm);
+  align-self: flex-start;
+
+  width: clamp(28px, 22cqi, 52px);
+  height: clamp(28px, 22cqi, 52px);
+
+  border-radius: var(--size-radius-card-stat);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--color-text-base-inverse);
+  font-size: var(--size-font-global-md);
+  font-weight: 700;
+}
+
+.attack {
+  background: var(--color-bg-card-attack);
+}
+
+.heal {
+  background: var(--color-bg-card-heal);
+}
