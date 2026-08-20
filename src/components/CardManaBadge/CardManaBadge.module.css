@@ -1,0 +1,21 @@
+.mana {
+  position: absolute;
+  top: var(--size-space-global-sm);
+  left: var(--size-space-global-sm);
+  z-index: 1;
+
+  width: clamp(28px, 22cqi, 48px);
+  height: clamp(28px, 22cqi, 48px);
+  border-radius: var(--size-radius-global-round);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--color-text-base-inverse);
+  font-size: var(--size-font-global-md);
+  font-weight: 700;
+
+  background: var(--color-bg-card-mana);
+  box-shadow: var(--shadow-box-card-mana);
+}

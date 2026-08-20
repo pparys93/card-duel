@@ -1,0 +1,27 @@
+.content {
+  flex: 1;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: clamp(10px, 1cqi, 14px);
+}
+
+.title {
+  font-size: clamp(1rem, 14cqi, 1.4rem);
+  font-weight: 700;
+  letter-spacing: var(--size-letter-spacing-global-tight);
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.description {
+  margin-block: auto;
+
+  color: var(--color-text-card-description);
+  font-size: clamp(0.95rem, 12.5cqi, 1.25rem);
+  line-height: var(--size-line-height-global-tight);
+}
