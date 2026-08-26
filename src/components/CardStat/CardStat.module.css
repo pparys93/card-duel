@@ -23,3 +23,16 @@
 .heal {
   background: var(--color-bg-card-heal);
 }
+
+.board {
+  margin: 0;
+  align-self: stretch;
+  border-radius: 0;
+
+  width: 100%;
+  height: auto;
+
+  padding-block: clamp(6px, 10cqi, 14px);
+
+  font-size: clamp(0.9rem, 30cqi, 1.5rem);
+}

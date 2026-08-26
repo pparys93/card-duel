@@ -13,3 +13,29 @@
     var(--color-bg-card-art-overlay-end)
   );
 }
+
+.board {
+  flex: 1;
+  width: 100%;
+  height: auto;
+}
+
+.board svg {
+  width: clamp(48px, 65cqi, 90px);
+  height: clamp(48px, 65cqi, 90px);
+
+  animation: cardIconGlow 0.9s ease-in-out;
+}
+
+@keyframes cardIconGlow {
+  0% {
+    filter: var(--shadow-filter-icon);
+  }
+  30%,
+  55% {
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+  100% {
+    filter: var(--shadow-filter-icon);
+  }
+}
