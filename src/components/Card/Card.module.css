@@ -44,3 +44,10 @@
 .unaffordable > * {
   opacity: 0.5;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition-property: box-shadow, opacity;
+    transition-duration: 0.15s;
+  }
+}
