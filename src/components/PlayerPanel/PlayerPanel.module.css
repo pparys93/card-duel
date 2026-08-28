@@ -1,0 +1,75 @@
+.panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: var(--size-padding-block-panel) var(--size-padding-inline-panel);
+
+  border: 1px solid var(--color-border-panel);
+  border-radius: var(--size-radius-panel);
+  background-color: var(--color-bg-panel);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow:
+    inset var(--shadow-box-panel-highlight),
+    var(--shadow-box-panel);
+}
+
+.enemy {
+  grid-area: enemy-panel;
+}
+
+.player {
+  grid-area: player-panel;
+}
+
+.name {
+  font-size: var(--size-font-global-lg);
+  font-weight: 700;
+  letter-spacing: var(--size-letter-spacing-global-wide);
+  text-transform: uppercase;
+}
+
+.inactive {
+  opacity: 0.35;
+}
+
+.stats {
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  gap: var(--size-gap-panel-stats);
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+
+  gap: var(--size-space-global-2xs);
+  padding: var(--size-padding-block-panel-stat) var(--size-padding-inline-panel-stat);
+
+  background-color: var(--color-bg-panel-stat);
+  border-radius: var(--size-radius-panel-stat);
+  border: 1px solid var(--color-border-panel-stat);
+
+  font-size: var(--size-font-global-sm);
+  font-weight: 700;
+  letter-spacing: var(--size-letter-spacing-global-normal);
+}
+
+.hp {
+  color: var(--color-text-panel-hp);
+}
+
+.mana {
+  color: var(--color-text-panel-mana);
+}
+
+.term {
+  color: var(--color-text-base-default);
+}
+
+.value {
+  position: relative;
+}
