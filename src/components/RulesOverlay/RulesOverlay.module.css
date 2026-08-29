@@ -1,0 +1,55 @@
+.overlay {
+  composes: overlay from "../../styles/overlay.module.css";
+  z-index: 9997;
+}
+
+.visible {
+  composes: visible from "../../styles/overlay.module.css";
+}
+
+.icon {
+  composes: icon from "../../styles/overlay.module.css";
+}
+
+.title {
+  composes: title from "../../styles/overlay.module.css";
+}
+
+.list {
+  composes: message from "../../styles/overlay.module.css";
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  list-style: decimal;
+  padding-left: 1.4em;
+  text-align: left;
+}
+
+.list li::marker {
+  color: var(--color-text-base-default);
+  font-weight: 700;
+}
+
+.link {
+  color: var(--color-text-panel-mana);
+  font-size: var(--size-font-global-md);
+  text-decoration: underline;
+}
+
+.button {
+  composes: button playAgain from "../../styles/button.module.css";
+  margin-top: clamp(0.5rem, 1.5vh, 1rem);
+}
+
+.stat {
+  font-weight: 700;
+}
+
+.hp {
+  color: var(--color-text-panel-hp);
+}
+
+.mana {
+  color: var(--color-text-panel-mana);
+}
