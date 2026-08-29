@@ -1,0 +1,133 @@
+.controls {
+  grid-area: turn-controls;
+  position: relative;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--size-gap-turn-controls);
+}
+
+.controls::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-bg-divider) 30%,
+    var(--color-bg-divider) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.button {
+  min-width: var(--size-width-btn);
+  padding: var(--size-padding-block-btn) var(--size-padding-inline-btn);
+
+  border: none;
+  border-radius: var(--size-radius-button);
+
+  font-family: inherit;
+  color: var(--color-text-base-inverse);
+  font-size: var(--size-font-global-sm);
+  font-weight: 700;
+  letter-spacing: var(--size-letter-spacing-global-wide);
+  text-transform: uppercase;
+
+  cursor: pointer;
+  filter: brightness(1);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+
+  touch-action: manipulation;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+  filter: none;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-outline-btn-focus);
+  outline-offset: var(--size-space-global-2xs);
+}
+
+.manaBadge {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  pointer-events: none;
+
+  width: clamp(24px, 2vw, 28px);
+  height: clamp(24px, 2vw, 28px);
+  border-radius: var(--size-radius-global-round);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--color-text-base-inverse);
+  font-size: var(--size-font-global-sm);
+  font-weight: 700;
+  letter-spacing: normal;
+  text-transform: none;
+
+  background: var(--color-bg-card-mana);
+  box-shadow: var(--shadow-box-card-mana);
+}
+
+.endTurn {
+  background: var(--color-bg-btn-end-turn);
+  box-shadow: var(--shadow-box-btn-end-turn);
+}
+
+.endTurn:active:not(:disabled) {
+  filter: brightness(0.96);
+  transform: translateY(0);
+}
+
+.draw {
+  position: relative;
+
+  background: var(--color-bg-btn-draw);
+  box-shadow: var(--shadow-box-btn-draw);
+}
+
+.draw:active:not(:disabled) {
+  filter: brightness(0.96);
+  transform: translateY(0);
+}
+
+@media (hover: hover) {
+  .endTurn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-box-btn-end-turn-hover);
+  }
+
+  .draw:hover:not(:disabled) {
+    background: var(--color-bg-btn-draw-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-box-btn-draw-hover);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition-property: box-shadow, opacity, filter;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+  }
+
+  .button:is(:hover, :active) {
+    transform: none;
+  }
+}
