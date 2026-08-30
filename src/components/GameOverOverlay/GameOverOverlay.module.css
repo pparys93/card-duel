@@ -1,0 +1,26 @@
+.overlay {
+  composes: overlay from "../../styles/overlay.module.css";
+  z-index: 9998;
+}
+
+.visible {
+  composes: visible from "../../styles/overlay.module.css";
+}
+
+.icon {
+  composes: icon from "../../styles/overlay.module.css";
+}
+
+.title {
+  composes: title from "../../styles/overlay.module.css";
+}
+
+.message {
+  composes: message from "../../styles/overlay.module.css";
+}
+
+.button {
+  composes: button playAgain from "../../styles/button.module.css";
+  margin-top: clamp(0.5rem, 1.5vh, 1rem);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
