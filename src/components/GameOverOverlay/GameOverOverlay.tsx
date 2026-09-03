@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import styles from "./GameOverOverlay.module.css";
 
 interface GameOverOverlayProps {
@@ -18,10 +19,16 @@ const OUTCOME_CONTENT = {
 } as const;
 
 function GameOverOverlay({ visible, outcome, onPlayAgain }: GameOverOverlayProps) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  // moves focus into the modal on open, matching aria-modal="true"
+  useEffect(() => {
+    if (visible) buttonRef.current?.focus();
+  }, [visible]);
+
   const overlayClassName = [styles.overlay, visible && styles.visible]
     .filter(Boolean)
     .join(" ");
-
   const content = outcome ? OUTCOME_CONTENT[outcome] : null;
 
   return (
@@ -58,7 +65,7 @@ function GameOverOverlay({ visible, outcome, onPlayAgain }: GameOverOverlayProps
       <p id="game-over-message" className={styles.message}>
         {content?.message}
       </p>
-      <button type="button" className={styles.button} onClick={onPlayAgain}>
+      <button ref={buttonRef} type="button" className={styles.button} onClick={onPlayAgain}>
         Play Again
       </button>
     </div>
