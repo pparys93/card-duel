@@ -11,6 +11,7 @@ import {
   ENEMY_MAX_CARDS_PER_TURN,
 } from "./constants";
 import type { HandCard } from "../types/card";
+import { createInitialState } from "./initialState";
 
 export type GameAction =
   | { type: "SELECT_CARD"; instanceId: string }
@@ -19,7 +20,8 @@ export type GameAction =
   | { type: "PLACE_CARD"; slotIndex: number }
   | { type: "END_PLAYER_TURN" }
   | { type: "PLAY_ENEMY_TURN" }
-  | { type: "END_ENEMY_TURN" };
+  | { type: "END_ENEMY_TURN" }
+  | { type: "RESTART_GAME" };
 
 export function canDrawCard(state: GameState): boolean {
   return (
@@ -186,6 +188,11 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         hasDrawnThisTurn: false,
         player: { ...state.player, mana: growMana(state.player.mana) },
       };
+    }
+
+    case "RESTART_GAME": {
+      if (!state.gameEnded) return state;
+      return createInitialState();
     }
 
     default:
