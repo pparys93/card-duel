@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import styles from "./TurnControls.module.css";
 
 interface TurnControlsProps {
@@ -8,21 +9,14 @@ interface TurnControlsProps {
   onEndTurn?: () => void;
 }
 
-function TurnControls({
-  drawCost,
-  canDraw,
-  canEndTurn,
-  onDrawCard,
-  onEndTurn,
-}: TurnControlsProps) {
+const TurnControls = forwardRef<HTMLButtonElement, TurnControlsProps>(function TurnControls(
+  { drawCost, canDraw, canEndTurn, onDrawCard, onEndTurn },
+  ref,
+) {
   return (
-    <div
-      className={styles.controls}
-      role="toolbar"
-      aria-label="Turn actions"
-      aria-orientation="horizontal"
-    >
+    <div className={styles.controls} role="toolbar" aria-label="Turn actions" aria-orientation="horizontal">
       <button
+        ref={ref}
         type="button"
         className={`${styles.button} ${styles.draw}`}
         onClick={onDrawCard}
@@ -44,6 +38,6 @@ function TurnControls({
       </button>
     </div>
   );
-}
+});
 
 export default TurnControls;
