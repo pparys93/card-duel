@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useReducer } from "react";
-import { gameReducer, canDrawCard } from "./game/reducer";
+import { gameReducer, canDrawCard, allPlayerSlotsFull } from "./game/reducer";
 import { createInitialState } from "./game/initialState";
 import { DRAW_COST } from "./game/constants";
 import RulesOverlay from "./components/RulesOverlay/RulesOverlay";
@@ -90,7 +90,9 @@ function App() {
           cards={state.hand}
           selectedInstanceId={state.selectedInstanceId}
           playerMana={state.player.mana}
+          canPlace={state.turn === "player" && !allPlayerSlotsFull(state)}
           onSelectCard={(instanceId) => dispatch({ type: "SELECT_CARD", instanceId })}
+          onDropCard={(slotIndex) => dispatch({ type: "PLACE_CARD", slotIndex })}
         />
 
         <PlayerPanel

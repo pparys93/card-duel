@@ -7,12 +7,19 @@ interface HandProps {
   cards: HandCard[];
   selectedInstanceId: string | null;
   playerMana: number;
+  canPlace: boolean;
   onSelectCard?: (instanceId: string) => void;
+  onDropCard?: (slotIndex: number) => void;
 }
 
-function Hand({ cards, selectedInstanceId, playerMana, onSelectCard }: HandProps) {
-  // skip the fan effect on touch devices - pointers don't benefit from the extra
-  // rotation/lift, so cards stay flat and rely on the mobile overlap style instead
+function Hand({
+  cards,
+  selectedInstanceId,
+  playerMana,
+  canPlace,
+  onSelectCard,
+  onDropCard,
+}: HandProps) {
   const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
 
   return (
@@ -24,7 +31,9 @@ function Hand({ cards, selectedInstanceId, playerMana, onSelectCard }: HandProps
           style={isTouchDevice ? undefined : getCardFanTransform(index, cards.length)}
           selected={selectedInstanceId === card.instanceId}
           affordable={card.mana <= playerMana}
+          canPlace={canPlace}
           onSelect={() => onSelectCard?.(card.instanceId)}
+          onDrop={onDropCard}
         />
       ))}
     </div>

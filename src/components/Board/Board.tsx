@@ -20,6 +20,7 @@ function Board({ variant, slots, onPlaceCard }: BoardProps) {
           variant={variant}
           label={`${sideLabel} slot ${index + 1}`}
           card={card}
+          index={index}
           onPlace={variant === "player" ? () => onPlaceCard?.(index) : undefined}
         />
       ))}

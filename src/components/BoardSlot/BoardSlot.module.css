@@ -19,6 +19,13 @@
   outline-offset: var(--size-space-global-2xs);
 }
 
+.slot[data-drop-active="true"] {
+  transform: translateY(-4px);
+  background-color: var(--color-bg-slot-hover);
+  border-color: var(--color-border-slot-hover);
+  box-shadow: var(--shadow-box-slot-hover);
+}
+
 .inactive {
   background-color: rgba(180, 60, 60, 0.07);
   border-color: rgba(180, 60, 60, 0.25);

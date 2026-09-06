@@ -63,6 +63,17 @@
   opacity: 0.5;
 }
 
+.dragging {
+  transition: none;
+  z-index: 30;
+
+  /* allow elementFromPoint() to hit the slot below;
+  pointer capture still keeps drag events on this card */
+  pointer-events: none;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  cursor: grabbing;
+}
+
 @keyframes cardEnter {
   from {
     opacity: 0;
@@ -107,6 +118,12 @@
     transform-origin: initial;
     margin-inline: 0;
     margin-left: clamp(-48px, -3.5vw, -30px);
+  }
+}
+
+@media (pointer: fine) {
+  .card {
+    cursor: grab;
   }
 }
 

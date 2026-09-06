@@ -6,10 +6,11 @@ interface BoardSlotProps {
   variant: "enemy" | "player";
   label: string;
   card?: CardData;
+  index?: number;
   onPlace?: () => void;
 }
 
-function BoardSlot({ variant, label, card, onPlace }: BoardSlotProps) {
+function BoardSlot({ variant, label, card, index, onPlace }: BoardSlotProps) {
   const className = [
     styles.slot,
     variant === "enemy" && styles.inactive,
@@ -35,6 +36,8 @@ function BoardSlot({ variant, label, card, onPlace }: BoardSlotProps) {
       aria-label={card ? `${label}, occupied by ${card.name}` : label}
       onClick={onPlace}
       disabled={Boolean(card)}
+      data-slot-index={index}
+      data-drop-target={card ? undefined : "true"}
     >
       {content}
     </button>

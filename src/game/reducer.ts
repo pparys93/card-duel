@@ -32,7 +32,7 @@ export function canDrawCard(state: GameState): boolean {
   );
 }
 
-function allPlayerSlotsFull(state: GameState): boolean {
+export function allPlayerSlotsFull(state: GameState): boolean {
   return state.playerBoard.every((slot) => slot !== undefined);
 }
 
