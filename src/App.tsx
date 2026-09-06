@@ -9,7 +9,7 @@ import GameOverOverlay from "./components/GameOverOverlay/GameOverOverlay";
 import PlayerPanel from "./components/PlayerPanel/PlayerPanel";
 import Board from "./components/Board/Board";
 import TurnControls from "./components/TurnControls/TurnControls";
-import Card from "./components/Card/Card";
+import Hand from "./components/Hand/Hand";
 import styles from "./App.module.css";
 
 const RULES_SEEN_KEY = "cardDuelRulesSeen";
@@ -86,19 +86,12 @@ function App() {
           onPlaceCard={(slotIndex) => dispatch({ type: "PLACE_CARD", slotIndex })}
         />
 
-        <div className={styles.hand}>
-          {state.hand.map((card) => (
-            <Card
-              key={card.instanceId}
-              card={card}
-              selected={state.selectedInstanceId === card.instanceId}
-              affordable={card.mana <= state.player.mana}
-              onSelect={() =>
-                dispatch({ type: "SELECT_CARD", instanceId: card.instanceId })
-              }
-            />
-          ))}
-        </div>
+        <Hand
+          cards={state.hand}
+          selectedInstanceId={state.selectedInstanceId}
+          playerMana={state.player.mana}
+          onSelectCard={(instanceId) => dispatch({ type: "SELECT_CARD", instanceId })}
+        />
 
         <PlayerPanel
           variant="player"

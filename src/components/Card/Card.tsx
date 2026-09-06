@@ -1,4 +1,4 @@
-import type { KeyboardEvent } from "react";
+import type { CSSProperties, KeyboardEvent } from "react";
 import type { CardData } from "../../types/card";
 import CardManaBadge from "../CardManaBadge/CardManaBadge";
 import CardArt from "../CardArt/CardArt";
@@ -11,9 +11,10 @@ interface CardProps {
   selected?: boolean;
   affordable?: boolean;
   onSelect?: () => void;
+  style?: CSSProperties;
 }
 
-function Card({ card, selected = false, affordable = true, onSelect }: CardProps) {
+function Card({ card, selected = false, affordable = true, onSelect, style }: CardProps) {
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
@@ -32,6 +33,7 @@ function Card({ card, selected = false, affordable = true, onSelect }: CardProps
   return (
     <article
       className={classNames}
+      style={style}
       tabIndex={0}
       onClick={onSelect}
       onKeyDown={handleKeyDown}
