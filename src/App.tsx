@@ -3,6 +3,7 @@ import { useReducer } from "react";
 import { gameReducer, canDrawCard, allPlayerSlotsFull } from "./game/reducer";
 import { createInitialState } from "./game/initialState";
 import { DRAW_COST } from "./game/constants";
+import { useSoundEffects } from "./hooks/useSoundEffects";
 import RulesOverlay from "./components/RulesOverlay/RulesOverlay";
 import ScreenGuard from "./components/ScreenGuard/ScreenGuard";
 import GameOverOverlay from "./components/GameOverOverlay/GameOverOverlay";
@@ -19,6 +20,7 @@ function App() {
     () => !sessionStorage.getItem(RULES_SEEN_KEY),
   );
   const [state, dispatch] = useReducer(gameReducer, undefined, createInitialState);
+  useSoundEffects(state);
   const drawButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {

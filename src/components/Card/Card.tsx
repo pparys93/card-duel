@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import type { CSSProperties, KeyboardEvent, PointerEvent } from "react";
 import type { CardData } from "../../types/card";
+import { playSound } from "../../utils/sounds";
 import CardManaBadge from "../CardManaBadge/CardManaBadge";
 import CardArt from "../CardArt/CardArt";
 import CardContent from "../CardContent/CardContent";
@@ -137,6 +138,10 @@ function Card({
     .filter(Boolean)
     .join(" ");
 
+  const handlePointerEnter = () => {
+    if (!selected) playSound("cardPreview");
+  };
+
   return (
     <article
       ref={articleRef}
@@ -149,6 +154,7 @@ function Card({
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerCancel={endDrag}
+      onPointerEnter={handlePointerEnter}
     >
       <CardManaBadge mana={card.mana} />
       <CardArt icon={card.id} />
