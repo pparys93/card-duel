@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent, PointerEvent } from "react";
 import type { CardData } from "../../types/card";
 import { playSound } from "../../utils/sounds";
@@ -41,10 +41,11 @@ function Card({
     dragging: false,
     dropTarget: null as HTMLElement | null,
   });
+  const [isDragging, setIsDragging] = useState(false);
 
   const endDrag = () => {
     articleRef.current?.style.removeProperty("transform");
-    articleRef.current?.classList.remove(styles.dragging);
+    setIsDragging(false);
     dragState.current.dropTarget?.removeAttribute("data-drop-active");
     dragState.current = { startX: 0, startY: 0, active: false, dragging: false, dropTarget: null };
   };
@@ -73,7 +74,7 @@ function Card({
       if (!affordable || !canPlace) return;
 
       state.dragging = true;
-      articleRef.current?.classList.add(styles.dragging);
+      setIsDragging(true);
       onSelect?.();
     }
 
@@ -134,6 +135,7 @@ function Card({
     styles.card,
     selected && styles.selected,
     !affordable && styles.unaffordable,
+    isDragging && styles.dragging,
   ]
     .filter(Boolean)
     .join(" ");
