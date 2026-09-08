@@ -192,7 +192,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
     case "RESTART_GAME": {
       if (!state.gameEnded) return state;
-      return createInitialState();
+      return createInitialState(state.gameId + 1);
     }
 
     default:

@@ -3,8 +3,9 @@ import { drawHand } from "../utils/drawHand";
 import { MAX_HP, STARTING_MANA, BOARD_SIZE } from "./constants";
 import type { GameState } from "./types";
 
-export function createInitialState(): GameState {
+export function createInitialState(gameId = 0): GameState {
   return {
+    gameId,
     turn: "player",
     player: { hp: MAX_HP, mana: STARTING_MANA },
     enemy: { hp: MAX_HP, mana: STARTING_MANA },

@@ -63,6 +63,7 @@ function App() {
         <h1 className={styles.visuallyHidden}>Card Duel</h1>
 
         <PlayerPanel
+          key={`enemy-${state.gameId}`}
           variant="enemy"
           name="Enemy"
           hp={state.enemy.hp}
@@ -98,6 +99,7 @@ function App() {
         />
 
         <PlayerPanel
+          key={`player-${state.gameId}`}
           variant="player"
           name="Player"
           hp={state.player.hp}

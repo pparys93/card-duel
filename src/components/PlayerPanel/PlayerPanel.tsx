@@ -1,12 +1,16 @@
+import { useEffect, useRef, useState } from "react";
 import styles from "./PlayerPanel.module.css";
+
+interface StatPopup {
+  id: string;
+  amount: number;
+}
 
 interface PlayerPanelProps {
   variant: "enemy" | "player";
   name: string;
   hp: number;
   mana: number;
-  // enemy hand size isn't tracked yet - a static placeholder passed by the caller,
-  // not real state; add aria-live/aria-atomic on the value if this ever changes (e.g. multiplayer)
   cardCount?: number;
   isActiveTurn?: boolean;
 }
@@ -20,6 +24,21 @@ function PlayerPanel({
   isActiveTurn = true,
 }: PlayerPanelProps) {
   const isEnemy = variant === "enemy";
+  const previousHpRef = useRef(hp);
+  const [popups, setPopups] = useState<StatPopup[]>([]);
+
+  useEffect(() => {
+    const delta = hp - previousHpRef.current;
+    previousHpRef.current = hp;
+
+    if (delta !== 0) {
+      setPopups((current) => [...current, { id: crypto.randomUUID(), amount: delta }]);
+    }
+  }, [hp]);
+
+  const removePopup = (id: string) => {
+    setPopups((current) => current.filter((popup) => popup.id !== id));
+  };
 
   const panelClassName = `${styles.panel} ${isEnemy ? styles.enemy : styles.player}`;
   const nameClassName = [styles.name, !isActiveTurn && styles.inactive]
@@ -45,6 +64,16 @@ function PlayerPanel({
             aria-atomic="true"
           >
             {hp}
+            {popups.map((popup) => (
+              <span
+                key={popup.id}
+                className={`${styles.statPopup} ${popup.amount < 0 ? styles.negative : styles.positive}`}
+                aria-hidden="true"
+                onAnimationEnd={() => removePopup(popup.id)}
+              >
+                {popup.amount > 0 ? `+${popup.amount}` : popup.amount}
+              </span>
+            ))}
           </dd>
         </div>
 

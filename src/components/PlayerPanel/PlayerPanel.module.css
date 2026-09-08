@@ -73,3 +73,50 @@
 .value {
   position: relative;
 }
+
+.statPopup {
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-weight: 700;
+  font-size: var(--size-font-global-sm);
+  pointer-events: none;
+
+  animation: statPopupFloat 0.9s ease-out forwards;
+}
+
+.negative {
+  color: var(--color-text-panel-hp);
+}
+
+.positive {
+  color: var(--color-text-panel-heal);
+}
+
+@keyframes statPopupFloat {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statPopup {
+    animation-name: statPopupFadeOnly;
+  }
+}
+
+@keyframes statPopupFadeOnly {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

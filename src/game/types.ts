@@ -8,6 +8,7 @@ export interface CombatantState {
 }
 
 export interface GameState {
+  gameId: number;
   turn: Turn;
   player: CombatantState;
   enemy: CombatantState;
