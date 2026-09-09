@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import styles from "./RulesOverlay.module.css";
 
 interface RulesOverlayProps {
@@ -6,6 +7,14 @@ interface RulesOverlayProps {
 }
 
 function RulesOverlay({ visible, onBeginDuel }: RulesOverlayProps) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  // moves focus into the modal on open, matching aria-modal="true" -
+  // same pattern as GameOverOverlay, for consistent behavior across both dialogs
+  useEffect(() => {
+    if (visible) buttonRef.current?.focus();
+  }, [visible]);
+
   const overlayClassName = [styles.overlay, visible && styles.visible]
     .filter(Boolean)
     .join(" ");
@@ -50,7 +59,7 @@ function RulesOverlay({ visible, onBeginDuel }: RulesOverlayProps) {
       >
         Full rules on GitHub
       </a>
-      <button type="button" className={styles.button} onClick={onBeginDuel}>
+      <button ref={buttonRef} type="button" className={styles.button} onClick={onBeginDuel}>
         Begin the Duel
       </button>
     </div>
