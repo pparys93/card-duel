@@ -280,6 +280,7 @@ body::before {
 
 .button.rules-overlay__button {
   margin-top: clamp(0.5rem, 1.5vh, 1rem);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
 }
 
 .rules-overlay__stat {

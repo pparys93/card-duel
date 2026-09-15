@@ -15,7 +15,10 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 - Hover sound effects not playing before the first user interaction (a limitation present since audio feedback was introduced in v0.3.0) - resolved as a side effect of the overlay's required first interaction, which unlocks audio for the rest of the session
 
 <details>
-<summary><strong>Patches on top of v0.4.0</strong> - v0.4.1, v0.4.2</summary>
+<summary><strong>Patches on top of v0.4.0</strong> - v0.4.1 - v0.4.2 - v0.4.3 - v0.4.4</summary>
+
+**[v0.4.4] | 2026-09-15**
+- Fixed: rules overlay's "Begin the Duel" button now matches the game-over overlay's "Play Again" button in font size (previously smaller), since only the game-over button had the larger `font-size` applied
 
 **[v0.4.3] | 2026-08-15**
 - Fixed: audio feedback no longer plays while the `screen-guard` overlay is covering the board, avoiding the impression that something is happening off-screen when the player can't see it
@@ -25,7 +28,6 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 
 **[v0.4.1] | 2026-08-09**
 - Fixed: rules overlay now shown only once per browser session (`sessionStorage`), instead of reappearing on every "Play Again" reload
-
 </details>
 
 ---
@@ -47,7 +49,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 - Layout no longer shifts when the hand is emptied of cards (regression from the hand system introduced in v0.2.0)
 
 <details>
-<summary><strong>Patches on top of v0.3.0</strong> - v0.3.1, v0.3.2, v0.3.3</summary>
+<summary><strong>Patches on top of v0.3.0</strong> - v0.3.1 - v0.3.2 - v0.3.3</summary>
 
 **[v0.3.3] | 2026-08-08**
 - Changed: simplified the game-over victory icon to a cleaner crossed-swords design
@@ -57,7 +59,6 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 
 **[v0.3.1] | 2026-08-08**
 - Fixed: card placement cleanup (hand state, selection) was skipped when the placed card was the finishing blow of the match
-
 </details>
 
 ---
@@ -85,7 +86,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 - Initial CSS design token system
 
 <details>
-<summary><strong>Patches on top of v0.1.0</strong> - v0.1.1, v0.1.2, v0.1.3</summary>
+<summary><strong>Patches on top of v0.1.0</strong> - v0.1.1 - v0.1.2 - v0.1.3</summary>
 
 **[v0.1.3] | 2026-06-29**
 - Fixed: card title/description font now scales via `cqi` instead of `vw`
@@ -95,7 +96,6 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 
 **[v0.1.1] | 2026-06-21**
 - Fixed: font-weight values corrected to match the loaded Google Fonts variants
-
 </details>
 
 ---
@@ -104,6 +104,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 [v0.4.1]: https://github.com/pparys93/card-duel/releases/tag/v0.4.1
 [v0.4.2]: https://github.com/pparys93/card-duel/releases/tag/v0.4.2
 [v0.4.3]: https://github.com/pparys93/card-duel/releases/tag/v0.4.3
+[v0.4.4]: https://github.com/pparys93/card-duel/releases/tag/v0.4.4
 [v0.3.0]: https://github.com/pparys93/card-duel/releases/tag/v0.3.0
 [v0.3.1]: https://github.com/pparys93/card-duel/releases/tag/v0.3.1
 [v0.3.2]: https://github.com/pparys93/card-duel/releases/tag/v0.3.2
