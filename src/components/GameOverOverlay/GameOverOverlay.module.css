@@ -20,7 +20,6 @@
 }
 
 .button {
-  composes: button playAgain from "../../styles/button.module.css";
+  composes: button playAgain large from "../../styles/button.module.css";
   margin-top: clamp(0.5rem, 1.5vh, 1rem);
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
 }

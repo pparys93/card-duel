@@ -54,6 +54,11 @@
   }
 }
 
+/* kept here so .large wins over .button at equal specificity, regardless of file order */
+.large {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .button {
     transition-property: box-shadow, opacity, filter;
