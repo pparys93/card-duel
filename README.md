@@ -2,15 +2,17 @@
 
 # ✦ Card ⚔️ Duel ✦
 
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
-![Status](https://img.shields.io/badge/Status-In%20Progress-yellow)
 
 </div>
 
-A browser-based fantasy card game built as a frontend portfolio project. The third milestone (`UI Improvements`) is complete. The game now offers a more polished and immersive experience, enhancing the feel of every match. Next up: migrating the architecture to React.
+A browser-based fantasy card game built as a frontend portfolio project. With `v1.0.0`, the project is complete: every milestone on the original roadmap has been delivered, culminating in a full migration of the architecture from vanilla JavaScript to React with TypeScript. Reaching this point marks the completion of the project's original goals, but not necessarily its end. The nature of a card game leaves plenty of room for new mechanics, features, and directions, so the project may continue to evolve beyond the original roadmap as new possibilities emerge.
 
 ---
 
@@ -42,14 +44,18 @@ This project is also used to practice a professional frontend workflow:
 - writing maintainable code,
 - accessibility-first thinking,
 - scalable frontend structure,
-- preparing production-like project organization.
+- production-like project organization,
+- migrating a working application to a modern framework without regressions.
 
 ---
 
 ## 🛠️ Current Tech Stack
-- HTML5
+- React
+- TypeScript
+- Vite
+- CSS Modules
 - CSS3
-- JavaScript (ES6+)
+- HTML5
 - Git & GitHub
 - Visual Studio Code
 
@@ -100,24 +106,18 @@ This project is also used to practice a professional frontend workflow:
 - game rules overlay shown on load, introducing new players to the mechanics before their first move.
 
 ### 🧱 CSS Architecture
-- BEM naming convention,
-- CSS custom properties (`:root` variables),
-- modular section-based stylesheet organization,
-- scalable component structure,
-- reusable utility-like design tokens.
+- CSS Modules for component-scoped styling, colocated with each component,
+- shared design tokens (`tokens.css`) and global reset/base styles (`global.css`),
+- style composition (`composes`) for cross-component base styles (overlays, buttons) without duplication,
+- CSS custom properties for the design token system,
+- container queries (`cqi`) for card sizing proportionate to its container, not the viewport.
 
-### ⚙️ JavaScript Features
-- dynamic card rendering,
-- dynamic fan-layout scaling based on hand size,
-- card placement system,
-- mana system,
-- turn management,
-- draw card mechanic,
-- health system,
-- enemy turn logic,
-- win/lose conditions,
-- pointer-based drag and drop,
-- audio feedback system.
+### ⚙️ Application Architecture
+- component-based UI (React + TypeScript), organized by responsibility (`components/`, `game/`, `hooks/`, `data/`, `utils/`),
+- centralized game state via a single reducer (`useReducer`), with every game rule expressed as a pure state transition,
+- strict typing throughout - card data, icon data, and game state all fully typed, catching data-shape mistakes at compile time,
+- side effects (timers, sound, DOM focus) kept out of the reducer and handled in dedicated hooks and effects,
+- dynamic card rendering, fan-layout scaling, card placement, mana system, turn management, draw mechanic, health system, enemy turn AI, win/lose conditions, pointer-based drag and drop, and an audio feedback system - all ported from the original vanilla JS implementation.
 
 ---
 
@@ -129,18 +129,7 @@ This project is also used to practice a professional frontend workflow:
 | [`v0.2.0`](https://github.com/pparys93/card-duel/releases/tag/v0.2.0) | JavaScript Core | ✅ Done |
 | [`v0.3.0`](https://github.com/pparys93/card-duel/releases/tag/v0.3.0) | UI Improvements | ✅ Done |
 | [`v0.4.0`](https://github.com/pparys93/card-duel/releases/tag/v0.4.0) | Rules Overlay | ✅ Done |
-| `v1.0.0` | React Migration | ⏳ Planned |
-
----
-
-## ✍🏻 Planned Features
-
-### 🔄 React Migration
-- reusable components,
-- state management,
-- dynamic rendering,
-- component-based architecture,
-- scalable game state handling.
+| [`v1.0.0`](https://github.com/pparys93/card-duel/releases/tag/v1.0.0) | React Migration | ✅ Done |
 
 ---
 
@@ -150,70 +139,112 @@ This project is also used to practice a professional frontend workflow:
 card-duel/
 │
 ├── index.html
-├── styles.css
-├── favicon.ico
+├── vite.config.ts
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── eslint.config.js
+├── .gitignore
+├── package.json
+│
+├── public/
+│   ├── favicon.ico
+│   └── assets/
+│       ├── audio/
+│       └── favicons/
 │
 ├── assets/
-│   ├── audio/
-│   ├── favicons/
 │   └── images/
 │
-├── scripts/
-│   ├── icons.js
-│   ├── cards.js
-│   └── main.js
+├── src/
+│   ├── main.tsx
+│   ├── App.tsx
+│   │
+│   ├── components/
+│   │   ├── Board/
+│   │   ├── BoardCard/
+│   │   ├── BoardSlot/
+│   │   ├── Card/
+│   │   ├── CardArt/
+│   │   ├── CardContent/
+│   │   ├── CardManaBadge/
+│   │   ├── CardStat/
+│   │   ├── GameOverOverlay/
+│   │   ├── Hand/
+│   │   ├── Icon/
+│   │   ├── PlayerPanel/
+│   │   ├── RulesOverlay/
+│   │   ├── ScreenGuard/
+│   │   └── TurnControls/
+│   │   (each with a colocated .tsx + .module.css)
+│   │
+│   ├── game/
+│   │   ├── constants.ts
+│   │   ├── initialState.ts
+│   │   ├── reducer.ts
+│   │   └── types.ts
+│   │
+│   ├── hooks/
+│   │   └── useSoundEffects.ts
+│   │
+│   ├── data/
+│   │   ├── cards.ts
+│   │   └── icons.ts
+│   │
+│   ├── types/
+│   │   └── card.ts
+│   │
+│   ├── utils/
+│   │   ├── deepFreeze.ts
+│   │   ├── drawHand.ts
+│   │   ├── getCardFanTransform.ts
+│   │   ├── pickRandom.ts
+│   │   └── sounds.ts
+│   │
+│   └── styles/
+│       ├── tokens.css
+│       ├── global.css
+│       ├── overlay.module.css
+│       └── button.module.css
 │
 ├── README.md
 ├── CHANGELOG.md
 └── LICENSE
 ```
-
 ---
 
-## 🌱 Game Arena Layout Structure
+## 🌱 Component Tree
 
 ```
-ENEMY REGION
-├── .player-panel .player-panel--enemy
-│    ├─ .player-panel__name
-│    └─ .player-panel__stats
-│        ├─ .player-panel__stat (Cards)
-│        ├─ .player-panel__stat--hp
-│        └─ .player-panel__stat--mana
+App
+├── ScreenGuard
+├── GameOverOverlay
+├── RulesOverlay
 │
-├── .board .board--enemy
-│    └─ .board__slot * 4
-│
-MUTUAL REGION
-├── .turn-controls
-│    ├─ .button .button--draw-card
-│    └─ .button .button--end-turn
-│
-PLAYER REGION
-├── .board .board--player
-│    └─ .board__slot * 4
-│
-├── .card-hand
-│    └─ .card * N (max 5)
-│        ├─ .card__mana
-│        ├─ .card__art
-│        ├─ .card__content
-│        │    ├─ .card__title
-│        │    └─ .card__description
-│        └─ .card__stat (--attack or --heal)
-│
-└── .player-panel .player-panel--player
-     ├─ .player-panel__name
-     └─ .player-panel__stats
-         ├─ .player-panel__stat--hp
-         └─ .player-panel__stat--mana
+└── <main> (CSS Grid battlefield)
+    │
+    ├── PlayerPanel (enemy)
+    ├── Board (enemy)
+    │   └── BoardSlot × 4 → BoardCard
+    │
+    ├── TurnControls
+    │
+    ├── Board (player)
+    │   └── BoardSlot × 4 → BoardCard
+    ├── Hand
+    │   └── Card × N (max 5)
+    │       ├── CardManaBadge
+    │       ├── CardArt → Icon
+    │       ├── CardContent
+    │       └── CardStat
+    └── PlayerPanel (player)
 ```
 
 ---
 
 ## 🚧 Project Status
 
-Current version: [`v0.4.4`](./CHANGELOG.md)
+Current version: [`v1.0.0`](./CHANGELOG.md) - complete
 
 > 🚀 **[Live Demo](https://pparys93.github.io/card-duel)**
 
@@ -243,7 +274,6 @@ Current version: [`v0.4.4`](./CHANGELOG.md)
 |---|---|
 | <img src="assets/images/drag-drop.gif" width="200" alt="Dragging a card from the hand to a board slot"> | <img src="assets/images/tap-place.gif" width="200" alt="Tap to select and place a card on the board"> |
 
-
 ### ✨ Card Animations & Spell Effects
 
 | Card Entrance | Stats Update |
@@ -254,19 +284,21 @@ Current version: [`v0.4.4`](./CHANGELOG.md)
 
 ## 🎓 What I'm Learning Through This Project
 
-This isn't just a game. It's a structured self-education path through the joy of coding 😄
+This isn't just a game. It's a structured self-education path through the joy of coding.😄
+- Semantic HTML,
+- Modern CSS architecture, including CSS Modules and container queries,
+- Responsive layouts, CSS Grid & Flexbox,
+- Accessibility fundamentals (ARIA, focus management, `prefers-reduced-motion`),
+- UI/UX principles,
+- Git & GitHub workflow,
+- Scalable frontend structure and component thinking,
+- JavaScript: DOM manipulation, event handling, closures, game logic,
+- React: components, state, hooks (`useState`, `useReducer`, `useEffect`, `useRef`), dynamic rendering,
+- TypeScript: static typing, discriminated unions, generics,
+- State management with reducers (`useReducer`), keeping side effects out of pure state transitions,
+- Working with AI as a development assistant: defining the architecture and rules myself, critically evaluating its suggestions, independently debugging and validating the resulting code, and rejecting or revising solutions that don't hold up under testing.
 
-| ✅ Completed | 🔄 In Progress |
-|---|---|
-| Semantic HTML | JavaScript: DOM manipulation, game logic, events |
-| Modern CSS architecture | React: components, state, dynamic rendering |
-| Responsive layouts | |
-| CSS Grid & Flexbox | |
-| Accessibility fundamentals | |
-| UI/UX principles | |
-| Git & GitHub workflow | |
-| Scalable frontend structure | |
-| Component thinking | |
+This project taught me a lot about modern frontend development, but just as importantly, it showed me how much further there still is to go. That's exactly why I keep learning, experimenting, making mistakes, figuring out why things break, and improving the way I approach coding.
 
 ---
 
