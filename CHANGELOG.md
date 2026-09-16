@@ -12,6 +12,13 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 - styling rebuilt with CSS Modules, sharing base styles across overlays and buttons via `composes` instead of duplication
 - all gameplay, accessibility, and visual behavior preserved from `v0.4.4`
 
+<details>
+<summary><strong>Patches on top of v1.0.0</strong> - v1.0.1</summary>
+
+**[v1.0.1] | 2026-09-16**
+- Fixed: sound files failing to load on the deployed GitHub Pages build. `sounds.ts` used hardcoded absolute paths (`/assets/audio/...`), which resolved correctly under Vite's dev server (`base: '/'`) but broke under the production `base: '/card-duel/'`; paths now resolve via `import.meta.env.BASE_URL`
+</details>
+
 ## [v0.4.0] - Rules Overlay | 2026-08-08
 
 ### Added
@@ -109,6 +116,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 ---
 
 [v1.0.0]: https://github.com/pparys93/card-duel/releases/tag/v1.0.0
+[v1.0.1]: https://github.com/pparys93/card-duel/releases/tag/v1.0.1
 [v0.4.0]: https://github.com/pparys93/card-duel/releases/tag/v0.4.0
 [v0.4.1]: https://github.com/pparys93/card-duel/releases/tag/v0.4.1
 [v0.4.2]: https://github.com/pparys93/card-duel/releases/tag/v0.4.2
