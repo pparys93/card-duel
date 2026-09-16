@@ -138,6 +138,10 @@ This project is also used to practice a professional frontend workflow:
 ```
 card-duel/
 │
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+│
 ├── index.html
 ├── vite.config.ts
 ├── tsconfig.json
@@ -296,6 +300,7 @@ This isn't just a game. It's a structured self-education path through the joy of
 - React: components, state, hooks (`useState`, `useReducer`, `useEffect`, `useRef`), dynamic rendering,
 - TypeScript: static typing, discriminated unions, generics,
 - state management with reducers (`useReducer`), keeping side effects out of pure state transitions,
+- CI/CD basics: automated build and deployment with GitHub Actions,
 - working with AI as a development assistant: defining the architecture and rules myself, critically evaluating its suggestions, independently debugging and validating the resulting code, and rejecting or revising solutions that don't hold up under testing.
 
 This project taught me a lot about modern frontend development, but just as importantly, it showed me how much further there still is to go. That's exactly why I keep learning, experimenting, making mistakes, figuring out why things break, and improving the way I approach coding.
