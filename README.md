@@ -285,18 +285,18 @@ Current version: [`v1.0.0`](./CHANGELOG.md) - complete
 ## 🎓 What I'm Learning Through This Project
 
 This isn't just a game. It's a structured self-education path through the joy of coding.😄
-- Semantic HTML,
-- Modern CSS architecture, including CSS Modules and container queries,
-- Responsive layouts, CSS Grid & Flexbox,
-- Accessibility fundamentals (ARIA, focus management, `prefers-reduced-motion`),
+- semantic HTML,
+- modern CSS architecture, including CSS Modules and container queries,
+- responsive layouts, CSS Grid & Flexbox,
+- accessibility fundamentals (ARIA, focus management, `prefers-reduced-motion`),
 - UI/UX principles,
 - Git & GitHub workflow,
-- Scalable frontend structure and component thinking,
+- scalable frontend structure and component thinking,
 - JavaScript: DOM manipulation, event handling, closures, game logic,
 - React: components, state, hooks (`useState`, `useReducer`, `useEffect`, `useRef`), dynamic rendering,
 - TypeScript: static typing, discriminated unions, generics,
-- State management with reducers (`useReducer`), keeping side effects out of pure state transitions,
-- Working with AI as a development assistant: defining the architecture and rules myself, critically evaluating its suggestions, independently debugging and validating the resulting code, and rejecting or revising solutions that don't hold up under testing.
+- state management with reducers (`useReducer`), keeping side effects out of pure state transitions,
+- working with AI as a development assistant: defining the architecture and rules myself, critically evaluating its suggestions, independently debugging and validating the resulting code, and rejecting or revising solutions that don't hold up under testing.
 
 This project taught me a lot about modern frontend development, but just as importantly, it showed me how much further there still is to go. That's exactly why I keep learning, experimenting, making mistakes, figuring out why things break, and improving the way I approach coding.
 
