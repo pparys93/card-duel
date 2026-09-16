@@ -1,0 +1,50 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+body {
+  height: 100vh; /* fallback */
+  height: 100dvh;
+  overflow: hidden; /* prevents vertical scrolling */
+
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+
+  font-family: 'Cinzel', 'Palatino Linotype', Georgia, serif;
+  color: var(--color-text-base-default);
+  background: var(--color-bg-arena);
+
+  animation: fadeInBg 0.8s ease-out;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 50%,
+    rgba(63, 124, 255, 0.10) 0%,
+    transparent 70%
+  );
+}
+
+@keyframes fadeInBg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,133 @@
+:root {
+  /* GLOBAL TOKENS
+  scheme: type-property-scope-scale */
+
+  /* TYPOGRAPHY */
+  --size-font-global-sm: clamp(0.7rem, 1vw, 0.95rem);
+  --size-font-global-md: clamp(0.95rem, 1.2vw, 1.25rem);
+  --size-font-global-lg: clamp(1rem, 1.3vw, 1.4rem);
+
+  --size-line-height-global-tight: 1.2;
+  --size-line-height-global-normal: 1.4;   /* reserved */
+  --size-line-height-global-relaxed: 1.6;
+
+  --size-letter-spacing-global-tight: 0.0375rem;
+  --size-letter-spacing-global-normal: 0.0625rem;
+  --size-letter-spacing-global-wide: 0.125rem;
+
+  /* SPACING */
+  --size-space-global-2xs: 0.25rem;
+  --size-space-global-xs: 0.5rem;   /* reserved */
+  --size-space-global-sm: 0.625rem;
+  --size-space-global-md: 0.75rem;  /* reserved */
+  --size-space-global-lg: 1rem;     /* reserved */
+
+  /* RADIUS */
+  --size-radius-global-sm: 0.5rem;
+  --size-radius-global-base: 0.625rem;
+  --size-radius-global-md: 0.75rem;
+  --size-radius-global-lg: 1rem;
+  --size-radius-global-xl: 1.25rem; /* reserved */
+  --size-radius-global-round: 50%;
+
+  /* SEMANTIC VARIABLES
+  scheme: type-property-component-(state) */
+
+  /* COLORS */
+  --color-text-base-default: #e8dcc8;
+  --color-text-base-inverse: #fff;
+  --color-text-panel-hp: #ff8b8b;
+  --color-text-panel-mana: #7cb7ff;
+  --color-text-panel-heal: #4ea96b;
+  --color-text-card-description: #aebfd6;
+
+  --color-bg-arena: radial-gradient(ellipse at top, #1e2a3a 0%, #0d1117 60%);
+  --color-bg-panel: rgba(255, 255, 255, 0.04);
+  --color-bg-panel-stat: rgba(255, 255, 255, 0.07);
+  --color-bg-slot: rgba(255, 255, 255, 0.025);
+  --color-bg-slot-hover: rgba(255, 255, 255, 0.05);
+  --color-bg-divider: rgba(255, 255, 255, 0.06);
+  --color-bg-btn-end-turn: linear-gradient(135deg, #3f7cff, #5f9bff);
+  --color-bg-btn-draw: linear-gradient(135deg, #3e5b74, #2f4b62);
+  --color-bg-btn-draw-hover: linear-gradient(135deg, #4e6f8d, #385670);
+  --color-bg-btn-play-again: linear-gradient(135deg, #4ea96b, #2f7d4a);
+  --color-bg-btn-play-again-hover: linear-gradient(135deg, #5bba7a, #3a8f57);
+  --color-bg-card: linear-gradient(160deg, #2b3140, #1a1f2c);
+  --color-bg-card-mana: linear-gradient(135deg, #3f7cff, #6cb2ff);
+  --color-bg-card-attack: linear-gradient(135deg, #c96a6a, #9b3d3d);
+  --color-bg-card-heal: linear-gradient(135deg, #4ea96b, #2f7d4a);
+  --color-bg-card-art-overlay-start: rgba(255, 255, 255, 0.06);
+  --color-bg-card-art-overlay-end: rgba(255, 255, 255, 0.01);
+  --color-bg-scrollbar-track: rgba(255, 255, 255, 0.05);
+  --color-bg-scrollbar-thumb: rgba(124, 183, 255, 0.55);
+  --color-bg-scrollbar-thumb-hover: rgba(124, 183, 255, 0.75);
+
+  --color-border-panel: rgba(255, 255, 255, 0.08);
+  --color-border-panel-stat: rgba(255, 255, 255, 0.1);
+  --color-border-slot: rgba(255, 255, 255, 0.13);
+  --color-border-slot-hover: rgba(255, 255, 255, 0.3);
+  --color-border-card: rgba(255, 255, 255, 0.1);
+  --color-border-card-art-divider: rgba(255, 255, 255, 0.07);
+  --color-border-card-selected: #FFD700;
+
+  --color-outline-slot-focus: rgba(124, 183, 255, 0.9);
+  --color-outline-btn-focus: rgba(255, 255, 255, 0.9);
+
+  --color-icon-fire: #ff8b8b;
+  --color-icon-frost: #8ce8dd;
+  --color-icon-storm: #f5cc45;
+  --color-icon-earth: #e8a87c;
+  --color-icon-arcane: #7cb7ff;
+  --color-icon-vital: #f2f6f2;
+
+  /* SHADOWS */
+  --shadow-box-panel: 0 4px 18px rgba(0, 0, 0, 0.3);
+  --shadow-box-panel-highlight: 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-box-slot-hover:
+    0 0 0 3px rgba(255, 255, 255, 0.06),
+    0 6px 20px rgba(255, 255, 255, 0.08);
+  --shadow-box-btn-end-turn: 0 6px 18px rgba(63, 124, 255, 0.34);
+  --shadow-box-btn-end-turn-hover: 0 7px 20px rgba(63, 124, 255, 0.37);
+  --shadow-box-btn-draw: 0 5px 15px rgba(56, 86, 112, 0.32);
+  --shadow-box-btn-draw-hover: 0 7px 18px rgba(56, 86, 112, 0.36);
+  --shadow-box-btn-play-again: 0 5px 15px rgba(46, 125, 74, 0.35);
+  --shadow-box-btn-play-again-hover: 0 7px 18px rgba(46, 125, 74, 0.45);
+  --shadow-box-card: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-box-card-mana: 0 0 10px rgba(63, 124, 255, 0.5);
+  
+  --shadow-filter-icon: drop-shadow(0 0 6px rgba(190, 220, 255, 0.3));
+
+  /* SIZES */
+  --size-width-slot: clamp(5rem, 8.5vw, 7.5rem);
+  --size-width-btn: clamp(7.5rem, 11.5vw, 10.5rem);
+  --size-width-card: clamp(7.8rem, 11.25vw, 10rem);
+
+  /* SPACING */
+  --size-padding-layout: clamp(0.625rem, 1.0vw, 1.25rem);
+  --size-padding-block-panel: clamp(0.625rem, 1.2vh, 1rem);
+  --size-padding-inline-panel: clamp(0.75rem,  1.12vw, 1.25rem);
+  --size-padding-block-panel-stat: clamp(0.375rem, 0.8vh, 0.625rem);
+  --size-padding-inline-panel-stat: clamp(0.625rem, 1.2vw, 1.125rem);
+  --size-padding-board: clamp(0.25rem, 0.6vh, 0.625rem);
+  --size-padding-block-btn: clamp(0.5rem, 1vh, 1rem);
+  --size-padding-inline-btn: clamp(1.25rem, 2.5vw, 2.25rem);
+  --size-padding-block-start-card-hand: clamp(2.25rem, 5vh, 3.125rem);
+  --size-padding-block-end-card-hand: clamp(0.25rem, 0.6vh, 0.5rem);
+  --size-padding-inline-card-hand-mobile: clamp(0.625rem, 1.6vw, 1.25rem);
+
+  --size-gap-layout: clamp(0.375rem, 1vh, 0.875rem);
+  --size-gap-panel-stats: clamp(0.375rem, 0.8vw, 0.75rem);
+  --size-gap-board: clamp(0.5rem, 1.0vw, 1.25rem);
+  --size-gap-turn-controls: clamp(0.5rem, 1vw, 0.875rem);
+
+  --size-height-scrollbar: var(--size-space-global-sm);
+
+  /* RADIUS */
+  --size-radius-panel: var(--size-radius-global-lg);
+  --size-radius-panel-stat: var(--size-radius-global-base);
+  --size-radius-slot: var(--size-radius-global-lg);
+  --size-radius-button: var(--size-radius-global-md);
+  --size-radius-card: var(--size-radius-global-lg);
+  --size-radius-card-stat: var(--size-radius-global-sm);
+  --size-radius-scrollbar: var(--size-radius-global-round);
+}

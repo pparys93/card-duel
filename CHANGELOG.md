@@ -4,6 +4,14 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 
 ---
 
+## [v1.0.0] - React Migration | 2026-09-16
+
+### Changed
+- entire codebase rewritten in React with TypeScript, built with Vite (previously vanilla JavaScript/CSS)
+- game state centralized in a single reducer, replacing module-scope mutable variables with pure state transitions
+- styling rebuilt with CSS Modules, sharing base styles across overlays and buttons via `composes` instead of duplication
+- all gameplay, accessibility, and visual behavior preserved from `v0.4.4`
+
 ## [v0.4.0] - Rules Overlay | 2026-08-08
 
 ### Added
@@ -100,6 +108,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 
 ---
 
+[v1.0.0]: https://github.com/pparys93/card-duel/releases/tag/v1.0.0
 [v0.4.0]: https://github.com/pparys93/card-duel/releases/tag/v0.4.0
 [v0.4.1]: https://github.com/pparys93/card-duel/releases/tag/v0.4.1
 [v0.4.2]: https://github.com/pparys93/card-duel/releases/tag/v0.4.2

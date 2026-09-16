@@ -1,0 +1,9 @@
+export const MAX_HP = 20;
+export const MAX_MANA = 10;
+export const MANA_INCREMENT = 2;
+export const STARTING_MANA = 1;
+export const MAX_HAND_SIZE = 5;
+export const DRAW_COST = 1;
+export const BOARD_SIZE = 4;
+export const ENEMY_SKIP_CHANCE = 0.3;
+export const ENEMY_MAX_CARDS_PER_TURN = 2;

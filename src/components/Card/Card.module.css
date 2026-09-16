@@ -1,0 +1,139 @@
+.card {
+  position: relative;
+  width: var(--size-width-card);
+  aspect-ratio: 2 / 3;
+  flex-shrink: 0;
+  container: card / inline-size; /* keeps card content proportionate (cqi) */
+
+  display: flex;
+  flex-direction: column;
+
+  /* overlap effect - always equals 20% of card width, keeping overlap in sync with card size */
+  margin-inline: calc(var(--size-width-card) * -0.2);
+
+  border: 1px solid var(--color-border-card);
+  border-radius: var(--size-radius-card);
+  background: var(--color-bg-card);
+
+  overflow: hidden;
+  cursor: pointer;
+  touch-action: manipulation;
+
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.25s ease;
+
+  box-shadow: var(--shadow-box-card);
+
+  --card-rotation: 0deg;
+  --card-lift: 0px;
+
+  transform-origin: bottom center;
+  transform: rotate(var(--card-rotation)) translateY(var(--card-lift));
+  animation: cardEnter 0.3s ease-out;
+}
+
+.card:first-child {
+  margin-left: 0;
+}
+
+.card:last-child {
+  margin-right: 0;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-outline-slot-focus);
+  outline-offset: var(--size-space-global-2xs);
+}
+
+.selected {
+  border-color: var(--color-border-card-selected);
+  box-shadow:
+    0 0 0 2px var(--color-border-card-selected),
+    var(--shadow-box-card);
+
+  z-index: 20;
+}
+
+.unaffordable {
+  cursor: not-allowed;
+}
+
+.unaffordable > * {
+  opacity: 0.5;
+}
+
+.dragging {
+  transition: none;
+  z-index: 30;
+
+  /* allow elementFromPoint() to hit the slot below;
+  pointer capture still keeps drag events on this card */
+  pointer-events: none;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  cursor: grabbing;
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) {
+  .card:not(.selected):hover {
+    transform: rotate(var(--card-rotation)) translateY(calc(-24px + var(--card-lift))) scale(1.05);
+    z-index: 10;
+    box-shadow:
+      0 20px 48px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 255, 255, 0.18);
+  }
+}
+
+@media (hover: none) {
+  .card:focus-visible {
+    outline: none;
+  }
+
+  .card {
+    z-index: 1;
+  }
+
+  .card:is(:focus, :active):not(.selected) {
+    z-index: 10;
+  }
+
+  .selected {
+    z-index: 20;
+  }
+}
+
+@media (pointer: coarse) {
+  .card {
+    scroll-snap-align: start;
+
+    transform-origin: initial;
+    margin-inline: 0;
+    margin-left: clamp(-48px, -3.5vw, -30px);
+  }
+}
+
+@media (pointer: fine) {
+  .card {
+    cursor: grab;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition-property: box-shadow, opacity;
+    transition-duration: 0.15s;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,55 @@
+.guard {
+  composes: overlay from "../../styles/overlay.module.css";
+  z-index: 9999;
+}
+
+.icon {
+  composes: icon from "../../styles/overlay.module.css";
+  animation: rotatePhone 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.title {
+  composes: title from "../../styles/overlay.module.css";
+}
+
+.message {
+  composes: message from "../../styles/overlay.module.css";
+}
+
+@keyframes rotatePhone {
+  0%,
+  35% {
+    transform: rotate(90deg);
+  }
+  55%,
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@media (pointer: coarse) and (max-height: 500px) {
+  .guard {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+@media (pointer: fine) and (max-height: 600px) {
+  .guard {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guard {
+    transition: none;
+  }
+
+  .icon {
+    animation: none;
+    transform: rotate(45deg);
+  }
+}

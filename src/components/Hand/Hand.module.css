@@ -1,0 +1,52 @@
+.hand {
+  grid-area: player-hand;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+
+  min-height: calc(
+    var(--size-width-card) * 1.5 + var(--size-padding-block-start-card-hand) +
+      var(--size-padding-block-end-card-hand)
+  );
+
+  padding-top: var(--size-padding-block-start-card-hand);
+  padding-bottom: var(--size-padding-block-end-card-hand);
+}
+
+@media (pointer: coarse) {
+  .hand {
+    justify-content: flex-start;
+    padding-top: var(--size-padding-block-end-card-hand);
+    padding-inline: var(--size-padding-inline-card-hand-mobile);
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    overscroll-behavior-x: contain;
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-bg-scrollbar-thumb) var(--color-bg-scrollbar-track);
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--size-padding-inline-card-hand-mobile);
+  }
+
+  .hand::-webkit-scrollbar {
+    height: var(--size-height-scrollbar);
+  }
+
+  .hand::-webkit-scrollbar-track {
+    background: var(--color-bg-scrollbar-track);
+    border-radius: var(--size-radius-scrollbar);
+  }
+
+  .hand::-webkit-scrollbar-thumb {
+    background: var(--color-bg-scrollbar-thumb);
+    border-radius: var(--size-radius-scrollbar);
+  }
+
+  .hand::-webkit-scrollbar-thumb:hover {
+    background: var(--color-bg-scrollbar-thumb-hover);
+  }
+}

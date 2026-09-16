@@ -1,0 +1,20 @@
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 0;
+  gap: var(--size-gap-board);
+}
+
+.enemy {
+  grid-area: enemy-board;
+  align-items: flex-end;
+  padding-bottom: var(--size-padding-board);
+}
+
+.player {
+  grid-area: player-board;
+  align-items: flex-start;
+  padding-top: var(--size-padding-board);
+}
