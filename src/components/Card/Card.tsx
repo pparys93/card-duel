@@ -141,7 +141,7 @@ function Card({
     .join(" ");
 
   const handlePointerEnter = () => {
-    if (!selected) playSound("cardPreview");
+    if (!selected && supportsDrag) playSound("cardPreview");
   };
 
   return (
