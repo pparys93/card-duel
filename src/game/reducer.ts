@@ -105,6 +105,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         nextPlayer = { ...nextPlayer, hp: Math.min(nextPlayer.hp + card.stat, MAX_HP) };
       }
 
+      // nextPlayer.hp can't currently drop here; reserved for future player-damaging cards
       const winner =
         nextEnemy.hp <= 0 ? "player" : nextPlayer.hp <= 0 ? "enemy" : null;
 
