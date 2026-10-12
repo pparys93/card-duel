@@ -156,7 +156,8 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         if (emptySlotIndices.length === 0) break; // no free slots
 
         const card = pickRandom(attackCards);
-        if (enemyMana < card.mana) break; // can't afford any card - end turn early
+        // only checks this one pick, not cheaper alternatives
+        if (enemyMana < card.mana) break; // can't afford the card - end turn early
 
         const slotIndex = pickRandom(emptySlotIndices);
         nextEnemyBoard[slotIndex] = card;
