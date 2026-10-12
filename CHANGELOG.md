@@ -13,7 +13,10 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 - all gameplay, accessibility, and visual behavior preserved from `v0.4.4`
 
 <details>
-<summary><strong>Patches on top of v1.0.0</strong> - v1.0.1 - v1.0.2</summary>
+<summary><strong>Patches on top of v1.0.0</strong> - v1.0.1 - v1.0.2 - v1.0.3</summary>
+
+**[v1.0.3] | 2026-10-12**
+- Fixed: cards in hand now expose accessible names and selection state to assistive technologies via `role="button"`, an `aria-label` (*name*, *mana*, *type* and *state*) and `aria-pressed` reflecting whether the card is selected
 
 **[v1.0.2] | 2026-10-11**
 - Fixed: the preview sound now plays only for mouse pointers
@@ -121,6 +124,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 [v1.0.0]: https://github.com/pparys93/card-duel/releases/tag/v1.0.0
 [v1.0.1]: https://github.com/pparys93/card-duel/releases/tag/v1.0.1
 [v1.0.2]: https://github.com/pparys93/card-duel/releases/tag/v1.0.2
+[v1.0.3]: https://github.com/pparys93/card-duel/releases/tag/v1.0.3
 [v0.4.0]: https://github.com/pparys93/card-duel/releases/tag/v0.4.0
 [v0.4.1]: https://github.com/pparys93/card-duel/releases/tag/v0.4.1
 [v0.4.2]: https://github.com/pparys93/card-duel/releases/tag/v0.4.2

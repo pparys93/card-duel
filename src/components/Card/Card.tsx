@@ -150,6 +150,9 @@ function Card({
       className={classNames}
       style={style}
       tabIndex={0}
+      role="button"
+      aria-label={`${card.name}, ${card.mana} mana, ${card.type === "attack" ? "Attack" : "Heal"} ${card.stat}`}
+      aria-pressed={selected}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       onPointerDown={handlePointerDown}
