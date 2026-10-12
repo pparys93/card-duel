@@ -129,5 +129,7 @@
   --size-radius-button: var(--size-radius-global-md);
   --size-radius-card: var(--size-radius-global-lg);
   --size-radius-card-stat: var(--size-radius-global-sm);
-  --size-radius-scrollbar: var(--size-radius-global-round);
+  
+  /* half the bar height gives fully rounded ends; */
+  --size-radius-scrollbar: calc(var(--size-height-scrollbar) / 2);
 }
