@@ -21,6 +21,8 @@
 
   gap: var(--size-gap-layout);
   padding: var(--size-padding-layout);
+  /* prevents the widest game element from stretching the layout past the screen edge */
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .visuallyHidden {

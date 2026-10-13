@@ -13,7 +13,10 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 - all gameplay, accessibility, and visual behavior preserved from `v0.4.4`
 
 <details>
-<summary><strong>Patches on top of v1.0.0</strong> - v1.0.1 - v1.0.2 - v1.0.3 - v1.0.4</summary>
+<summary><strong>Patches on top of v1.0.0</strong> - v1.0.1 - v1.0.2 - v1.0.3 - v1.0.4 - v1.0.5</summary>
+
+**[v1.0.5] | 2026-10-13**
+- Fixed: game board now stays within the screen when the system font size is enlarged
 
 **[v1.0.4] | 2026-10-13**
 - Fixed: the hand scrollbar now appears correctly in the Messenger in-app browser
@@ -129,6 +132,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 [v1.0.2]: https://github.com/pparys93/card-duel/releases/tag/v1.0.2
 [v1.0.3]: https://github.com/pparys93/card-duel/releases/tag/v1.0.3
 [v1.0.4]: https://github.com/pparys93/card-duel/releases/tag/v1.0.4
+[v1.0.5]: https://github.com/pparys93/card-duel/releases/tag/v1.0.5
 [v0.4.0]: https://github.com/pparys93/card-duel/releases/tag/v0.4.0
 [v0.4.1]: https://github.com/pparys93/card-duel/releases/tag/v0.4.1
 [v0.4.2]: https://github.com/pparys93/card-duel/releases/tag/v0.4.2
