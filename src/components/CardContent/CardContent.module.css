@@ -1,6 +1,7 @@
 .content {
   flex: 1;
   min-height: 0;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -16,6 +17,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  flex-shrink: 0;
 }
 
 .description {
