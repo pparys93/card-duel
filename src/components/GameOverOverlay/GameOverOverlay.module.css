@@ -23,3 +23,8 @@
   composes: button playAgain large from "../../styles/button.module.css";
   margin-top: clamp(0.5rem, 1.5vh, 1rem);
 }
+
+/* without instant visibility change, focus() hits a hidden button */
+.overlay.visible {
+  transition: opacity 0.5s ease, visibility 0s;
+}
