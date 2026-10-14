@@ -75,7 +75,8 @@ function Card({
 
       state.dragging = true;
       setIsDragging(true);
-      onSelect?.();
+      // SELECT_CARD toggles, so calling it on a selected card would deselect it and block the drop
+      if (!selected) onSelect?.();
     }
 
     if (articleRef.current) {
