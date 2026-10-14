@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useReducer } from "react";
 import { gameReducer, canDrawCard, allPlayerSlotsFull } from "./game/reducer";
 import { createInitialState } from "./game/initialState";
@@ -21,7 +21,6 @@ function App() {
   );
   const [state, dispatch] = useReducer(gameReducer, undefined, createInitialState);
   useSoundEffects(state);
-  const drawButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (state.turn !== "enemy") return;
@@ -43,7 +42,6 @@ function App() {
   const handleBeginDuel = () => {
     setRulesVisible(false);
     sessionStorage.setItem(RULES_SEEN_KEY, "true");
-    drawButtonRef.current?.focus();
   };
 
   const outcome =
@@ -75,7 +73,6 @@ function App() {
         <Board variant="enemy" slots={state.enemyBoard} />
 
         <TurnControls
-          ref={drawButtonRef}
           drawCost={DRAW_COST}
           canDraw={canDrawCard(state)}
           canEndTurn={state.turn === "player"}
