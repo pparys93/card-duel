@@ -19,7 +19,7 @@ const sounds: Record<SoundName, HTMLAudioElement> = {
   gameOver: new Audio(`${AUDIO_BASE}game-over.mp3`),
 };
 
-// mirrors screen-guard's CSS breakpoints in styles.css - update both if either changes
+// mirrors screen-guard's CSS breakpoints in ScreenGuard.module.css - update both if either changes
 const SCREEN_GUARD_QUERY =
   "(pointer: coarse) and (max-height: 500px), (pointer: fine) and (max-height: 600px)";
 
