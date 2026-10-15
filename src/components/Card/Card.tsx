@@ -141,8 +141,8 @@ function Card({
     .filter(Boolean)
     .join(" ");
 
-  const handlePointerEnter = () => {
-    if (!selected && supportsDrag) playSound("cardPreview");
+  const handlePointerEnter = (event: PointerEvent<HTMLElement>) => {
+    if (!selected && event.pointerType === "mouse") playSound("cardPreview");
   };
 
   return (
