@@ -71,12 +71,18 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
       const drawn = pickRandom(cards);
       const newCard: HandCard = { ...drawn, instanceId: crypto.randomUUID() };
+      const nextMana = state.player.mana - DRAW_COST;
+
+      // keep the SELECT_CARD invariant: a selected card is always affordable
+      const selectedCard = state.hand.find((c) => c.instanceId === state.selectedInstanceId);
+      const keepSelection = selectedCard !== undefined && selectedCard.mana <= nextMana;
 
       return {
         ...state,
         hand: [...state.hand, newCard],
-        player: { ...state.player, mana: state.player.mana - DRAW_COST },
+        player: { ...state.player, mana: nextMana },
         hasDrawnThisTurn: true,
+        selectedInstanceId: keepSelection ? state.selectedInstanceId : null,
       };
     }
 
