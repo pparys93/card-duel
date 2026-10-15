@@ -31,7 +31,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 - Fixed: the hand scrollbar now appears correctly in the Messenger in-app browser
 
 **[v1.0.3] | 2026-10-12**
-- Fixed: cards in hand now expose accessible names and selection state to assistive technologies via `role="button"`, an `aria-label` (*name*, *mana*, *type* and *state*) and `aria-pressed` reflecting whether the card is selected
+- Fixed: cards in hand now expose accessible names and selection state to assistive technologies via `role="button"`, an `aria-label` (*name*, *mana*, *type* and *stat*) and `aria-pressed` reflecting whether the card is selected
 
 **[v1.0.2] | 2026-10-11**
 - Fixed: the preview sound now plays only for mouse pointers
