@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./GameOverOverlay.module.css";
 
 interface GameOverOverlayProps {
@@ -20,6 +20,9 @@ const OUTCOME_CONTENT = {
 
 function GameOverOverlay({ visible, outcome, onPlayAgain }: GameOverOverlayProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
+  // keeps the last outcome visible while the overlay fades out after a restart
+  const [shownOutcome, setShownOutcome] = useState(outcome);
+  if (outcome !== null && outcome !== shownOutcome) setShownOutcome(outcome);
 
   // moves focus into the modal on open, matching aria-modal="true"
   useEffect(() => {
@@ -29,7 +32,7 @@ function GameOverOverlay({ visible, outcome, onPlayAgain }: GameOverOverlayProps
   const overlayClassName = [styles.overlay, visible && styles.visible]
     .filter(Boolean)
     .join(" ");
-  const content = outcome ? OUTCOME_CONTENT[outcome] : null;
+  const content = shownOutcome ? OUTCOME_CONTENT[shownOutcome] : null;
 
   return (
     <div
@@ -39,7 +42,7 @@ function GameOverOverlay({ visible, outcome, onPlayAgain }: GameOverOverlayProps
       aria-labelledby="game-over-title"
       aria-describedby="game-over-message"
     >
-      {outcome === "victory" && (
+      {shownOutcome === "victory" && (
         <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true">
           <path d="M14.5 17.5L3 6L3 3L6 3L17.5 14.5" />
           <path d="M13 19L19 13" />
@@ -51,7 +54,7 @@ function GameOverOverlay({ visible, outcome, onPlayAgain }: GameOverOverlayProps
           <path d="M3 19L5 21" />
         </svg>
       )}
-      {outcome === "defeat" && (
+      {shownOutcome === "defeat" && (
         <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true">
           <path d="m12.5 17-.5-1-.5 1h1z" />
           <path d="M15 22a1 1 0 0 0 1-1v-1a2 2 0 0 0 1.56-3.25 8 8 0 1 0-11.12 0A2 2 0 0 0 8 20v1a1 1 0 0 0 1 1z" />

@@ -13,7 +13,10 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 - all gameplay, accessibility, and visual behavior preserved from `v0.4.4`
 
 <details>
-<summary><strong>Patches on top of v1.0.0</strong> - v1.0.1 - v1.0.2 - v1.0.3 - v1.0.4 - v1.0.5 - v1.0.6 - v1.0.7 - v1.0.8 - v1.0.9 - v1.0.10</summary>
+<summary><strong>Patches on top of v1.0.0</strong> - v1.0.1 - v1.0.2 - v1.0.3 - v1.0.4 - v1.0.5 - v1.0.6 - v1.0.7 - v1.0.8 - v1.0.9 - v1.0.10 - v1.0.11</summary>
+
+**[v1.0.11] | 2026-10-18**
+- Fixed: the game-over overlay no longer loses its content while fading out after "Play Again"
 
 **[v1.0.10] | 2026-10-15**
 - Fixed: the card preview sound is now also suppressed for touch input on hybrid devices (e.g. touchscreen laptops)
@@ -153,6 +156,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 [v1.0.8]: https://github.com/pparys93/card-duel/releases/tag/v1.0.8
 [v1.0.9]: https://github.com/pparys93/card-duel/releases/tag/v1.0.9
 [v1.0.10]: https://github.com/pparys93/card-duel/releases/tag/v1.0.10
+[v1.0.11]: https://github.com/pparys93/card-duel/releases/tag/v1.0.11
 [v0.4.0]: https://github.com/pparys93/card-duel/releases/tag/v0.4.0
 [v0.4.1]: https://github.com/pparys93/card-duel/releases/tag/v0.4.1
 [v0.4.2]: https://github.com/pparys93/card-duel/releases/tag/v0.4.2
