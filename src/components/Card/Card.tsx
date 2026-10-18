@@ -152,8 +152,9 @@ function Card({
       style={style}
       tabIndex={0}
       role="button"
-      aria-label={`${card.name}, ${card.mana} mana, ${card.type === "attack" ? "Attack" : "Heal"} ${card.stat}`}
+      aria-label={`${card.name}, ${card.mana} mana, ${card.type === "attack" ? "Attack" : "Heal"} ${card.stat}${affordable ? "" : ", not enough mana to play"}`}
       aria-pressed={selected}
+      aria-disabled={!affordable || undefined}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       onPointerDown={handlePointerDown}
