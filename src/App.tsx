@@ -15,10 +15,25 @@ import styles from "./App.module.css";
 
 const RULES_SEEN_KEY = "cardDuelRulesSeen";
 
+// sessionStorage throws when the browser blocks site data
+function hasSeenRules(): boolean {
+  try {
+    return sessionStorage.getItem(RULES_SEEN_KEY) !== null;
+  } catch {
+    return false;
+  }
+}
+
+function markRulesSeen(): void {
+  try {
+    sessionStorage.setItem(RULES_SEEN_KEY, "true");
+  } catch {
+    // rules show again next load
+  }
+}
+
 function App() {
-  const [rulesVisible, setRulesVisible] = useState(
-    () => !sessionStorage.getItem(RULES_SEEN_KEY),
-  );
+  const [rulesVisible, setRulesVisible] = useState(() => !hasSeenRules());
   const [state, dispatch] = useReducer(gameReducer, undefined, createInitialState);
   useSoundEffects(state);
 
@@ -41,7 +56,7 @@ function App() {
 
   const handleBeginDuel = () => {
     setRulesVisible(false);
-    sessionStorage.setItem(RULES_SEEN_KEY, "true");
+    markRulesSeen();
   };
 
   const outcome =
