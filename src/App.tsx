@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { gameReducer, canDrawCard, allPlayerSlotsFull } from "./game/reducer";
 import { createInitialState } from "./game/initialState";
 import { DRAW_COST } from "./game/constants";
