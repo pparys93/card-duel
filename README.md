@@ -282,7 +282,7 @@ Current version: [`v1.0.13`](./CHANGELOG.md) - complete
 
 | Card Entrance | Stats Update |
 |---|---|
-| <img src="assets/images/card-entrance.gif" width="300" alt="Dragging a card from the hand to a board slot"> | <img src="assets/images/popup.gif" width="220" alt="Tap to select and place a card on the board"> |
+| <img src="assets/images/card-entrance.gif" width="300" alt="A played card fading in on a board slot"> | <img src="assets/images/popup.gif" width="220" alt="Floating damage and heal numbers above a player's HP; Mana changes without them"> |
 
 ---
 
