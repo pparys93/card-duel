@@ -140,7 +140,8 @@ card-duel/
 │
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml
+│       ├── deploy.yml
+│       └── ci.yml
 │
 ├── index.html
 ├── vite.config.ts
