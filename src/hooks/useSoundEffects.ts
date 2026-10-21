@@ -11,10 +11,12 @@ export function useSoundEffects(state: GameState) {
 
     // RESTART_GAME jumps every field back to its initial value at once - without this
     // guard, that jump would look identical to a burst of draws/damage/etc. and fire
-    // every sound below spuriously; the original never faced this, since "Play Again"
-    // did a full page reload instead of resetting state in place
+    // every sound below spuriously
     const isRestart = previous.gameEnded && !state.gameEnded;
-    if (isRestart) return;
+    if (isRestart) {
+      playSound("buttonClick");
+      return;
+    }
 
     if (state.hand.length > previous.hand.length) {
       playSound("cardDraw");

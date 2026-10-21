@@ -3,6 +3,7 @@ import { gameReducer, canDrawCard, allPlayerSlotsFull } from "./game/reducer";
 import { createInitialState } from "./game/initialState";
 import { DRAW_COST } from "./game/constants";
 import { useSoundEffects } from "./hooks/useSoundEffects";
+import { playSound } from "./utils/sounds";
 import RulesOverlay from "./components/RulesOverlay/RulesOverlay";
 import ScreenGuard from "./components/ScreenGuard/ScreenGuard";
 import GameOverOverlay from "./components/GameOverOverlay/GameOverOverlay";
@@ -54,6 +55,9 @@ function App() {
   }, [state.turn]);
 
   const handleBeginDuel = () => {
+    // rulesVisible lives outside the reducer, so useSoundEffects can't observe this
+    // transition - the click sound is played directly from the handler instead
+    playSound("buttonClick");
     setRulesVisible(false);
     markRulesSeen();
   };
