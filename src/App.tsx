@@ -1,9 +1,14 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState, useSyncExternalStore } from "react";
 import { gameReducer, canDrawCard, allPlayerSlotsFull } from "./game/reducer";
 import { createInitialState } from "./game/initialState";
 import { DRAW_COST } from "./game/constants";
 import { useSoundEffects } from "./hooks/useSoundEffects";
-import { playSound } from "./utils/sounds";
+import {
+  playSound,
+  isSoundMuted,
+  setSoundMuted,
+  subscribeToSoundMuted,
+} from "./utils/sounds";
 import RulesOverlay from "./components/RulesOverlay/RulesOverlay";
 import ScreenGuard from "./components/ScreenGuard/ScreenGuard";
 import GameOverOverlay from "./components/GameOverOverlay/GameOverOverlay";
@@ -36,6 +41,8 @@ function App() {
   const [rulesVisible, setRulesVisible] = useState(() => !hasSeenRules());
   const [state, dispatch] = useReducer(gameReducer, undefined, createInitialState);
   useSoundEffects(state);
+
+  const soundMuted = useSyncExternalStore(subscribeToSoundMuted, isSoundMuted);
 
   useEffect(() => {
     if (state.turn !== "enemy") return;
@@ -94,8 +101,10 @@ function App() {
           drawCost={DRAW_COST}
           canDraw={canDrawCard(state)}
           canEndTurn={state.turn === "player"}
+          soundMuted={soundMuted}
           onDrawCard={() => dispatch({ type: "DRAW_CARD" })}
           onEndTurn={() => dispatch({ type: "END_PLAYER_TURN" })}
+          onToggleSound={() => setSoundMuted(!soundMuted)}
         />
 
         <Board
