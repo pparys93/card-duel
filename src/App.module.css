@@ -10,7 +10,7 @@
   grid-template-areas:
     "enemy-panel"
     "enemy-board"
-    "turn-controls"
+    "game-controls"
     "player-board"
     "player-hand"
     "player-panel";

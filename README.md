@@ -174,13 +174,13 @@ card-duel/
 │   │   ├── CardContent/
 │   │   ├── CardManaBadge/
 │   │   ├── CardStat/
+│   │   ├── GameControls/
 │   │   ├── GameOverOverlay/
 │   │   ├── Hand/
 │   │   ├── Icon/
 │   │   ├── PlayerPanel/
 │   │   ├── RulesOverlay/
-│   │   ├── ScreenGuard/
-│   │   └── TurnControls/
+│   │   └── ScreenGuard/
 │   │   (each with a colocated .tsx + .module.css)
 │   │
 │   ├── game/
@@ -232,7 +232,7 @@ App
     ├── Board (enemy)
     │   └── BoardSlot × 4 → BoardCard
     │
-    ├── TurnControls
+    ├── GameControls
     │
     ├── Board (player)
     │   └── BoardSlot × 4 → BoardCard

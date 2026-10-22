@@ -1,6 +1,6 @@
-import styles from "./TurnControls.module.css";
+import styles from "./GameControls.module.css";
 
-interface TurnControlsProps {
+interface GameControlsProps {
   drawCost: number;
   canDraw: boolean;
   canEndTurn: boolean;
@@ -10,7 +10,7 @@ interface TurnControlsProps {
   onToggleSound?: () => void;
 }
 
-function TurnControls({
+function GameControls({
   drawCost,
   canDraw,
   canEndTurn,
@@ -18,7 +18,7 @@ function TurnControls({
   onDrawCard,
   onEndTurn,
   onToggleSound,
-}: TurnControlsProps) {
+}: GameControlsProps) {
   return (
     <div className={styles.controls} role="group" aria-label="Game controls">
       <button
@@ -67,4 +67,4 @@ function TurnControls({
   );
 }
 
-export default TurnControls;
+export default GameControls;

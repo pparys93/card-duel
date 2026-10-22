@@ -1,12 +1,12 @@
 .controls {
-  grid-area: turn-controls;
+  grid-area: game-controls;
   position: relative;
 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: var(--size-gap-turn-controls);
+  gap: var(--size-gap-game-controls);
   --sound-toggle-size: 2.5rem;
 }
 

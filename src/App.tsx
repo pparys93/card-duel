@@ -14,7 +14,7 @@ import ScreenGuard from "./components/ScreenGuard/ScreenGuard";
 import GameOverOverlay from "./components/GameOverOverlay/GameOverOverlay";
 import PlayerPanel from "./components/PlayerPanel/PlayerPanel";
 import Board from "./components/Board/Board";
-import TurnControls from "./components/TurnControls/TurnControls";
+import GameControls from "./components/GameControls/GameControls";
 import Hand from "./components/Hand/Hand";
 import styles from "./App.module.css";
 
@@ -103,7 +103,7 @@ function App() {
 
         <Board variant="enemy" slots={state.enemyBoard} />
 
-        <TurnControls
+        <GameControls
           drawCost={DRAW_COST}
           canDraw={canDrawCard(state)}
           canEndTurn={state.turn === "player"}
