@@ -1,5 +1,5 @@
 .overlay {
-  composes: overlay from "../../styles/overlay.module.css";
+  composes: overlay toggleable from "../../styles/overlay.module.css";
   z-index: 9997;
 }
 

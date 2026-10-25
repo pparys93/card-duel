@@ -1,6 +1,12 @@
 .guard {
   composes: overlay from "../../styles/overlay.module.css";
   z-index: 9999;
+
+  /* own state, driven by the media queries below instead of a class */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .icon {

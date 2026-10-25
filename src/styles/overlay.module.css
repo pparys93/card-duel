@@ -13,7 +13,10 @@
   background: rgba(0, 0, 0, 0.88);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
+}
 
+/* open/close state, kept apart from .overlay so ScreenGuard can drive its own */
+.toggleable {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
