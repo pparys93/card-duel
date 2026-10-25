@@ -94,10 +94,6 @@
 }
 
 @media (hover: none) {
-  .card:focus-visible {
-    outline: none;
-  }
-
   .card {
     z-index: 1;
   }

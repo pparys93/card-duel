@@ -249,7 +249,7 @@ App
 
 ## 🚧 Project Status
 
-Current version: [`v1.0.15`](./CHANGELOG.md) - complete
+Current version: [`v1.0.16`](./CHANGELOG.md) - complete
 
 > 🚀 **[Live Demo](https://pparys93.github.io/card-duel)**
 
