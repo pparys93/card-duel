@@ -62,9 +62,9 @@ function GameOverOverlay({ visible, outcome, onPlayAgain }: GameOverOverlayProps
           <circle cx="9" cy="12" r="1" />
         </svg>
       )}
-      <p id="game-over-title" className={styles.title} role="heading" aria-level={2}>
+      <h2 id="game-over-title" className={styles.title}>
         {content?.title}
-      </p>
+      </h2>
       <p id="game-over-message" className={styles.message}>
         {content?.message}
       </p>

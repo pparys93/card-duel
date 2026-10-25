@@ -6,9 +6,7 @@ function ScreenGuard() {
       <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true">
         <rect x="5" y="2" width="14" height="20" rx="2" />
       </svg>
-      <p className={styles.title} role="heading" aria-level={2}>
-        Rotate Your Device
-      </p>
+      <h2 className={styles.title}>Rotate Your Device</h2>
       <p className={styles.message}>
         The battlefield requires more space. Rotate your device or extend
         your browser window vertically to continue.
