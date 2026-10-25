@@ -7,10 +7,10 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 ## [v1.0.0] - React Migration | 2026-09-16
 
 ### Changed
-- entire codebase rewritten in React with TypeScript, built with Vite (previously vanilla JavaScript/CSS)
-- game state centralized in a single reducer, replacing module-scope mutable variables with pure state transitions
-- styling rebuilt with CSS Modules, sharing base styles across overlays and buttons via `composes` instead of duplication
-- all gameplay, accessibility, and visual behavior preserved from `v0.4.4`
+- Entire codebase rewritten in React with TypeScript, built with Vite (previously vanilla JavaScript/CSS)
+- Game state centralized in a single reducer, replacing module-scope mutable variables with explicit state transitions
+- Styling rebuilt with CSS Modules, sharing base styles across overlays and buttons via `composes` instead of duplication
+- All gameplay, accessibility, and visual behavior preserved from `v0.4.4`
 
 <details>
 <summary><strong>Patches on top of v1.0.0</strong> - v1.0.1 - v1.0.2 - v1.0.3 - v1.0.4 - v1.0.5 - v1.0.6 - v1.0.7 - v1.0.8 - v1.0.9 - v1.0.10 - v1.0.11 - v1.0.12 - v1.0.13 - v1.0.14 - v1.0.15 - v1.0.16</summary>
@@ -63,6 +63,8 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 **[v1.0.1] | 2026-10-11**
 - Fixed: sound files now load correctly in the deployed GitHub Pages build
 </details>
+
+---
 
 ## [v0.4.0] - Rules Overlay | 2026-08-08
 
