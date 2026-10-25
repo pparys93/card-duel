@@ -114,7 +114,7 @@ This project is also used to practice a professional frontend workflow:
 
 ### ⚙️ Application Architecture
 - component-based UI (React + TypeScript), organized by responsibility (`components/`, `game/`, `hooks/`, `data/`, `utils/`),
-- centralized game state via a single reducer (`useReducer`), with every game rule expressed as a pure state transition,
+- centralized game state via a single reducer (`useReducer`), with every game rule expressed as a state transition,
 - strict typing throughout - card data, icon data, and game state all fully typed, catching data-shape mistakes at compile time,
 - side effects (timers, sound, DOM focus) kept out of the reducer and handled in dedicated hooks and effects,
 - dynamic card rendering, fan-layout scaling, card placement, mana system, turn management, draw mechanic, health system, enemy turn AI, win/lose conditions, pointer-based drag and drop, and an audio feedback system - all ported from the original vanilla JS implementation.
@@ -300,7 +300,7 @@ This isn't just a game. It's a structured self-education path through the joy of
 - JavaScript: DOM manipulation, event handling, closures, game logic,
 - React: components, state, hooks (`useState`, `useReducer`, `useEffect`, `useRef`), dynamic rendering,
 - TypeScript: static typing, discriminated unions, generics,
-- state management with reducers (`useReducer`), keeping side effects out of pure state transitions,
+- state management with reducers (`useReducer`), keeping side effects (timers, sound, focus) out of the reducer,
 - CI/CD basics: automated build and deployment with GitHub Actions,
 - working with AI as a development assistant: defining the architecture and rules myself, critically evaluating its suggestions, independently debugging and validating the resulting code, and rejecting or revising solutions that don't hold up under testing.
 
