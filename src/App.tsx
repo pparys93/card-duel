@@ -1,14 +1,20 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState, useSyncExternalStore } from "react";
 import { gameReducer, canDrawCard, allPlayerSlotsFull } from "./game/reducer";
 import { createInitialState } from "./game/initialState";
 import { DRAW_COST } from "./game/constants";
 import { useSoundEffects } from "./hooks/useSoundEffects";
+import {
+  playSound,
+  isSoundMuted,
+  setSoundMuted,
+  subscribeToSoundMuted,
+} from "./utils/sounds";
 import RulesOverlay from "./components/RulesOverlay/RulesOverlay";
 import ScreenGuard from "./components/ScreenGuard/ScreenGuard";
 import GameOverOverlay from "./components/GameOverOverlay/GameOverOverlay";
 import PlayerPanel from "./components/PlayerPanel/PlayerPanel";
 import Board from "./components/Board/Board";
-import TurnControls from "./components/TurnControls/TurnControls";
+import GameControls from "./components/GameControls/GameControls";
 import Hand from "./components/Hand/Hand";
 import styles from "./App.module.css";
 
@@ -36,6 +42,8 @@ function App() {
   const [state, dispatch] = useReducer(gameReducer, undefined, createInitialState);
   useSoundEffects(state);
 
+  const soundMuted = useSyncExternalStore(subscribeToSoundMuted, isSoundMuted);
+
   useEffect(() => {
     if (state.turn !== "enemy") return;
 
@@ -54,8 +62,17 @@ function App() {
   }, [state.turn]);
 
   const handleBeginDuel = () => {
+    // rulesVisible lives outside the reducer, so useSoundEffects can't observe this
+    // transition - the click sound is played directly from the handler instead
+    playSound("buttonClick");
     setRulesVisible(false);
     markRulesSeen();
+  };
+
+  const handleToggleSound = () => {
+    setSoundMuted(!soundMuted);
+    // unmuting plays a click, so the player hears that sound is back on
+    if (soundMuted) playSound("buttonClick");
   };
 
   const outcome =
@@ -86,12 +103,14 @@ function App() {
 
         <Board variant="enemy" slots={state.enemyBoard} />
 
-        <TurnControls
+        <GameControls
           drawCost={DRAW_COST}
           canDraw={canDrawCard(state)}
           canEndTurn={state.turn === "player"}
+          soundMuted={soundMuted}
           onDrawCard={() => dispatch({ type: "DRAW_CARD" })}
           onEndTurn={() => dispatch({ type: "END_PLAYER_TURN" })}
+          onToggleSound={handleToggleSound}
         />
 
         <Board

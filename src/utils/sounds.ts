@@ -23,7 +23,44 @@ const sounds: Record<SoundName, HTMLAudioElement> = {
 const SCREEN_GUARD_QUERY =
   "(pointer: coarse) and (max-height: 500px), (pointer: fine) and (max-height: 600px)";
 
+const MUTE_STORAGE_KEY = "cardDuelSoundMuted";
+
+// localStorage throws when the browser blocks site data
+function readMuted(): boolean {
+  try {
+    return localStorage.getItem(MUTE_STORAGE_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+let muted = readMuted();
+const listeners = new Set<() => void>();
+
+export function isSoundMuted(): boolean {
+  return muted;
+}
+
+export function setSoundMuted(value: boolean): void {
+  muted = value;
+  try {
+    localStorage.setItem(MUTE_STORAGE_KEY, String(value));
+  } catch {
+    // preference lasts until the page is closed
+  }
+  listeners.forEach((listener) => listener());
+}
+
+// lets React re-render when the flag changes (see useSyncExternalStore in App)
+export function subscribeToSoundMuted(listener: () => void): () => void {
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
+}
+
 export function playSound(name: SoundName) {
+  if (muted) return;
   // screen-guard covers the board here; suppress audio feedback for actions the player can't see
   if (window.matchMedia(SCREEN_GUARD_QUERY).matches) return;
 

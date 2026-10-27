@@ -12,7 +12,7 @@
 
 </div>
 
-A browser-based fantasy card game built as a frontend portfolio project. With `v1.0.0`, the project is complete: every milestone on the original roadmap has been delivered, culminating in a full migration of the architecture from vanilla JavaScript to React with TypeScript. Reaching this point marks the completion of the project's original goals, but not necessarily its end. The nature of a card game leaves plenty of room for new mechanics, features, and directions, so the project may continue to evolve beyond the original roadmap as new possibilities emerge.
+A browser-based fantasy card game built as a frontend portfolio project. With `v1.0.0`, the project is complete: every milestone on the original roadmap has been delivered, culminating in a full migration of the architecture from vanilla JavaScript to React with TypeScript. Reaching this point marks the completion of the project's original goals, but not necessarily its end. The nature of a card game leaves plenty of room for new mechanics, features, and directions, so the project may continue to evolve beyond the original roadmap as new possibilities emerge (see [Project Status](#-project-status) for the current version).
 
 ---
 
@@ -92,7 +92,8 @@ This project is also used to practice a professional frontend workflow:
 
 ### 🔊 Sound Design
 - audio feedback for core card interactions, including drawing, previewing, selecting, and playing cards,
-- distinct sound cues for interface actions, spell effects, and match outcomes.
+- distinct sound cues for interface actions, spell effects, and match outcomes,
+- sound mute toggle with the choice remembered between visits.
 
 ### ♿ Accessibility & UX
 - semantic HTML structure,
@@ -121,7 +122,7 @@ This project is also used to practice a professional frontend workflow:
 
 ---
 
-## 🗺️ Roadmap
+## 🗺️ Roadmap to v1.0.0
 
 | Version | Milestone | Status |
 |---|---|---|
@@ -174,13 +175,13 @@ card-duel/
 │   │   ├── CardContent/
 │   │   ├── CardManaBadge/
 │   │   ├── CardStat/
+│   │   ├── GameControls/
 │   │   ├── GameOverOverlay/
 │   │   ├── Hand/
 │   │   ├── Icon/
 │   │   ├── PlayerPanel/
 │   │   ├── RulesOverlay/
-│   │   ├── ScreenGuard/
-│   │   └── TurnControls/
+│   │   └── ScreenGuard/
 │   │   (each with a colocated .tsx + .module.css)
 │   │
 │   ├── game/
@@ -232,7 +233,7 @@ App
     ├── Board (enemy)
     │   └── BoardSlot × 4 → BoardCard
     │
-    ├── TurnControls
+    ├── GameControls
     │
     ├── Board (player)
     │   └── BoardSlot × 4 → BoardCard
@@ -249,7 +250,7 @@ App
 
 ## 🚧 Project Status
 
-Current version: [`v1.0.16`](./CHANGELOG.md) - complete
+Current version: [`v1.1.0`](./CHANGELOG.md) - complete
 
 > 🚀 **[Live Demo](https://pparys93.github.io/card-duel)**
 
@@ -298,7 +299,7 @@ This isn't just a game. It's a structured self-education path through the joy of
 - Git & GitHub workflow,
 - scalable frontend structure and component thinking,
 - JavaScript: DOM manipulation, event handling, closures, game logic,
-- React: components, state, hooks (`useState`, `useReducer`, `useEffect`, `useRef`), dynamic rendering,
+- React: components, state, hooks (`useState`, `useReducer`, `useEffect`, `useRef`, `useSyncExternalStore`), dynamic rendering,
 - TypeScript: static typing, discriminated unions, generics,
 - state management with reducers (`useReducer`), keeping side effects (timers, sound, focus) out of the reducer,
 - CI/CD basics: automated build and deployment with GitHub Actions,

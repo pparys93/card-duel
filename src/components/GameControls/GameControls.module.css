@@ -1,12 +1,13 @@
 .controls {
-  grid-area: turn-controls;
+  grid-area: game-controls;
   position: relative;
 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: var(--size-gap-turn-controls);
+  gap: var(--size-gap-game-controls);
+  --sound-toggle-size: 2.5rem;
 }
 
 .controls::before {
@@ -51,6 +52,48 @@
   box-shadow: var(--shadow-box-card-mana);
 }
 
+.soundToggle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* touch target is larger than the icon itself */
+  width: var(--sound-toggle-size);
+  height: var(--sound-toggle-size);
+  padding: 0;
+
+  border: none;
+  border-radius: var(--size-radius-global-sm);
+  background: none;
+  color: var(--color-text-base-default);
+  opacity: 0.75;
+
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: opacity 0.2s ease;
+}
+
+.soundToggle:focus-visible {
+  outline: 2px solid var(--color-outline-btn-focus);
+  outline-offset: var(--size-space-global-2xs);
+}
+
+.soundIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .endTurn {
   background: var(--color-bg-btn-end-turn);
   box-shadow: var(--shadow-box-btn-end-turn);
@@ -74,6 +117,10 @@
 }
 
 @media (hover: hover) {
+  .soundToggle:hover {
+    opacity: 1;
+  }
+
   .endTurn:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: var(--shadow-box-btn-end-turn-hover);
@@ -83,5 +130,12 @@
     background: var(--color-bg-btn-draw-hover);
     transform: translateY(-2px);
     box-shadow: var(--shadow-box-btn-draw-hover);
+  }
+}
+
+/* below this width the centred buttons leave no room beside them for the toggle */
+@media (max-width: 22rem) {
+  .controls {
+    padding-inline: calc(var(--sound-toggle-size) + var(--size-space-global-xs));
   }
 }

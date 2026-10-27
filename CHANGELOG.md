@@ -1,6 +1,18 @@
 # Changelog
 
-Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Minor releases (`v0.1.0`, `v0.2.0`, ...) correspond to the project's milestones, as outlined in the [README](./README.md). Fixes made within a given milestone are collapsed underneath it as patches rather than listed as separate top-level entries, keeping the project's main timeline readable.
+Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Up to `v1.0.0`, minor releases (`v0.1.0`, `v0.2.0`, ...) correspond to the project's milestones, as outlined in the [README](./README.md); later minor releases add new functionality. Fixes made within a given minor release are collapsed underneath it as patches rather than listed as separate top-level entries, keeping the project's main timeline readable.
+
+---
+
+## [v1.1.0] - Sound Controls | 2026-10-27
+
+### Added
+- Mute toggle for sound effects in the game controls, with the choice remembered between visits (switching sound back on plays a confirmation click)
+- Click sound on the "Begin the Duel" and "Play Again" buttons
+
+### Changed
+- The game controls are now announced to assistive technologies as a "Game controls" group instead of a "Turn actions" toolbar, matching how they behave with the keyboard (each button is its own Tab stop)
+- On very narrow screens (under 352 px) Draw Card and End Turn stack vertically to leave room for the mute toggle
 
 ---
 
@@ -162,6 +174,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). M
 
 ---
 
+[v1.1.0]: https://github.com/pparys93/card-duel/releases/tag/v1.1.0
 [v1.0.0]: https://github.com/pparys93/card-duel/releases/tag/v1.0.0
 [v1.0.1]: https://github.com/pparys93/card-duel/releases/tag/v1.0.1
 [v1.0.2]: https://github.com/pparys93/card-duel/releases/tag/v1.0.2

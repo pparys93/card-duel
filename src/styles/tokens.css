@@ -17,7 +17,7 @@
 
   /* SPACING */
   --size-space-global-2xs: 0.25rem;
-  --size-space-global-xs: 0.5rem;   /* reserved */
+  --size-space-global-xs: 0.5rem;
   --size-space-global-sm: 0.625rem;
   --size-space-global-md: 0.75rem;  /* reserved */
   --size-space-global-lg: 1rem;     /* reserved */
@@ -118,7 +118,7 @@
   --size-gap-layout: clamp(0.375rem, 1vh, 0.875rem);
   --size-gap-panel-stats: clamp(0.375rem, 0.8vw, 0.75rem);
   --size-gap-board: clamp(0.5rem, 1.0vw, 1.25rem);
-  --size-gap-turn-controls: clamp(0.5rem, 1vw, 0.875rem);
+  --size-gap-game-controls: clamp(0.5rem, 1vw, 0.875rem);
 
   --size-height-scrollbar: var(--size-space-global-sm);
 
