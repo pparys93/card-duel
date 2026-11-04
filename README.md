@@ -58,6 +58,7 @@ This project is also used to practice a professional frontend workflow:
 - HTML5
 - Git & GitHub
 - Visual Studio Code
+- Vitest
 
 ---
 
@@ -188,6 +189,8 @@ card-duel/
 │   │   ├── constants.ts
 │   │   ├── initialState.ts
 │   │   ├── reducer.ts
+│   │   ├── reducer.test.ts
+│   │   ├── reducer.invariants.test.ts
 │   │   └── types.ts
 │   │
 │   ├── hooks/
@@ -197,12 +200,17 @@ card-duel/
 │   │   ├── cards.ts
 │   │   └── icons.ts
 │   │
+│   ├── test/
+│   │   └── helpers.ts
+│   │   (unit tests are colocated with the modules they cover: *.test.ts)
+│   │ 
 │   ├── types/
 │   │   └── card.ts
 │   │
 │   ├── utils/
 │   │   ├── deepFreeze.ts
 │   │   ├── drawHand.ts
+│   │   ├── drawHand.test.ts
 │   │   ├── getCardFanTransform.ts
 │   │   ├── pickRandom.ts
 │   │   └── sounds.ts
@@ -302,8 +310,9 @@ This isn't just a game. It's a structured self-education path through the joy of
 - React: components, state, hooks (`useState`, `useReducer`, `useEffect`, `useRef`, `useSyncExternalStore`), dynamic rendering,
 - TypeScript: static typing, discriminated unions, generics,
 - state management with reducers (`useReducer`), keeping side effects (timers, sound, focus) out of the reducer,
-- CI/CD basics: automated build and deployment with GitHub Actions,
-- working with AI as a development assistant: defining the architecture and rules myself, critically evaluating its suggestions, independently debugging and validating the resulting code, and rejecting or revising solutions that don't hold up under testing.
+- CI/CD basics: automated checks on pull requests (lint, tests, build) and automated deployment with GitHub Actions,
+- working with AI as a development assistant: defining the architecture and rules myself, critically evaluating its suggestions, independently debugging and validating the resulting code, and rejecting or revising solutions that don't hold up under testing,
+- unit testing with Vitest: testing a reducer in isolation, mocking randomness, and a seeded randomized test that checks the game rules after every action.
 
 This project taught me a lot about modern frontend development, but just as importantly, it showed me how much further there still is to go. That's exactly why I keep learning, experimenting, making mistakes, figuring out why things break, and improving the way I approach coding.
 
