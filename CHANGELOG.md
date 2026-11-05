@@ -12,7 +12,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). U
 
 ### Changed
 - The game controls are now announced to assistive technologies as a "Game controls" group instead of a "Turn actions" toolbar, matching how they behave with the keyboard (each button is its own Tab stop)
-- On very narrow screens (under 352 px) Draw Card and End Turn stack vertically to leave room for the mute toggle
+- On very narrow screens (352 px wide or narrower at the default font size) Draw Card and End Turn stack vertically to leave room for the mute toggle
 
 ---
 
