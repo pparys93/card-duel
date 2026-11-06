@@ -294,6 +294,14 @@ Current version: [`v1.1.2`](./CHANGELOG.md) - complete
 |---|---|
 | <img src="assets/images/card-entrance.gif" width="300" alt="A played card fading in on a board slot"> | <img src="assets/images/popup.gif" width="220" alt="Floating damage and heal numbers above a player's HP; Mana changes without them"> |
 
+### 📊 Quality
+
+| Desktop | Mobile |
+|---|---|
+| <img src="assets/images/lighthouse-desktop.png" width="360" alt="Lighthouse desktop report: Performance 99, Accessibility 100, Best Practices 100, SEO 100"> | <img src="assets/images/lighthouse-mobile.png" width="360" alt="Lighthouse mobile report: Performance [N], Accessibility 100, Best Practices 100, SEO 100"> |
+
+<sub>Lighthouse 13.5.0 (Chrome DevTools), navigation mode, median of three runs per device, 2026-11-06.</sub>
+
 ---
 
 ## 🎓 What I'm Learning Through This Project
