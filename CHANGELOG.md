@@ -15,7 +15,10 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). U
 - On very narrow screens (352 px wide or narrower at the default font size) Draw Card and End Turn stack vertically to leave room for the mute toggle
 
 <details>
-<summary><strong>Patches on top of v1.1.0</strong> - v1.1.1</summary>
+<summary><strong>Patches on top of v1.1.0</strong> - v1.1.1 - v1.1.2</summary>
+
+**[v1.1.2] | 2026-11-06**
+- Fixed: cards in hand no longer use an invalid combination of `<article>` and the `button` role for assistive technologies
 
 **[v1.1.1] | 2026-11-06**
 - Fixed: enemy board slots no longer carry an invalid `aria-label` for assistive technologies

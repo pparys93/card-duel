@@ -32,7 +32,7 @@ function Card({
   onDrop,
   style,
 }: CardProps) {
-  const articleRef = useRef<HTMLElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const suppressClickRef = useRef(false);
   const dragState = useRef({
     startX: 0,
@@ -44,7 +44,7 @@ function Card({
   const [isDragging, setIsDragging] = useState(false);
 
   const endDrag = () => {
-    articleRef.current?.style.removeProperty("transform");
+    cardRef.current?.style.removeProperty("transform");
     setIsDragging(false);
     dragState.current.dropTarget?.removeAttribute("data-drop-active");
     dragState.current = { startX: 0, startY: 0, active: false, dragging: false, dropTarget: null };
@@ -79,8 +79,8 @@ function Card({
       if (!selected) onSelect?.();
     }
 
-    if (articleRef.current) {
-      articleRef.current.style.transform = `translate(${dx}px, ${dy}px)`;
+    if (cardRef.current) {
+      cardRef.current.style.transform = `translate(${dx}px, ${dy}px)`;
     }
 
     // pointer capture keeps event.target on the card, so look up the element
@@ -146,8 +146,8 @@ function Card({
   };
 
   return (
-    <article
-      ref={articleRef}
+    <div
+      ref={cardRef}
       className={classNames}
       style={style}
       tabIndex={0}
@@ -167,7 +167,7 @@ function Card({
       <CardArt icon={card.id} />
       <CardContent name={card.name} description={card.description} />
       <CardStat type={card.type} value={card.stat} />
-    </article>
+    </div>
   );
 }
 
