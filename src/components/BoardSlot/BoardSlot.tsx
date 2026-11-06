@@ -23,7 +23,7 @@ function BoardSlot({ variant, label, card, index, onPlace }: BoardSlotProps) {
 
   if (variant === "enemy") {
     return (
-      <div className={className} aria-label={label}>
+      <div className={className}>
         {content}
       </div>
     );

@@ -14,6 +14,13 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). U
 - The game controls are now announced to assistive technologies as a "Game controls" group instead of a "Turn actions" toolbar, matching how they behave with the keyboard (each button is its own Tab stop)
 - On very narrow screens (352 px wide or narrower at the default font size) Draw Card and End Turn stack vertically to leave room for the mute toggle
 
+<details>
+<summary><strong>Patches on top of v1.1.0</strong> - v1.1.1</summary>
+
+**[v1.1.1] | 2026-11-06**
+- Fixed: enemy board slots no longer carry an invalid `aria-label` for assistive technologies
+</details>
+
 ---
 
 ## [v1.0.0] - React Migration | 2026-09-16
@@ -175,6 +182,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). U
 ---
 
 [v1.1.0]: https://github.com/pparys93/card-duel/releases/tag/v1.1.0
+[v1.1.1]: https://github.com/pparys93/card-duel/releases/tag/v1.1.1
 [v1.0.0]: https://github.com/pparys93/card-duel/releases/tag/v1.0.0
 [v1.0.1]: https://github.com/pparys93/card-duel/releases/tag/v1.0.1
 [v1.0.2]: https://github.com/pparys93/card-duel/releases/tag/v1.0.2
