@@ -103,7 +103,7 @@ This project is also used to practice a professional frontend workflow:
 - ARIA markup for screen reader support,
 - touch-friendly controls,
 - `prefers-reduced-motion` support,
-- visually hidden headings for screen readers using the `visually-hidden` class,
+- main heading using the `visuallyHidden` class for screen readers,
 - screen-guard overlay when the browser window is too short or the device is in a non-optimal orientation,
 - game rules overlay shown on load, introducing new players to the mechanics before their first move.
 
@@ -166,6 +166,7 @@ card-duel/
 ├── src/
 │   ├── main.tsx
 │   ├── App.tsx
+│   ├── App.module.css
 │   │
 │   ├── components/
 │   │   ├── Board/
