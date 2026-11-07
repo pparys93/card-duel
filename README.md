@@ -225,7 +225,8 @@ card-duel/
 │
 ├── README.md
 ├── CHANGELOG.md
-└── LICENSE
+├── LICENSE
+└── THIRD_PARTY_LICENSES.md
 ```
 ---
 
@@ -325,6 +326,49 @@ This isn't just a game. It's a structured self-education path through the joy of
 - unit testing with Vitest: testing a reducer in isolation, mocking randomness, and a seeded randomized test that checks the game rules after every action.
 
 This project taught me a lot about modern frontend development, but just as importantly, it showed me how much further there still is to go. That's exactly why I keep learning, experimenting, making mistakes, figuring out why things break, and improving the way I approach coding.
+
+---
+
+## 🙏 Credits & Licenses
+
+The project's own code is released under the [MIT License](./LICENSE). Full license texts for Lucide and Feather are in [THIRD_PARTY_LICENSES.md](./THIRD_PARTY_LICENSES.md).
+
+### 🏷️ Icons
+
+| Asset | Source | Author | License |
+|---|---|---|---|
+| Rules overlay icon | [Lucide: `scroll-text`](https://lucide.dev/icons/scroll-text) | Lucide Contributors | [ISC][isc] |
+| Victory icon (modified) | [Lucide: `swords`](https://lucide.dev/icons/swords) | Lucide Contributors | [ISC][isc] |
+| Defeat icon | [Lucide: `skull`](https://lucide.dev/icons/skull) | Lucide Contributors | [ISC][isc] |
+| Sound toggle icons | [Feather: `volume-2`, `volume-x`](https://feathericons.com/?query=volume) | Cole Bemis | [MIT][mit-feather] |
+| Other card icons | Claude / ChatGPT | AI-generated | [MIT][mit-project] |
+| Shield card icon | [Feather: `shield`](https://feathericons.com/?query=shield) | Cole Bemis | [MIT][mit-feather] |
+| Favicon set (modified) | [Twemoji](https://github.com/jdecked/twemoji/blob/main/assets/svg/2694.svg) | Twemoji authors | [CC BY 4.0][cc-by] |
+
+### 🔊 Sound Effects
+
+| Asset | Source | Author | License |
+|---|---|---|---|
+| `button-click.mp3` | [Pixabay](https://pixabay.com/pl/sound-effects/filmy-i-efekty-specjalne-keyboard-press-351952/) | KoiRoylers | [Pixabay Content License][pixabay] |
+| `card-preview.mp3` | [Pixabay](https://pixabay.com/pl/sound-effects/filmy-i-efekty-specjalne-card-mixing-48088/) | krnfa (Freesound) | [Pixabay Content License][pixabay] |
+| `spell-effect.mp3` | [Pixabay](https://pixabay.com/pl/sound-effects/filmy-i-efekty-specjalne-spell-casting-229208/) | Universfield | [Pixabay Content License][pixabay] |
+| `card-draw.mp3` | [Pixabay](https://pixabay.com/pl/sound-effects/filmy-i-efekty-specjalne-taking-playing-card-2-522516/) | OxidVideos | [Pixabay Content License][pixabay] |
+| `card-place.mp3` | [Pixabay](https://pixabay.com/pl/sound-effects/filmy-i-efekty-specjalne-placing-playing-card-522514/) | OxidVideos | [Pixabay Content License][pixabay] |
+| `card-select.mp3` | [Pixabay](https://pixabay.com/pl/sound-effects/filmy-i-efekty-specjalne-minimal-pop-click-ui-3-198303/) | floraphonic | [Pixabay Content License][pixabay] |
+| `game-over.mp3` | [Pixabay](https://pixabay.com/pl/sound-effects/filmy-i-efekty-specjalne-new-notification-067-138695/) | Universfield | [Pixabay Content License][pixabay] |
+
+### 🔤 Fonts
+
+| Asset | Source | Author | License |
+|---|---|---|---|
+| Cinzel | [Google Fonts](https://fonts.google.com/specimen/Cinzel) | Natanael Gama (The Cinzel Project Authors) | [SIL OFL 1.1][ofl] |
+
+[isc]: ./THIRD_PARTY_LICENSES.md#lucide
+[mit-feather]: ./THIRD_PARTY_LICENSES.md#feather
+[mit-project]: ./LICENSE
+[cc-by]: https://creativecommons.org/licenses/by/4.0/
+[pixabay]: https://pixabay.com/service/license-summary/
+[ofl]: https://scripts.sil.org/OFL
 
 ---
 
