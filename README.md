@@ -10,6 +10,7 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
 
+[🚀 Live Demo](https://pparys93.github.io/card-duel) · [📜 Game Rules](#-game-rules) · [✨ Current Features](#-current-features)
 </div>
 
 A browser-based fantasy card game built as a frontend portfolio project. With `v1.0.0`, the project is complete: every milestone on the original roadmap has been delivered, culminating in a full migration of the architecture from vanilla JavaScript to React with TypeScript. Reaching this point marks the completion of the project's original goals, but not necessarily its end. The nature of a card game leaves plenty of room for new mechanics, features, and directions, so the project may continue to evolve beyond the original roadmap as new possibilities emerge (see [Project Status](#-project-status) for the current version).
