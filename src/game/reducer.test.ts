@@ -48,6 +48,10 @@ beforeEach(() => {
 
 const fullBoard = (): (CardData | undefined)[] => Array.from({ length: BOARD_SIZE }, () => cheapestAttack);
 
+// a finished match: gameEnded and winner always move together (the invariants test checks this)
+const finishedGame = (overrides: Partial<GameState> = {}) =>
+  makeState({ gameEnded: true, winner: "player", enemy: { hp: 0, mana: 5 }, ...overrides });
+
 describe("test fixtures", () => {
   it("makeState returns a deeply frozen state, so reducer mutations would throw", () => {
     const state = makeState({ hand: [cheapAttack] });
@@ -130,9 +134,10 @@ describe("SELECT_CARD", () => {
     expect(select(state, "ghost")).toBe(state);
   });
 
-  // known gap, documented in the checklist (Lista B): the guard is planned together with
-  // the first feature that dispatches from outside the inert tree (keyboard shortcuts)
-  it.todo("ignores selection after the game has ended");
+  it("ignores selection after the game has ended", () => {
+    const state = finishedGame({ hand: [cheapAttack] });
+    expect(select(state, "cheap-attack")).toBe(state);
+  });
 });
 
 describe("DESELECT_CARD", () => {
@@ -219,9 +224,11 @@ describe("DRAW_CARD", () => {
     });
   });
 
-  // known gap, documented in the checklist (Lista B) - see SELECT_CARD
-  it.todo("is rejected after the game has ended");
-});
+    it("is rejected after the game has ended", () => {
+      const state = finishedGame({ hand: [cheapAttack] });
+      expect(draw(state)).toBe(state); // rejected before any randomness is consumed
+    });
+  });
 
 describe("PLACE_CARD", () => {
   const place = (state: GameState, slotIndex: number) =>
@@ -355,8 +362,10 @@ describe("END_PLAYER_TURN", () => {
     expect(endTurn(state)).toBe(state);
   });
 
-  // known gap, documented in the checklist (Lista B) - see SELECT_CARD
-  it.todo("is ignored after the game has ended");
+  it("is ignored after the game has ended", () => {
+    const state = finishedGame();
+    expect(endTurn(state)).toBe(state);
+  });
 });
 
 describe("PLAY_ENEMY_TURN", () => {
@@ -483,8 +492,8 @@ describe("PLAY_ENEMY_TURN", () => {
     expect(playEnemyTurn(state)).toBe(state); // rejected before any randomness is used (see beforeEach)
   });
 
-  // known gap, documented in the checklist (Lista B): ENEMY_MAX_CARDS_PER_TURN holds only because
-  // App dispatches this action once per enemy turn; the reducer itself would accept a second call
+  // known gap: ENEMY_MAX_CARDS_PER_TURN holds only because App dispatches this
+  // action once per enemy turn; the reducer itself would accept a second call
   it.todo("ignores a second PLAY_ENEMY_TURN within the same enemy turn");
 });
 
