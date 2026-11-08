@@ -51,6 +51,15 @@ export function setSoundMuted(value: boolean): void {
   listeners.forEach((listener) => listener());
 }
 
+// flips the flag based on its current value in this module, so any
+// trigger (the button, a keyboard shortcut) always toggles the real state
+export function toggleSoundMuted(): void {
+  const nextMuted = !muted;
+  setSoundMuted(nextMuted);
+  // unmuting plays a click, so the player hears that sound is back on
+  if (!nextMuted) playSound("buttonClick");
+}
+
 // lets React re-render when the flag changes (see useSyncExternalStore in App)
 export function subscribeToSoundMuted(listener: () => void): () => void {
   listeners.add(listener);

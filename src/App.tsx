@@ -6,7 +6,7 @@ import { useSoundEffects } from "./hooks/useSoundEffects";
 import {
   playSound,
   isSoundMuted,
-  setSoundMuted,
+  toggleSoundMuted,
   subscribeToSoundMuted,
 } from "./utils/sounds";
 import RulesOverlay from "./components/RulesOverlay/RulesOverlay";
@@ -69,12 +69,6 @@ function App() {
     markRulesSeen();
   };
 
-  const handleToggleSound = () => {
-    setSoundMuted(!soundMuted);
-    // unmuting plays a click, so the player hears that sound is back on
-    if (soundMuted) playSound("buttonClick");
-  };
-
   const outcome =
     state.winner === "player" ? "victory" : state.winner === "enemy" ? "defeat" : null;
 
@@ -110,7 +104,7 @@ function App() {
           soundMuted={soundMuted}
           onDrawCard={() => dispatch({ type: "DRAW_CARD" })}
           onEndTurn={() => dispatch({ type: "END_PLAYER_TURN" })}
-          onToggleSound={handleToggleSound}
+          onToggleSound={toggleSoundMuted}
         />
 
         <Board
