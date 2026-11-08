@@ -26,6 +26,7 @@ export type GameAction =
 export function canDrawCard(state: GameState): boolean {
   return (
     state.turn === "player" &&
+    !state.gameEnded &&
     !state.hasDrawnThisTurn &&
     state.hand.length < MAX_HAND_SIZE &&
     state.player.mana >= DRAW_COST
@@ -43,7 +44,7 @@ function growMana(mana: number): number {
 export function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case "SELECT_CARD": {
-      if (state.turn !== "player") return state;
+      if (state.turn !== "player" || state.gameEnded) return state;
 
       // clicking the already-selected card again acts as a toggle: deselect it
       if (state.selectedInstanceId === action.instanceId) {
@@ -128,7 +129,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     }
 
     case "END_PLAYER_TURN": {
-      if (state.turn !== "player") return state;
+      if (state.turn !== "player" || state.gameEnded) return state;
 
       // player skips mana growth on turn 1 (starts at STARTING_MANA); enemy mirrors
       // that here so both sides reach the same mana on their own turn N
