@@ -15,7 +15,7 @@ import { createInitialState } from "./initialState";
 
 export type GameAction =
   | { type: "SELECT_CARD"; instanceId: string }
-  | { type: "DESELECT_CARD" } // reserved
+  | { type: "DESELECT_CARD" }
   | { type: "DRAW_CARD" }
   | { type: "PLACE_CARD"; slotIndex: number }
   | { type: "END_PLAYER_TURN" }
