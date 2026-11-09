@@ -3,6 +3,7 @@ import { gameReducer, canDrawCard, allPlayerSlotsFull } from "./game/reducer";
 import { createInitialState } from "./game/initialState";
 import { DRAW_COST } from "./game/constants";
 import { useSoundEffects } from "./hooks/useSoundEffects";
+import { useKeyboardShortcuts } from "./hooks/useKeyboardShortcuts";
 import {
   playSound,
   isSoundMuted,
@@ -40,7 +41,9 @@ function markRulesSeen(): void {
 function App() {
   const [rulesVisible, setRulesVisible] = useState(() => !hasSeenRules());
   const [state, dispatch] = useReducer(gameReducer, undefined, createInitialState);
-  useSoundEffects(state);
+   useSoundEffects(state);
+  // inert doesn't block a document listener, so pause the shortcuts while the rules are open
+  useKeyboardShortcuts(state, dispatch, !rulesVisible);
 
   const soundMuted = useSyncExternalStore(subscribeToSoundMuted, isSoundMuted);
 
