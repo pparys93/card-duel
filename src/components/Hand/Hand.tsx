@@ -32,6 +32,7 @@ function Hand({
           selected={selectedInstanceId === card.instanceId}
           affordable={card.mana <= playerMana}
           canPlace={canPlace}
+          handPosition={index + 1}
           onSelect={() => onSelectCard?.(card.instanceId)}
           onDrop={onDropCard}
         />

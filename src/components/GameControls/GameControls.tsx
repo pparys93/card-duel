@@ -1,4 +1,5 @@
 import styles from "./GameControls.module.css";
+import KeyHint from "../KeyHint/KeyHint";
 
 interface GameControlsProps {
   drawCost: number;
@@ -27,6 +28,7 @@ function GameControls({
         onClick={onToggleSound}
         aria-label="Mute sound effects"
         aria-pressed={soundMuted}
+        aria-keyshortcuts="M"
       >
         <svg className={styles.soundIcon} viewBox="0 0 24 24" aria-hidden="true">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
@@ -42,6 +44,8 @@ function GameControls({
             </>
           )}
         </svg>
+
+        <KeyHint keys="M" className={styles.keyHint} />
       </button>
       <button
         type="button"
@@ -49,19 +53,23 @@ function GameControls({
         onClick={onDrawCard}
         disabled={!canDraw}
         aria-label={`Draw Card, costs ${drawCost} mana`}
+        aria-keyshortcuts="D"
       >
         <span className={styles.manaBadge} aria-hidden="true">
           {drawCost}
         </span>
         Draw Card
+        <KeyHint keys="D" className={styles.keyHint} />
       </button>
       <button
         type="button"
         className={`${styles.button} ${styles.endTurn}`}
         onClick={onEndTurn}
         disabled={!canEndTurn}
+        aria-keyshortcuts="E"
       >
         End Turn
+        <KeyHint keys="E" className={styles.keyHint} />
       </button>
     </div>
   );

@@ -52,6 +52,12 @@
   box-shadow: var(--shadow-box-card-mana);
 }
 
+.keyHint {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+}
+
 .soundToggle {
   position: absolute;
   top: 50%;
@@ -95,6 +101,7 @@
 }
 
 .endTurn {
+  position: relative;
   background: var(--color-bg-btn-end-turn);
   box-shadow: var(--shadow-box-btn-end-turn);
 }

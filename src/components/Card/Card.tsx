@@ -6,6 +6,7 @@ import CardManaBadge from "../CardManaBadge/CardManaBadge";
 import CardArt from "../CardArt/CardArt";
 import CardContent from "../CardContent/CardContent";
 import CardStat from "../CardStat/CardStat";
+import KeyHint from "../KeyHint/KeyHint";
 import styles from "./Card.module.css";
 
 const DRAG_THRESHOLD_PX = 8;
@@ -18,6 +19,7 @@ interface CardProps {
   selected?: boolean;
   affordable?: boolean;
   canPlace?: boolean;
+  handPosition?: number; // 1-based position in the hand; the same number selects the card from the keyboard
   onSelect?: () => void;
   onDrop?: (slotIndex: number) => void;
   style?: CSSProperties;
@@ -28,6 +30,7 @@ function Card({
   selected = false,
   affordable = true,
   canPlace = true,
+  handPosition,
   onSelect,
   onDrop,
   style,
@@ -155,6 +158,7 @@ function Card({
       aria-label={`${card.name}, ${card.mana} mana, ${card.type === "attack" ? "Attack" : "Heal"} ${card.stat}${affordable ? "" : ", not enough mana to play"}`}
       aria-pressed={selected}
       aria-disabled={!affordable || undefined}
+      aria-keyshortcuts={handPosition === undefined ? undefined : String(handPosition)}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       onPointerDown={handlePointerDown}
@@ -167,6 +171,11 @@ function Card({
       <CardArt icon={card.id} />
       <CardContent name={card.name} description={card.description} />
       <CardStat type={card.type} value={card.stat} />
+
+      {handPosition !== undefined && (
+        // a selected card is played with S, so the hint switches from "which key selects" to "which key plays"
+        <KeyHint keys={selected ? "S" : String(handPosition)} className={styles.keyHint} />
+      )}
     </div>
   );
 }
