@@ -2,27 +2,26 @@
   display: none;
 }
 
-@media (pointer: fine) {
-  .hint {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* :global() because the attribute lives on <html>, outside this module's generated class names */
+:global(html[data-input="keyboard"]) .hint {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    min-width: var(--size-width-key-hint);
-    height: var(--size-width-key-hint);
-    padding-inline: var(--size-space-global-2xs);
+  min-width: var(--size-width-key-hint);
+  height: var(--size-width-key-hint);
+  padding-inline: var(--size-space-global-2xs);
 
-    border: 1px solid var(--color-border-key-hint);
-    border-radius: var(--size-radius-key-hint);
-    background: var(--color-bg-key-hint);
+  border: 1px solid var(--color-border-key-hint);
+  border-radius: var(--size-radius-key-hint);
+  background: var(--color-bg-key-hint);
 
-    color: var(--color-text-key-hint);
-    font-family: inherit;
-    font-size: var(--size-font-global-sm);
-    font-weight: 700;
-    line-height: 1;
-    text-transform: uppercase;
+  color: var(--color-text-key-hint);
+  font-family: inherit;
+  font-size: var(--size-font-global-sm);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
 
-    pointer-events: none;
-  }
+  pointer-events: none;
 }

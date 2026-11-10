@@ -4,6 +4,7 @@ import { createInitialState } from "./game/initialState";
 import { DRAW_COST } from "./game/constants";
 import { useSoundEffects } from "./hooks/useSoundEffects";
 import { useKeyboardShortcuts } from "./hooks/useKeyboardShortcuts";
+import { useInputMode } from "./hooks/useInputMode";
 import {
   playSound,
   isSoundMuted,
@@ -44,6 +45,7 @@ function App() {
    useSoundEffects(state);
   // inert doesn't block a document listener, so pause the shortcuts while the rules are open
   useKeyboardShortcuts(state, dispatch, !rulesVisible);
+  useInputMode();
 
   const soundMuted = useSyncExternalStore(subscribeToSoundMuted, isSoundMuted);
 
