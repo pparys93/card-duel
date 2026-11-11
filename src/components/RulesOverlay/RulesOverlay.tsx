@@ -57,6 +57,11 @@ function RulesOverlay({ visible, onBeginDuel }: RulesOverlayProps) {
       >
         Full rules on GitHub
       </a>
+
+      <p className={styles.note}>
+        Prefer the keyboard? Press <kbd className={styles.key}>Tab</kbd> to show the shortcuts.
+      </p>
+
       <button ref={buttonRef} type="button" className={styles.button} onClick={onBeginDuel}>
         Begin the Duel
       </button>

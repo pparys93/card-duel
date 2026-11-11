@@ -31,6 +31,15 @@
   font-weight: 700;
 }
 
+.note {
+  composes: message from "../../styles/overlay.module.css";
+}
+
+.key {
+  font-family: inherit;
+  font-weight: 700;
+}
+
 .link {
   color: var(--color-text-panel-mana);
   font-size: var(--size-font-global-md);
