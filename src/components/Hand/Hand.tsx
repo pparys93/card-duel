@@ -8,6 +8,7 @@ interface HandProps {
   selectedInstanceId: string | null;
   playerMana: number;
   canPlace: boolean;
+  shortcutsEnabled: boolean;
   onSelectCard?: (instanceId: string) => void;
   onDropCard?: (slotIndex: number) => void;
 }
@@ -17,6 +18,7 @@ function Hand({
   selectedInstanceId,
   playerMana,
   canPlace,
+  shortcutsEnabled,
   onSelectCard,
   onDropCard,
 }: HandProps) {
@@ -32,7 +34,7 @@ function Hand({
           selected={selectedInstanceId === card.instanceId}
           affordable={card.mana <= playerMana}
           canPlace={canPlace}
-          handPosition={index + 1}
+          handPosition={shortcutsEnabled ? index + 1 : undefined}
           onSelect={() => onSelectCard?.(card.instanceId)}
           onDrop={onDropCard}
         />

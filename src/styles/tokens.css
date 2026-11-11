@@ -60,6 +60,7 @@
   --color-bg-card-art-overlay-start: rgba(255, 255, 255, 0.06);
   --color-bg-card-art-overlay-end: rgba(255, 255, 255, 0.01);
   --color-bg-key-hint: rgba(13, 17, 23, 0.85);
+  --color-bg-shortcuts-toggle: rgba(13, 17, 23, 0.95);
   --color-bg-scrollbar-track: rgba(255, 255, 255, 0.05);
   --color-bg-scrollbar-thumb: rgba(124, 183, 255, 0.55);
   --color-bg-scrollbar-thumb-hover: rgba(124, 183, 255, 0.75);
