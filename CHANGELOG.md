@@ -15,7 +15,10 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). U
 - On very narrow screens (352 px wide or narrower at the default font size) Draw Card and End Turn stack vertically to leave room for the mute toggle
 
 <details>
-<summary><strong>Patches on top of v1.1.0</strong> - v1.1.1 - v1.1.2</summary>
+<summary><strong>Patches on top of v1.1.0</strong> - v1.1.1 - v1.1.2 - v1.1.3</summary>
+
+**[v1.1.3] | 2026-11-13**
+- Fixed: overlays now scroll when their content is taller than the screen, instead of being cut off
 
 **[v1.1.2] | 2026-11-06**
 - Fixed: cards in hand no longer use an invalid combination of `<article>` and the `button` role for assistive technologies
@@ -187,6 +190,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). U
 [v1.1.0]: https://github.com/pparys93/card-duel/releases/tag/v1.1.0
 [v1.1.1]: https://github.com/pparys93/card-duel/releases/tag/v1.1.1
 [v1.1.2]: https://github.com/pparys93/card-duel/releases/tag/v1.1.2
+[v1.1.3]: https://github.com/pparys93/card-duel/releases/tag/v1.1.3
 [v1.0.0]: https://github.com/pparys93/card-duel/releases/tag/v1.0.0
 [v1.0.1]: https://github.com/pparys93/card-duel/releases/tag/v1.0.1
 [v1.0.2]: https://github.com/pparys93/card-duel/releases/tag/v1.0.2
