@@ -26,6 +26,12 @@
   box-shadow: var(--shadow-box-slot-hover);
 }
 
+.highlighted {
+  background-color: var(--color-bg-slot-hover);
+  border-color: var(--color-border-slot-hover);
+  box-shadow: var(--shadow-box-slot-hover);
+}
+
 .inactive {
   background-color: rgba(180, 60, 60, 0.07);
   border-color: rgba(180, 60, 60, 0.25);

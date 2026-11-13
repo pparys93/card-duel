@@ -116,6 +116,7 @@ function App() {
         <Board
           variant="player"
           slots={state.playerBoard}
+          highlightEmptySlots={state.selectedInstanceId !== null}
           onPlaceCard={(slotIndex) => dispatch({ type: "PLACE_CARD", slotIndex })}
         />
 

@@ -7,14 +7,16 @@ interface BoardSlotProps {
   label: string;
   card?: CardData;
   index?: number;
+  highlighted?: boolean;
   onPlace?: () => void;
 }
 
-function BoardSlot({ variant, label, card, index, onPlace }: BoardSlotProps) {
+function BoardSlot({ variant, label, card, index, highlighted = false, onPlace }: BoardSlotProps) {
   const className = [
     styles.slot,
     variant === "enemy" && styles.inactive,
     card && styles.occupied,
+    highlighted && !card && styles.highlighted,
   ]
     .filter(Boolean)
     .join(" ");
