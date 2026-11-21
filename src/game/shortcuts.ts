@@ -8,6 +8,7 @@ export type ShortcutCommand = GameAction | { type: "TOGGLE_SOUND" };
 // the slice of KeyboardEvent this mapping needs, so tests can pass plain objects (no DOM)
 export interface ShortcutKeyEvent {
   code: string;
+  key: string;
   repeat: boolean;
   ctrlKey: boolean;
   metaKey: boolean;
@@ -16,6 +17,15 @@ export interface ShortcutKeyEvent {
 
 // digit1..digit<MAX_HAND_SIZE>: key N selects the Nth card in the hand
 const HAND_KEY_CODES = Array.from({ length: MAX_HAND_SIZE }, (_, index) => `Digit${index + 1}`);
+
+// letters follow the printed character (Dvorak, AZERTY); only a non-Latin letter (Cyrillic, Greek, ...)
+// falls back to the physical key, so punctuation, accented letters and dead/IME keys never trigger a shortcut
+function getLetter(event: ShortcutKeyEvent): string | null {
+  if (/^\p{Script=Latin}$/u.test(event.key)) return event.key.toLowerCase();
+  if (!/^\p{L}$/u.test(event.key)) return null;
+  const physical = /^Key([A-Z])$/.exec(event.code);
+  return physical ? physical[1].toLowerCase() : null;
+}
 
 // returns the action a click would send; the rules (turn, mana, game over) stay in the reducer
 export function getShortcutCommand(
@@ -31,19 +41,19 @@ export function getShortcutCommand(
     return card ? { type: "SELECT_CARD", instanceId: card.instanceId } : null;
   }
 
-  switch (event.code) {
-    case "KeyS": {
+  if (event.code === "Escape") return { type: "DESELECT_CARD" };
+
+  switch (getLetter(event)) {
+    case "s": {
       // slots are interchangeable for the rules, so "the first free slot" loses nothing
       const slotIndex = state.playerBoard.findIndex((slot) => slot === undefined);
       return slotIndex === -1 ? null : { type: "PLACE_CARD", slotIndex };
     }
-    case "KeyD":
+    case "d":
       return { type: "DRAW_CARD" };
-    case "KeyE":
+    case "e":
       return { type: "END_PLAYER_TURN" };
-    case "Escape":
-      return { type: "DESELECT_CARD" };
-    case "KeyM":
+    case "m":
       return { type: "TOGGLE_SOUND" };
     default:
       return null;

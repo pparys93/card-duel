@@ -9,8 +9,10 @@ const second = makeHandCard("second", { mana: 2 });
 const third = makeHandCard("third", { mana: 3 });
 const slotCard = cards[0];
 
+// by default the key reports what a QWERTY keyboard would: KeyD -> "d", Digit1 -> "1"
 const press = (code: string, overrides: Partial<ShortcutKeyEvent> = {}): ShortcutKeyEvent => ({
   code,
+  key: code.startsWith("Key") ? code.slice(3).toLowerCase() : code.replace(/^Digit/, ""),
   repeat: false,
   ctrlKey: false,
   metaKey: false,
@@ -82,6 +84,42 @@ describe("getShortcutCommand", () => {
     ["KeyM", { type: "TOGGLE_SOUND" }],
   ])("%s maps to %j", (code, command) => {
     expect(getShortcutCommand(press(code), makeState())).toEqual(command);
+  });
+
+  describe("letters follow the printed letter, digits the physical key", () => {
+    const state = makeState({ hand: [first] });
+
+    it.each([
+      ["a letter moved to another physical key (Dvorak, Colemak)", { code: "KeyH", key: "d" }, { type: "DRAW_CARD" }],
+      ["the physical key now printing another shortcut letter", { code: "KeyD", key: "s" }, { type: "PLACE_CARD", slotIndex: 0 }],
+      ["an uppercase letter (Shift, Caps Lock)", { code: "KeyH", key: "D" }, { type: "DRAW_CARD" }],
+      ["a Cyrillic layout falls back to the physical key", { code: "KeyD", key: "в" }, { type: "DRAW_CARD" }],
+      ["another Cyrillic key, same fallback", { code: "KeyM", key: "ь" }, { type: "TOGGLE_SOUND" }],
+    ])("%s", (_label, keys, command) => {
+      expect(getShortcutCommand(press(keys.code, { key: keys.key }), state)).toEqual(command);
+    });
+
+    it("ignores a physical shortcut key that prints another Latin letter", () => {
+      expect(getShortcutCommand(press("KeyD", { key: "x" }), state)).toBeNull();
+    });
+
+    it.each([
+      ["punctuation printed on a shortcut key (Dvorak '.')", { code: "KeyE", key: "." }],
+      ["punctuation printed on a shortcut key (AZERTY ',')", { code: "KeyM", key: "," }],
+      ["an accented Latin letter (AltGr ę, é)", { code: "KeyE", key: "ę" }],
+      ["another accented Latin letter (AltGr ś)", { code: "KeyS", key: "ś" }],
+      ["an IME composition key", { code: "KeyD", key: "Process" }],
+      ["a dead key", { code: "KeyE", key: "Dead" }],
+    ])("ignores %s", (_label, keys) => {
+      expect(getShortcutCommand(press(keys.code, { key: keys.key }), state)).toBeNull();
+    });
+
+    it("selects cards by the physical digit key even when it prints a symbol (AZERTY)", () => {
+      expect(getShortcutCommand(press("Digit1", { key: "&" }), state)).toEqual({
+        type: "SELECT_CARD",
+        instanceId: "first",
+      });
+    });
   });
 
   it("leaves the rules to the reducer: returns the action even when it will be rejected", () => {
