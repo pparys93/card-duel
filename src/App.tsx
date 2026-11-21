@@ -48,10 +48,11 @@ function markRulesSeen(): void {
 function App() {
   const [rulesVisible, setRulesVisible] = useState(() => !hasSeenRules());
   const [state, dispatch] = useReducer(gameReducer, undefined, createInitialState);
+  const overlayOpen = rulesVisible || state.gameEnded;
   const shortcutsEnabled = useSyncExternalStore(subscribeToShortcutsEnabled, isShortcutsEnabled);
   useSoundEffects(state);
-  // inert doesn't block a document listener, so pause the shortcuts while the rules are open
-  useKeyboardShortcuts(state, dispatch, !rulesVisible && shortcutsEnabled);
+  // inert doesn't block a document listener, so pause the shortcuts while an overlay covers the board
+  useKeyboardShortcuts(state, dispatch, !overlayOpen && shortcutsEnabled);
   useInputMode();
 
   const soundMuted = useSyncExternalStore(subscribeToSoundMuted, isSoundMuted);
@@ -94,7 +95,7 @@ function App() {
         onPlayAgain={() => dispatch({ type: "RESTART_GAME" })}
       />
 
-      <main className={styles.game} inert={rulesVisible || state.gameEnded}>
+      <main className={styles.game} inert={overlayOpen}>
         <ShortcutsToggle
           enabled={shortcutsEnabled}
           onToggle={() => setShortcutsEnabled(!shortcutsEnabled)}
