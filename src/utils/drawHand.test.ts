@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { MAX_HAND_SIZE } from "../game/constants";
-import { makeCard, mulberry32 } from "../test/helpers";
+import { makeCard, mockRandom, mulberry32 } from "../test/helpers";
 import { drawHand } from "./drawHand";
 
 // Math.random() just below 1 makes every Fisher-Yates swap pick j === i, so the "shuffle"
@@ -57,6 +57,15 @@ describe("drawHand", () => {
       hands.add(drawHand(pool, 1, 5).map((card) => card.name).join(","));
     }
     expect(hands.size).toBeGreaterThan(1);
+  });
+
+  it("runs every Fisher-Yates step, including the last swap of positions 0 and 1", () => {
+    // Math.random() === 0 makes each step swap position i with position 0, so the result is fully
+    // predictable; exactly 4 values for 5 cards (i = 4, 3, 2, 1), and mockRandom throws on a 5th call
+    mockRandom(0, 0, 0, 0);
+    const hand = drawHand(deck(1, 1, 1, 1, 1), 10, 5); // every card is playable: no guarantee swap
+    // [0,1,2,3,4] -> [4,1,2,3,0] -> [3,1,2,4,0] -> [2,1,3,4,0] -> [1,2,3,4,0]
+    expect(hand.map((card) => card.name)).toEqual(["card-1", "card-2", "card-3", "card-4", "card-0"]);
   });
 
   it("does not modify the deck it was given", () => {
