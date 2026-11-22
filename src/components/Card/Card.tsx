@@ -130,8 +130,8 @@ function Card({
 
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      onSelect?.();
+      event.preventDefault(); // also stops a repeated Space from scrolling the page
+      if (!event.repeat) onSelect?.();
     }
   };
 

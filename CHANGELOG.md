@@ -15,6 +15,13 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). U
 - A line in the rules overlay pointing keyboard players to the shortcuts
 - Letter shortcuts follow the character printed on the key, so they match the hints on non-QWERTY layouts (e.g. Dvorak, AZERTY); non-Latin layouts (e.g. Cyrillic) use the key's position instead
 
+<details>
+<summary><strong>Patches on top of v1.2.0</strong> - v1.2.1</summary>
+
+**[v1.2.1] | 2026-11-22**
+- Fixed: holding `Enter` or `Space` on a focused card no longer toggles its selection repeatedly
+</details>
+
 ---
 
 ## [v1.1.0] - Sound Controls | 2026-10-27
@@ -204,6 +211,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). U
 ---
 
 [v1.2.0]: https://github.com/pparys93/card-duel/releases/tag/v1.2.0
+[v1.2.1]: https://github.com/pparys93/card-duel/releases/tag/v1.2.1
 [v1.1.0]: https://github.com/pparys93/card-duel/releases/tag/v1.1.0
 [v1.1.1]: https://github.com/pparys93/card-duel/releases/tag/v1.1.1
 [v1.1.2]: https://github.com/pparys93/card-duel/releases/tag/v1.1.2
