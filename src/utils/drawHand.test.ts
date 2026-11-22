@@ -12,9 +12,10 @@ const deck = (...manaCosts: number[]) =>
 describe("drawHand", () => {
   it("deals `count` cards, each with its own instanceId", () => {
     vi.spyOn(Math, "random").mockImplementation(mulberry32(7));
-    const hand = drawHand(deck(1, 2, 3, 4, 5, 6, 7), 10, 5);
-    expect(hand).toHaveLength(5);
-    expect(new Set(hand.map((card) => card.instanceId)).size).toBe(5);
+    const count = 3; // deliberately not the default (MAX_HAND_SIZE), so an ignored `count` fails the test
+    const hand = drawHand(deck(1, 2, 3, 4, 5, 6, 7), 10, count);
+    expect(hand).toHaveLength(count);
+    expect(new Set(hand.map((card) => card.instanceId)).size).toBe(count);
   });
 
   it("defaults to MAX_HAND_SIZE cards", () => {
