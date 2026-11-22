@@ -4,6 +4,19 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). U
 
 ---
 
+## [v1.2.0] - Keyboard Shortcuts | 2026-11-22
+
+### Added
+- Keyboard shortcuts for the core actions: `1`-`5` select a card from the hand, `S` plays the selected card in the first free slot, `D` draws a card, `E` ends the turn, `Esc` clears the selection and `M` toggles sound
+- Shortcuts pause while an overlay covers the board, so a key press never acts on a board the player can't see
+- Shortcut hints on the cards and buttons, shown while navigating with the keyboard (`Tab`, `Enter` or `Space`) and hidden again on the next click or tap
+- Shortcuts toggle, revealed when it receives keyboard focus (the first stop for `Tab`), with the choice remembered between visits
+- Shortcut keys exposed to assistive technologies through `aria-keyshortcuts`
+- A line in the rules overlay pointing keyboard players to the shortcuts
+- Letter shortcuts follow the character printed on the key, so they match the hints on non-QWERTY layouts (e.g. Dvorak, AZERTY); non-Latin layouts (e.g. Cyrillic) use the key's position instead
+
+---
+
 ## [v1.1.0] - Sound Controls | 2026-10-27
 
 ### Added
@@ -190,6 +203,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). U
 
 ---
 
+[v1.2.0]: https://github.com/pparys93/card-duel/releases/tag/v1.2.0
 [v1.1.0]: https://github.com/pparys93/card-duel/releases/tag/v1.1.0
 [v1.1.1]: https://github.com/pparys93/card-duel/releases/tag/v1.1.1
 [v1.1.2]: https://github.com/pparys93/card-duel/releases/tag/v1.1.2

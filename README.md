@@ -106,7 +106,9 @@ This project is also used to practice a professional frontend workflow:
 - `prefers-reduced-motion` support,
 - main heading using the `visuallyHidden` class for screen readers,
 - screen-guard overlay when the browser window is too short or the device is in a non-optimal orientation,
-- game rules overlay shown on load, introducing new players to the mechanics before their first move.
+- game rules overlay shown on load, introducing new players to the mechanics before their first move,
+- keyboard shortcuts for the core actions, exposed through `aria-keyshortcuts`, with a toggle to turn them off,
+- shortcut hints shown only during keyboard navigation.
 
 ### 🧱 CSS Architecture
 - CSS Modules for component-scoped styling, colocated with each component,
@@ -119,7 +121,7 @@ This project is also used to practice a professional frontend workflow:
 - component-based UI (React + TypeScript), organized by responsibility (`components/`, `game/`, `hooks/`, `data/`, `utils/`),
 - centralized game state via a single reducer (`useReducer`), with every game rule expressed as a state transition,
 - strict typing throughout - card data, icon data, and game state all fully typed, catching data-shape mistakes at compile time,
-- side effects (timers, sound, DOM focus) kept out of the reducer and handled in dedicated hooks and effects,
+- side effects (timers, sound, focus, keyboard input) kept out of the reducer and handled in dedicated hooks and effects,
 - dynamic card rendering, fan-layout scaling, card placement, mana system, turn management, draw mechanic, health system, enemy turn AI, win/lose conditions, pointer-based drag and drop, and an audio feedback system - all ported from the original vanilla JS implementation.
 
 ---
@@ -182,9 +184,11 @@ card-duel/
 │   │   ├── GameOverOverlay/
 │   │   ├── Hand/
 │   │   ├── Icon/
+│   │   ├── KeyHint/
 │   │   ├── PlayerPanel/
 │   │   ├── RulesOverlay/
-│   │   └── ScreenGuard/
+│   │   ├── ScreenGuard/
+│   │   └── ShortcutsToggle/
 │   │   (each with a colocated .tsx + .module.css)
 │   │
 │   ├── game/
@@ -193,9 +197,13 @@ card-duel/
 │   │   ├── reducer.ts
 │   │   ├── reducer.test.ts
 │   │   ├── reducer.invariants.test.ts
+│   │   ├── shortcuts.ts
+│   │   ├── shortcuts.test.ts
 │   │   └── types.ts
 │   │
 │   ├── hooks/
+│   │   ├── useInputMode.ts
+│   │   ├── useKeyboardShortcuts.ts
 │   │   └── useSoundEffects.ts
 │   │
 │   ├── data/
@@ -215,6 +223,9 @@ card-duel/
 │   │   ├── drawHand.test.ts
 │   │   ├── getCardFanTransform.ts
 │   │   ├── pickRandom.ts
+│   │   ├── screenGuard.ts
+│   │   ├── shortcutsPreference.ts
+│   │   ├── shortcutsPreference.test.ts
 │   │   └── sounds.ts
 │   │
 │   └── styles/
@@ -234,17 +245,19 @@ card-duel/
 
 ```
 App
+├── RulesOverlay
 ├── ScreenGuard
 ├── GameOverOverlay
-├── RulesOverlay
 │
 └── <main> (CSS Grid battlefield)
     │
+    ├── ShortcutsToggle
     ├── PlayerPanel (enemy)
     ├── Board (enemy)
     │   └── BoardSlot × 4 → BoardCard
     │
     ├── GameControls
+    │   └── KeyHint × 3
     │
     ├── Board (player)
     │   └── BoardSlot × 4 → BoardCard
@@ -253,7 +266,8 @@ App
     │       ├── CardManaBadge
     │       ├── CardArt → Icon
     │       ├── CardContent
-    │       └── CardStat
+    │       ├── CardStat
+    │       └── KeyHint
     └── PlayerPanel (player)
 ```
 
@@ -261,7 +275,7 @@ App
 
 ## 🚧 Project Status
 
-Current version: [`v1.1.4`](./CHANGELOG.md) - complete
+Current version: [`v1.2.0`](./CHANGELOG.md) - complete
 
 > 🚀 **[Live Demo](https://pparys93.github.io/card-duel)**
 
@@ -313,12 +327,12 @@ This isn't just a game. It's a structured self-education path through the joy of
 - semantic HTML,
 - modern CSS architecture, including CSS Modules and container queries,
 - responsive layouts, CSS Grid & Flexbox,
-- accessibility fundamentals (ARIA, focus management, `prefers-reduced-motion`),
+- accessibility fundamentals (ARIA, focus management, `prefers-reduced-motion`, character key shortcuts),
 - UI/UX principles,
 - Git & GitHub workflow,
 - scalable frontend structure and component thinking,
 - JavaScript: DOM manipulation, event handling, closures, game logic,
-- React: components, state, hooks (`useState`, `useReducer`, `useEffect`, `useRef`, `useSyncExternalStore`), dynamic rendering,
+- React: components, state, hooks (`useState`, `useReducer`, `useEffect`, `useRef`, `useSyncExternalStore`, `useEffectEvent`), dynamic rendering,
 - TypeScript: static typing, discriminated unions, generics,
 - state management with reducers (`useReducer`), keeping side effects (timers, sound, focus) out of the reducer,
 - CI/CD basics: automated checks on pull requests (lint, tests, build) and automated deployment with GitHub Actions,

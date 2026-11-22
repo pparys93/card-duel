@@ -40,6 +40,7 @@
   --color-text-panel-mana: #7cb7ff;
   --color-text-panel-heal: #4ea96b;
   --color-text-card-description: #aebfd6;
+  --color-text-key-hint: var(--color-text-base-default);
 
   --color-bg-arena: radial-gradient(ellipse at top, #1e2a3a 0%, #0d1117 60%);
   --color-bg-panel: rgba(255, 255, 255, 0.04);
@@ -58,6 +59,8 @@
   --color-bg-card-heal: linear-gradient(135deg, #4ea96b, #2f7d4a);
   --color-bg-card-art-overlay-start: rgba(255, 255, 255, 0.06);
   --color-bg-card-art-overlay-end: rgba(255, 255, 255, 0.01);
+  --color-bg-key-hint: rgba(13, 17, 23, 0.85);
+  --color-bg-shortcuts-toggle: rgba(13, 17, 23, 0.95);
   --color-bg-scrollbar-track: rgba(255, 255, 255, 0.05);
   --color-bg-scrollbar-thumb: rgba(124, 183, 255, 0.55);
   --color-bg-scrollbar-thumb-hover: rgba(124, 183, 255, 0.75);
@@ -69,6 +72,7 @@
   --color-border-card: rgba(255, 255, 255, 0.1);
   --color-border-card-art-divider: rgba(255, 255, 255, 0.07);
   --color-border-card-selected: #FFD700;
+  --color-border-key-hint: rgba(255, 255, 255, 0.35);
 
   --color-outline-slot-focus: rgba(124, 183, 255, 0.9);
   --color-outline-btn-focus: rgba(255, 255, 255, 0.9);
@@ -101,6 +105,7 @@
   --size-width-slot: clamp(5rem, 8.5vw, 7.5rem);
   --size-width-btn: clamp(7.5rem, 11.5vw, 10.5rem);
   --size-width-card: clamp(7.8rem, 11.25vw, 10rem);
+  --size-width-key-hint: 1.375rem;
 
   /* SPACING */
   --size-padding-layout: clamp(0.625rem, 1.0vw, 1.25rem);
@@ -129,6 +134,7 @@
   --size-radius-button: var(--size-radius-global-md);
   --size-radius-card: var(--size-radius-global-lg);
   --size-radius-card-stat: var(--size-radius-global-sm);
+  --size-radius-key-hint: var(--size-radius-global-sm);
   
   /* half the bar height gives fully rounded ends; */
   --size-radius-scrollbar: calc(var(--size-height-scrollbar) / 2);

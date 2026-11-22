@@ -33,6 +33,13 @@
   animation: cardEnter 0.3s ease-out;
 }
 
+.keyHint {
+  position: absolute;
+  bottom: var(--size-space-global-sm);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .card:first-child {
   margin-left: 0;
 }
